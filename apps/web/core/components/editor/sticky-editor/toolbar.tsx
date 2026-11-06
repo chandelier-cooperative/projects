@@ -104,7 +104,7 @@ export function StickyEditorToolbar(props: Props) {
                       >
                         <item.icon
                           className={cn("h-3.5 w-3.5", {
-                            "font-heavy": isItemActive,
+                            "font-medium": isItemActive,
                           })}
                           strokeWidth={2.5}
                         />

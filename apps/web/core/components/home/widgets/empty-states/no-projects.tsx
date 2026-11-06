@@ -137,7 +137,7 @@ export const NoProjectsEmptyState = observer(function NoProjectsEmptyState() {
   return (
     <div>
       <div className="mb-4 flex items-center justify-between">
-        <div className="text-14 font-semibold text-tertiary">{t("home.empty.quickstart_guide")}</div>
+        <div className="text-14 font-medium text-tertiary">{t("home.empty.quickstart_guide")}</div>
         <button
           className="flex items-center gap-1 text-13 font-medium text-tertiary"
           onClick={() => {
@@ -153,7 +153,7 @@ export const NoProjectsEmptyState = observer(function NoProjectsEmptyState() {
         {EMPTY_STATE_DATA.map((item) => {
           const isStateComplete = isComplete(item.flag);
           return (
-            <div key={item.id} className="flex flex-col rounded-xl border border-subtle bg-layer-2 p-4">
+            <div key={item.id} className="flex flex-col rounded-lg border border-subtle bg-layer-2 p-4">
               <div
                 className={cn("mb-3 grid size-9 place-items-center rounded-full bg-surface-2 text-placeholder", {
                   "bg-accent-primary/10 text-accent-primary": !isStateComplete,

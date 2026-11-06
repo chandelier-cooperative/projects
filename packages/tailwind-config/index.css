@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./variables.css";
 @import "./animations.css";
+@import "./chandelier.css";
 @source "../**/*.{ts,tsx}";
 
 * {
@@ -17,18 +18,10 @@ body {
   @apply font-body bg-canvas text-primary;
 }
 
-/* emoji icon picker */
+/* selector de color personalizado: círculo neutro (el espectro no se usa como decoración) */
 @utility conical-gradient {
-  background: conic-gradient(
-    from 180deg at 50% 50%,
-    #ff6b00 0deg,
-    #f7ae59 70.5deg,
-    #3f76ff 151.12deg,
-    #05c3ff 213deg,
-    #18914f 289.87deg,
-    #f6f172 329.25deg,
-    #ff6b00 360deg
-  );
+  background: var(--ch-line);
+  border: 1px solid var(--ch-border-hover);
 }
 
 /* progress bar */
@@ -55,14 +48,14 @@ body {
   .vertical-scrollbar,
   .horizontal-scrollbar {
     scrollbar-width: initial;
-    scrollbar-color: rgba(96, 100, 108, 0.1) transparent;
+    scrollbar-color: var(--ch-border) transparent;
 
     &:hover {
-      scrollbar-color: rgba(96, 100, 108, 0.25) transparent;
+      scrollbar-color: var(--ch-line) transparent;
     }
 
     &:active {
-      scrollbar-color: rgba(96, 100, 108, 0.7) transparent;
+      scrollbar-color: var(--ch-border-hover) transparent;
     }
   }
 }

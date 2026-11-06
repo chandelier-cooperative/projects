@@ -56,7 +56,7 @@ export const CycleOptions = observer(function CycleOptions(props: CycleOptionsPr
     if (isOpen) {
       onOpen();
       if (!isMobile) {
-        inputRef.current && inputRef.current.focus();
+        inputRef.current?.focus();
       }
     }
   }, [isOpen, isMobile]);
@@ -77,7 +77,7 @@ export const CycleOptions = observer(function CycleOptions(props: CycleOptionsPr
   const cycleIds = (getProjectCycleIds(projectId) ?? [])?.filter((cycleId) => {
     const cycleDetails = getCycleById(cycleId);
     if (currentCycleId && currentCycleId === cycleId) return false;
-    return cycleDetails?.status ? (cycleDetails?.status.toLowerCase() != "completed" ? true : false) : true;
+    return cycleDetails?.status ? cycleDetails.status.toLowerCase() !== "completed" : true;
   });
 
   const onOpen = () => {
@@ -126,7 +126,7 @@ export const CycleOptions = observer(function CycleOptions(props: CycleOptionsPr
   return (
     <Combobox.Options className="fixed z-10" static>
       <div
-        className="my-1 w-48 rounded-sm border-[0.5px] border-strong bg-surface-1 px-2 py-2.5 text-11 shadow-raised-200 focus:outline-none"
+        className="my-1 w-48 rounded-sm border-[0.5px] border-strong bg-surface-1 px-2 py-2.5 text-11 focus:outline-none"
         ref={setPopperElement}
         style={styles.popper}
         {...attributes.popper}

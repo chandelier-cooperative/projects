@@ -19,6 +19,7 @@ export * from "./drop-indicator";
 export * from "./dropdown";
 export * from "./dropdowns";
 export * from "./favorite-star";
+export * from "./focus-halo";
 export * from "./form-fields";
 export * from "./header";
 export * from "./link";

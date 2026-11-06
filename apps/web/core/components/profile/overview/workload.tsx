@@ -41,7 +41,7 @@ export function ProfileWorkload({ stateDistribution }: Props) {
                         ? "Working on"
                         : STATE_GROUPS[group.state_group].label}
                   </span>
-                  <p className="text-18 font-semibold">{group.state_count}</p>
+                  <p className="text-18 font-medium">{group.state_count}</p>
                 </div>
               </Card>
             </a>

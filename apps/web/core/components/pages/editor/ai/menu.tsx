@@ -143,12 +143,9 @@ export function EditorAIMenu(props: Props) {
 
   return (
     <div
-      className={cn(
-        "flex w-[210px] flex-col rounded-md border-[0.5px] border-strong bg-surface-1 shadow-raised-200 transition-all",
-        {
-          "w-[700px]": activeTask,
-        }
-      )}
+      className={cn("flex w-[210px] flex-col rounded-md border-[0.5px] border-strong bg-surface-1 transition-all", {
+        "w-[700px]": activeTask,
+      })}
     >
       <div
         className={cn("flex max-h-72 w-full", {

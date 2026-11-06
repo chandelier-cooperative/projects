@@ -267,7 +267,7 @@ export const OnText: Story = {
       <ContextMenu>
         <ContextMenu.Trigger>
           <div className="w-96 rounded-lg border border-subtle p-6">
-            <h3 className="mb-2 text-16 font-semibold">Context Menu on Text</h3>
+            <h3 className="mb-2 text-16 font-medium">Context Menu on Text</h3>
             <p className="text-tertiary">
               Right click anywhere on this text area to see the context menu. This demonstrates how context menus can be
               applied to text content areas.

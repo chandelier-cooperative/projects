@@ -20,7 +20,7 @@ export const iconButtonVariants = cva(
         "error-outline":
           "border border-danger-strong bg-layer-2 text-danger-primary hover:bg-danger-subtle focus:bg-danger-subtle-hover active:bg-danger-subtle-hover disabled:border-subtle-1 disabled:bg-layer-2 disabled:text-disabled",
         secondary:
-          "border border-strong bg-layer-2 text-secondary shadow-raised-100 hover:bg-layer-2-hover focus:bg-layer-2-active active:bg-layer-2-active disabled:border-subtle-1 disabled:bg-layer-transparent disabled:text-disabled",
+          "border border-strong bg-layer-2 text-secondary hover:bg-layer-2-hover focus:bg-layer-2-active active:bg-layer-2-active disabled:border-subtle-1 disabled:bg-layer-transparent disabled:text-disabled",
         tertiary:
           "bg-layer-3 text-secondary hover:bg-layer-3-hover focus:bg-layer-3-active active:bg-layer-3-active disabled:bg-layer-transparent disabled:text-disabled",
         ghost:

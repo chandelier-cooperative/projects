@@ -194,16 +194,13 @@ export const ImagePickerPopover = observer(function ImagePickerPopover(props: Pr
       </Popover.Button>
 
       {isOpen && (
-        <Popover.Panel
-          className="absolute right-0 z-20 mt-2 rounded-md border border-subtle bg-surface-1 shadow-raised-200"
-          static
-        >
+        <Popover.Panel className="absolute right-0 z-20 mt-2 rounded-md border border-subtle bg-surface-1" static>
           <div
             ref={imagePickerRef}
-            className="flex h-96 w-80 flex-col overflow-auto rounded border border-subtle bg-surface-1 shadow-raised-200 md:h-[36rem] md:w-[36rem]"
+            className="rounded flex h-96 w-80 flex-col overflow-auto border border-subtle bg-surface-1 md:h-[36rem] md:w-[36rem]"
           >
             <Tabs defaultValue={enabledTabs[0]?.key || "images"} className="flex h-full flex-col p-3">
-              <Tabs.List className="flex rounded bg-layer-3 p-1">
+              <Tabs.List className="rounded flex bg-layer-3 p-1">
                 {enabledTabs.map((tab) => (
                   <Tabs.Trigger key={tab.key} value={tab.key} size="md">
                     {tab.title}
@@ -290,7 +287,7 @@ export const ImagePickerPopover = observer(function ImagePickerPopover(props: Pr
                       >
                         <img
                           src={imageUrl}
-                          alt={`Cover image ${index + 1}`}
+                          alt={`Cover ${index + 1}`}
                           className="absolute top-0 left-0 h-full w-full cursor-pointer rounded-sm object-cover transition-opacity hover:opacity-80"
                         />
                       </div>
@@ -318,7 +315,7 @@ export const ImagePickerPopover = observer(function ImagePickerPopover(props: Pr
                           <>
                             <img
                               src={image ? URL.createObjectURL(image) : getCoverImageDisplayURL(value, "")}
-                              alt="image"
+                              alt="Selected cover"
                               className="h-full w-full rounded-lg object-cover"
                             />
                           </>

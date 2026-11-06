@@ -37,7 +37,7 @@ export const HorizontalStackAssets: Story = {
   render: () => (
     <div className="p-8">
       <div className="mb-6">
-        <h2 className="text-18 font-semibold text-primary">Horizontal Stack Assets</h2>
+        <h2 className="text-18 font-medium text-primary">Horizontal Stack Assets</h2>
         <p className="text-13 text-tertiary">Used primarily in EmptyStateCompact component</p>
       </div>
       <div className="grid w-full grid-cols-12 gap-6">
@@ -70,7 +70,7 @@ export const VerticalStackAssets: Story = {
   render: () => (
     <div className="p-8">
       <div className="mb-6">
-        <h2 className="text-18 font-semibold text-primary">Vertical Stack Assets</h2>
+        <h2 className="text-18 font-medium text-primary">Vertical Stack Assets</h2>
         <p className="text-13 text-tertiary">Used primarily in EmptyStateDetailed component</p>
       </div>
       <div className="grid w-full grid-cols-12 gap-6">
@@ -108,7 +108,7 @@ export const IllustrationAssets: Story = {
   render: () => (
     <div className="p-8">
       <div className="mb-6">
-        <h2 className="text-18 font-semibold text-primary">Illustration Assets</h2>
+        <h2 className="text-18 font-medium text-primary">Illustration Assets</h2>
         <p className="text-13 text-tertiary">Available in both EmptyStateCompact and EmptyStateDetailed</p>
       </div>
       <div className="grid w-full grid-cols-12 gap-6">
@@ -140,7 +140,7 @@ export const AllAssets: Story = {
       {/* Horizontal Stack */}
       <div>
         <div className="mb-6">
-          <h2 className="text-18 font-semibold text-primary">Horizontal Stack Assets</h2>
+          <h2 className="text-18 font-medium text-primary">Horizontal Stack Assets</h2>
           <p className="text-13 text-tertiary">For EmptyStateCompact - {HorizontalStackAssetsMap.length} assets</p>
         </div>
         <div className="grid w-full grid-cols-12 gap-4">
@@ -159,7 +159,7 @@ export const AllAssets: Story = {
       {/* Vertical Stack */}
       <div>
         <div className="mb-6">
-          <h2 className="text-18 font-semibold text-primary">Vertical Stack Assets</h2>
+          <h2 className="text-18 font-medium text-primary">Vertical Stack Assets</h2>
           <p className="text-13 text-tertiary">For EmptyStateDetailed - {VerticalStackAssetsMap.length} assets</p>
         </div>
         <div className="grid w-full grid-cols-12 gap-4">
@@ -184,7 +184,7 @@ export const AllAssets: Story = {
       {/* Illustrations */}
       <div>
         <div className="mb-6">
-          <h2 className="text-18 font-semibold text-primary">Illustration Assets</h2>
+          <h2 className="text-18 font-medium text-primary">Illustration Assets</h2>
           <p className="text-13 text-tertiary">For both components - {IllustrationMap.length} assets</p>
         </div>
         <div className="grid w-full grid-cols-12 gap-4">

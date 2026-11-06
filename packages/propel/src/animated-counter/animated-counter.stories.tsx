@@ -32,7 +32,7 @@ export const Default: Story = {
       <div className="space-y-6 p-4">
         <div className="flex items-center justify-center gap-6">
           <button
-            className="bg-red-500 hover:bg-red-600 shadow-md rounded-lg px-4 py-2 font-medium text-on-color transition-colors focus:ring-2 focus:ring-danger-strong focus:ring-offset-2 focus:outline-none"
+            className="bg-red-500 hover:bg-red-600 rounded-lg px-4 py-2 font-medium text-on-color transition-colors focus:ring-2 focus:ring-danger-strong focus:ring-offset-2 focus:outline-none"
             onClick={() => setCount((prev) => Math.max(0, prev - 1))}
           >
             -1
@@ -41,7 +41,7 @@ export const Default: Story = {
             <AnimatedCounter {...args} count={count} />
           </div>
           <button
-            className="bg-green-500 hover:bg-green-600 shadow-md rounded-lg px-4 py-2 font-medium text-on-color transition-colors focus:ring-2 focus:ring-success-strong focus:ring-offset-2 focus:outline-none"
+            className="bg-green-500 hover:bg-green-600 rounded-lg px-4 py-2 font-medium text-on-color transition-colors focus:ring-2 focus:ring-success-strong focus:ring-offset-2 focus:outline-none"
             onClick={() => setCount((prev) => prev + 1)}
           >
             +1

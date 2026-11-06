@@ -37,7 +37,7 @@ export function AuthInput({
   return (
     <div className={cn(baseContainerClassName)}>
       {label && (
-        <label htmlFor={id} className={cn("text-13 font-semibold text-tertiary")}>
+        <label htmlFor={id} className={cn("text-13 font-medium text-tertiary")}>
           {label}
         </label>
       )}

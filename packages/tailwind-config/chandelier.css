@@ -1,0 +1,454 @@
+/*
+ * Chandelier design system sobre los tokens semánticos de Plane.
+ * Fondo negro, texto blanco, arcoíris solo como acento (7 usos). Solo modo oscuro, sin sombras.
+ * Se importa al final de index.css para ganar a variables.css.
+ */
+
+:root {
+  --ch-bg: #000000;
+  --ch-surface: #0a0a0a;
+  --ch-border: #1c1c1c;
+  --ch-line: #2a2a2a;
+  --ch-border-hover: #3a3a3a;
+  --ch-off: #4a4a4a;
+  --ch-text: #ffffff;
+  --ch-text-dim: #8a8a8a;
+
+  --ch-red: #ff3b30;
+  --ch-orange: #ff9500;
+  --ch-yellow: #ffd60a;
+  --ch-green: #30d158;
+  --ch-blue: #0a84ff;
+  --ch-indigo: #5e5ce6;
+  --ch-violet: #bf5af2;
+  --ch-spectrum: #ff3b30, #ff9500, #ffd60a, #30d158, #0a84ff, #5e5ce6, #bf5af2;
+  --ch-rainbow: linear-gradient(90deg, var(--ch-spectrum));
+
+  --ch-t-fast: 150ms;
+  color-scheme: dark;
+}
+
+html {
+  background: var(--ch-bg);
+  color-scheme: dark;
+}
+
+body {
+  font-feature-settings: "cv11", "ss01";
+}
+
+::selection {
+  background: var(--ch-text);
+  color: var(--ch-bg);
+}
+
+/* Ángulo animable del borde arcoíris */
+@property --ch-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ch-spin-border {
+  to {
+    --ch-angle: 360deg;
+  }
+}
+
+@keyframes ch-slide-bar {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* -------------------- Paleta (siempre oscura, cualquier data-theme) -------------------- */
+:root:root {
+  /* Escala neutra: solo los pasos de la paleta Chandelier */
+  --neutral-black: var(--ch-bg);
+  --neutral-white: var(--ch-text);
+  --neutral-100: var(--ch-surface);
+  --neutral-200: var(--ch-surface);
+  --neutral-300: var(--ch-border);
+  --neutral-400: var(--ch-border);
+  --neutral-500: var(--ch-line);
+  --neutral-600: var(--ch-line);
+  --neutral-700: var(--ch-border-hover);
+  --neutral-800: var(--ch-text-dim);
+  --neutral-900: var(--ch-text-dim);
+  --neutral-1000: var(--ch-text-dim);
+  --neutral-1100: var(--ch-text-dim);
+  --neutral-1200: var(--ch-text);
+
+  /* La marca deja de ser un color: blanco y grises. El acento vive en el arcoíris. */
+  --brand-100: var(--ch-surface);
+  --brand-200: var(--ch-border);
+  --brand-300: var(--ch-line);
+  --brand-400: var(--ch-line);
+  --brand-500: var(--ch-border-hover);
+  --brand-600: var(--ch-border-hover);
+  --brand-700: var(--ch-text);
+  --brand-800: var(--ch-text);
+  --brand-900: var(--ch-text);
+  --brand-1000: var(--ch-text);
+  --brand-1100: var(--ch-text);
+  --brand-1200: var(--ch-text);
+  --brand-default: var(--ch-text);
+
+  /* Estado semántico: verde, amarillo, rojo */
+  --green-600: var(--ch-green);
+  --green-700: var(--ch-green);
+  --green-800: var(--ch-green);
+  --green-900: var(--ch-green);
+  --amber-500: var(--ch-yellow);
+  --amber-600: var(--ch-yellow);
+  --amber-700: var(--ch-yellow);
+  --amber-900: var(--ch-yellow);
+  --red-500: var(--ch-red);
+  --red-600: var(--ch-red);
+  --red-700: var(--ch-red);
+  --red-800: var(--ch-red);
+  --red-900: var(--ch-red);
+
+  /* Scrollbar */
+  --scrollbar-thumb: var(--ch-line);
+  --scrollbar-thumb-surface-hover: var(--ch-border-hover);
+  --scrollbar-thumb-hover: var(--ch-border-hover);
+  --scrollbar-thumb-active: var(--ch-off);
+
+  /* Fondos */
+  --bg-canvas: var(--ch-bg);
+  --bg-surface-1: var(--ch-bg);
+  --bg-surface-2: var(--ch-surface);
+  --bg-layer-1: var(--ch-surface);
+  --bg-layer-1-hover: var(--ch-border);
+  --bg-layer-1-active: var(--ch-line);
+  --bg-layer-1-selected: var(--ch-line);
+  --bg-layer-2: var(--ch-surface);
+  --bg-layer-2-hover: var(--ch-border);
+  --bg-layer-2-active: var(--ch-line);
+  --bg-layer-2-selected: var(--ch-line);
+  --bg-layer-3: var(--ch-border);
+  --bg-layer-3-hover: var(--ch-line);
+  --bg-layer-3-active: var(--ch-border-hover);
+  --bg-layer-3-selected: var(--ch-border-hover);
+  --bg-layer-transparent: transparent;
+  --bg-layer-transparent-hover: var(--ch-border);
+  --bg-layer-transparent-active: var(--ch-line);
+  --bg-layer-transparent-selected: var(--ch-line);
+  --bg-layer-disabled: var(--ch-line);
+  --bg-accent-primary: var(--ch-bg);
+  --bg-accent-primary-hover: var(--ch-surface);
+  --bg-accent-primary-active: var(--ch-border);
+  --bg-accent-subtle: var(--ch-surface);
+  --bg-accent-subtle-hover: var(--ch-border);
+  --bg-accent-subtle-active: var(--ch-line);
+  --bg-success-primary: var(--ch-green);
+  --bg-success-subtle: var(--ch-surface);
+  --bg-success-subtle-1: var(--ch-surface);
+  --bg-warning-primary: var(--ch-yellow);
+  --bg-warning-subtle: var(--ch-surface);
+  --bg-danger-primary: var(--ch-red);
+  --bg-danger-primary-hover: var(--ch-red);
+  --bg-danger-primary-active: var(--ch-red);
+  --bg-danger-primary-selected: var(--ch-red);
+  --bg-danger-subtle: var(--ch-surface);
+  --bg-danger-subtle-hover: var(--ch-border);
+  --bg-danger-subtle-active: var(--ch-line);
+  --bg-danger-subtle-selected: var(--ch-line);
+  --bg-danger-transparent: transparent;
+  --bg-danger-transparent-hover: var(--ch-border);
+  --bg-danger-transparent-active: var(--ch-line);
+  --bg-danger-transparent-selected: var(--ch-line);
+  --bg-backdrop: rgb(0 0 0 / 0.8);
+  --bg-inverse: var(--ch-text);
+
+  /* Bordes: 1 px, #1c1c1c base, #2a2a2a flotante */
+  --border-subtle: var(--ch-border);
+  --border-subtle-1: var(--ch-border);
+  --border-strong: var(--ch-line);
+  --border-strong-1: var(--ch-border-hover);
+  --border-inverse: var(--ch-text);
+  --border-disabled: var(--ch-border);
+  --border-accent-strong: var(--ch-text);
+  --border-accent-subtle: var(--ch-line);
+  --border-success-strong: var(--ch-green);
+  --border-success-subtle: var(--ch-line);
+  --border-warning-strong: var(--ch-yellow);
+  --border-warning-subtle: var(--ch-line);
+  --border-danger-strong: var(--ch-red);
+  --border-danger-subtle: var(--ch-line);
+
+  /* Texto: blanco y #8a8a8a */
+  --txt-primary: var(--ch-text);
+  --txt-secondary: var(--ch-text-dim);
+  --txt-tertiary: var(--ch-text-dim);
+  --txt-placeholder: var(--ch-text-dim);
+  --txt-disabled: var(--ch-text-dim);
+  --txt-accent-primary: var(--ch-text);
+  --txt-accent-secondary: var(--ch-text);
+  --txt-on-color: var(--ch-text);
+  --txt-on-color-disabled: var(--ch-text-dim);
+  --txt-inverse: var(--ch-bg);
+  --txt-success-primary: var(--ch-green);
+  --txt-success-secondary: var(--ch-green);
+  --txt-warning-primary: var(--ch-yellow);
+  --txt-warning-secondary: var(--ch-yellow);
+  --txt-danger-primary: var(--ch-red);
+  --txt-danger-secondary: var(--ch-red);
+
+  /* Iconos */
+  --txt-icon-primary: var(--ch-text);
+  --txt-icon-accent-subtle: var(--ch-text-dim);
+  --txt-icon-accent-primary: var(--ch-text);
+  --txt-icon-accent-primary-inverse: var(--ch-text);
+  --txt-icon-accent-secondary: var(--ch-text);
+  --txt-icon-danger-primary: var(--ch-red);
+  --txt-icon-danger-secondary: var(--ch-red);
+  --txt-icon-success-primary: var(--ch-green);
+  --txt-icon-success-secondary: var(--ch-green);
+  --txt-icon-warning-primary: var(--ch-yellow);
+  --txt-icon-warning-secondary: var(--ch-yellow);
+  --txt-icon-secondary: var(--ch-text-dim);
+  --txt-icon-tertiary: var(--ch-text-dim);
+  --txt-icon-placeholder: var(--ch-text-dim);
+  --txt-icon-disabled: var(--ch-text-dim);
+  --txt-icon-danger: var(--ch-red);
+  --txt-icon-on-color: var(--ch-text);
+  --txt-icon-on-color-disabled: var(--ch-text-dim);
+  --txt-icon-inverse: var(--ch-bg);
+
+  /* Enlaces: blanco subrayado, no azul */
+  --txt-link-primary: var(--ch-text);
+  --txt-link-primary-hover: var(--ch-text-dim);
+  --txt-link-secondary: var(--ch-text-dim);
+
+  /* Ilustraciones en grises */
+  --illustration-fill-primary: var(--ch-surface);
+  --illustration-fill-secondary: var(--ch-border);
+  --illustration-fill-tertiary: var(--ch-line);
+  --illustration-fill-quaternary: var(--ch-border-hover);
+  --illustration-stroke-primary: var(--ch-border-hover);
+  --illustration-stroke-secondary: var(--ch-off);
+  --illustration-stroke-tertiary: var(--ch-text-dim);
+
+  /* Planes */
+  --txt-plans-neutral-primary: var(--ch-text-dim);
+  --txt-plans-neutral-color: var(--ch-bg);
+  --bg-plans-neutral-subtle: var(--ch-border);
+  --bg-plans-neutral-solid: var(--ch-text);
+  --txt-plans-brand-primary: var(--ch-text);
+  --txt-plans-brand-color: var(--ch-bg);
+  --bg-plans-brand-subtle: var(--ch-border);
+  --bg-plans-brand-solid: var(--ch-text);
+}
+
+/* Etiquetas: fondo y texto neutros; el matiz solo queda en el punto/icono (color nunca es la única señal). */
+:root:root {
+  --label-indigo-bg: var(--ch-surface);
+  --label-emerald-bg: var(--ch-surface);
+  --label-grey-bg: var(--ch-surface);
+  --label-crimson-bg: var(--ch-surface);
+  --label-yellow-bg: var(--ch-surface);
+  --label-orange-bg: var(--ch-surface);
+  --label-pink-bg: var(--ch-surface);
+  --label-purple-bg: var(--ch-surface);
+  --label-indigo-hover: var(--ch-border);
+  --label-emerald-hover: var(--ch-border);
+  --label-grey-hover: var(--ch-border);
+  --label-crimson-hover: var(--ch-border);
+  --label-yellow-hover: var(--ch-border);
+  --label-orange-hover: var(--ch-border);
+  --label-pink-hover: var(--ch-border);
+  --label-purple-hover: var(--ch-border);
+  --label-indigo-text: var(--ch-text);
+  --label-emerald-text: var(--ch-text);
+  --label-grey-text: var(--ch-text);
+  --label-crimson-text: var(--ch-text);
+  --label-yellow-text: var(--ch-text);
+  --label-orange-text: var(--ch-text);
+  --label-pink-text: var(--ch-text);
+  --label-purple-text: var(--ch-text);
+  --label-indigo-border: var(--ch-line);
+  --label-emerald-border: var(--ch-line);
+  --label-grey-border: var(--ch-line);
+  --label-crimson-border: var(--ch-line);
+  --label-yellow-border: var(--ch-line);
+  --label-orange-border: var(--ch-line);
+  --label-pink-border: var(--ch-line);
+  --label-purple-border: var(--ch-line);
+}
+
+/* -------------------- Capas flotantes: sin sombra, borde de 1 px (#2a2a2a) -------------------- */
+[id^="headlessui-dialog-panel"],
+[role="menu"],
+[role="listbox"],
+[role="tooltip"],
+[role="alertdialog"],
+[data-radix-popper-content-wrapper] > * {
+  border: 1px solid var(--ch-line);
+  background-color: var(--ch-surface);
+}
+
+/* -------------------- Foco: halo arcoíris -------------------- */
+/* El outline nativo se sustituye por un anillo blanco de 2 px; los botones y pestañas añaden el halo giratorio. */
+:where(a, button, input, select, textarea, summary, [tabindex], [role="button"]):focus-visible {
+  outline: 2px solid var(--ch-text);
+  outline-offset: 2px;
+}
+
+.ch-halo {
+  position: relative;
+}
+.ch-halo::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9px;
+  padding: 2px;
+  background: conic-gradient(from var(--ch-angle), var(--ch-spectrum), var(--ch-red));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--ch-t-fast);
+}
+.ch-halo:focus-visible {
+  outline: none;
+}
+.ch-halo:focus-visible::after {
+  opacity: 1;
+  animation: ch-spin-border 3s linear infinite;
+}
+@media (forced-colors: active) {
+  .ch-halo:focus-visible {
+    outline: 2px solid Highlight;
+  }
+}
+
+/* -------------------- Foco en campos de texto -------------------- */
+/* <FocusHalo /> (@plane/ui) marca la caja con borde del campo enfocado: inputs, textareas y editores de texto. */
+[data-ch-focus-field]:focus-visible {
+  outline: none;
+}
+
+/* El borde del propio input/textarea se sustituye por el arcoíris mientras tiene el foco */
+[data-ch-focus="self"] {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--ch-surface), var(--ch-surface)) padding-box,
+    conic-gradient(from var(--ch-angle), var(--ch-spectrum), var(--ch-red)) border-box;
+  animation: ch-spin-border 3s linear infinite;
+}
+
+/* Un contenedor con borde (login, buscadores, editores) recibe el halo, igual que los botones */
+[data-ch-focus="wrap"][data-ch-static] {
+  position: relative;
+}
+[data-ch-focus="wrap"]::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--ch-halo-r, 10px);
+  padding: 2px;
+  background: conic-gradient(from var(--ch-angle), var(--ch-spectrum), var(--ch-red));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  pointer-events: none;
+  animation: ch-spin-border 3s linear infinite;
+}
+/* Si el contenedor recorta su contenido, el halo se dibuja por dentro */
+[data-ch-focus="wrap"][data-ch-inset]::after {
+  inset: 0;
+}
+
+/* -------------------- Arcoíris: botón primario (uso 7) -------------------- */
+.ch-primary {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--ch-bg), var(--ch-bg)) padding-box,
+    conic-gradient(from var(--ch-angle), var(--ch-spectrum), var(--ch-red)) border-box;
+}
+.ch-primary:hover:not(:disabled) {
+  animation: ch-spin-border 2.4s linear infinite;
+}
+.ch-primary:disabled {
+  background:
+    linear-gradient(var(--ch-bg), var(--ch-bg)) padding-box,
+    linear-gradient(var(--ch-line), var(--ch-line)) border-box;
+  color: var(--ch-text-dim);
+}
+
+/* -------------------- Arcoíris: ítem activo (uso 3) y tarjeta clicable (uso 6) -------------------- */
+.ch-tab-active {
+  color: var(--ch-text);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--ch-surface), var(--ch-surface)) padding-box,
+    conic-gradient(from var(--ch-angle), var(--ch-spectrum), var(--ch-red)) border-box;
+  animation: ch-spin-border 4s linear infinite;
+}
+
+.ch-card-hover {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--ch-surface), var(--ch-surface)) padding-box,
+    linear-gradient(var(--ch-border), var(--ch-border)) border-box;
+}
+.ch-card-hover:hover,
+.ch-card-hover:focus-within {
+  background:
+    linear-gradient(var(--ch-surface), var(--ch-surface)) padding-box,
+    conic-gradient(from var(--ch-angle), var(--ch-spectrum), var(--ch-red)) border-box;
+  animation: ch-spin-border 3s linear infinite;
+}
+
+/* -------------------- Arcoíris: línea superior (uso 2) y progreso (uso 5) -------------------- */
+.ch-rainbow-line {
+  height: 2px;
+  background: var(--ch-rainbow);
+}
+.ch-progress-rainbow {
+  height: 2px;
+  background: var(--ch-rainbow);
+  background-size: 200% 100%;
+  animation: ch-slide-bar 1.6s linear infinite;
+}
+
+/* Barra de progreso de navegación (bprogress): arcoíris de 2 px, sin glow */
+:root {
+  --bprogress-color: var(--ch-text);
+  --bprogress-height: 2px !important;
+}
+.bprogress .bar {
+  background: var(--ch-rainbow) !important;
+}
+.bprogress .peg {
+  box-shadow: none !important;
+}
+
+/* -------------------- Movimiento reducido (obligatorio) -------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .ch-progress-rainbow {
+    background-size: 100% 100%;
+  }
+}

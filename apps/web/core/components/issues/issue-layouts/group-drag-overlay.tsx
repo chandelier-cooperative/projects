@@ -73,7 +73,7 @@ export function GroupDragOverlay(props: Props) {
             <>
               {readableOrderBy && (
                 <span>
-                  {t("issue.layouts.ordered_by_label")} <span className="font-semibold">{t(readableOrderBy)}</span>.
+                  {t("issue.layouts.ordered_by_label")} <span className="font-medium">{t(readableOrderBy)}</span>.
                 </span>
               )}
               <span>{t("entity.drop_here_to_move", { entity: isEpic ? "epic" : "work item" })}</span>

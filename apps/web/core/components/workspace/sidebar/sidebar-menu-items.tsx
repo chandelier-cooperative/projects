@@ -107,7 +107,7 @@ export const SidebarMenuItems = observer(function SidebarMenuItems() {
           <Disclosure.Button
             as="button"
             type="button"
-            className="flex w-full items-center gap-1 text-left text-13 font-semibold whitespace-nowrap text-placeholder"
+            className="flex w-full items-center gap-1 text-left text-13 font-medium whitespace-nowrap text-placeholder"
             onClick={() => toggleListDisclosure(!isWorkspaceMenuOpen)}
             aria-label={t(
               isWorkspaceMenuOpen
@@ -115,7 +115,7 @@ export const SidebarMenuItems = observer(function SidebarMenuItems() {
                 : "aria_labels.app_sidebar.open_workspace_menu"
             )}
           >
-            <span className="text-13 font-semibold">{t("common.workspace")}</span>
+            <span className="text-13 font-medium">{t("common.workspace")}</span>
           </Disclosure.Button>
           <div className="pointer-events-none flex items-center opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
             <Disclosure.Button

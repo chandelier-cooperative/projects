@@ -54,7 +54,7 @@ function TabListInner({ tabs, tabListClassName, tabClassName, size = "md", selec
             cn(
               "flex w-full min-w-fit cursor-pointer items-center justify-center rounded-sm p-1 font-medium text-primary transition-all outline-none focus:outline-none",
               (selectedTab ? selectedTab === tab.key : selected)
-                ? "shadow-sm bg-layer-transparent-active text-primary"
+                ? "bg-layer-transparent-active text-primary"
                 : tab.disabled
                   ? "cursor-not-allowed text-placeholder"
                   : "text-placeholder hover:bg-layer-transparent-hover hover:text-tertiary",

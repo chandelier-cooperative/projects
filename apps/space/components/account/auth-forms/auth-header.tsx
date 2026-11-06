@@ -27,7 +27,7 @@ const Titles: TAuthHeaderDetails = {
   },
   [EAuthModes.SIGN_UP]: {
     header: "View, comment, and do more",
-    subHeader: "Sign up or log in to work with Plane work items and Pages.",
+    subHeader: "Sign up or log in to work with work items and Pages.",
   },
 };
 
@@ -50,8 +50,8 @@ export function AuthHeader(props: TAuthHeader) {
   return (
     <>
       <div className="flex flex-col gap-1">
-        <span className="text-20 leading-7 font-semibold text-primary">{header}</span>
-        <span className="text-20 leading-7 font-semibold text-placeholder">{subHeader}</span>
+        <span className="text-20 leading-7 font-medium text-primary">{header}</span>
+        <span className="text-20 leading-7 font-medium text-placeholder">{subHeader}</span>
       </div>
     </>
   );

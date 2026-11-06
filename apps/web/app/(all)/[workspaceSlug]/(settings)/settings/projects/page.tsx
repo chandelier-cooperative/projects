@@ -26,7 +26,7 @@ function ProjectSettingsPage() {
   return (
     <div className="mx-auto flex h-full max-w-[480px] flex-col items-center justify-center gap-4">
       <img src={resolvedPath} alt="No projects yet" />
-      <div className="text-16 font-semibold text-tertiary">No projects yet</div>
+      <div className="text-16 font-medium text-tertiary">No projects yet</div>
       <div className="text-center text-13 text-tertiary">
         Projects act as the foundation for goal-driven work. They let you manage your teams, tasks, and everything you
         need to get things done.

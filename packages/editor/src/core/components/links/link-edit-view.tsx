@@ -23,7 +23,7 @@ type InputViewProps = {
 function InputView({ label, value, placeholder, onChange, autoFocus }: InputViewProps) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="inline-block text-11 font-semibold text-placeholder">{label}</label>
+      <label className="inline-block text-11 font-medium text-placeholder">{label}</label>
       <input
         placeholder={placeholder}
         onClick={(e) => e.stopPropagation()}
@@ -138,7 +138,7 @@ export function LinkEditView({ viewProps }: LinkEditViewProps) {
   return (
     <div
       onKeyDown={handleKeyDown}
-      className="shadow-md animate-in fade-in flex translate-y-1 flex-col gap-3 rounded-sm border-2 border-subtle bg-layer-1 p-2"
+      className="animate-in fade-in flex translate-y-1 flex-col gap-3 rounded-sm border-2 border-subtle bg-layer-1 p-2"
       style={{
         transition: "all 0.1s cubic-bezier(.55, .085, .68, .53)",
       }}

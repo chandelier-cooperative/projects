@@ -422,7 +422,7 @@ export const IssueFormRoot = observer(function IssueFormRoot(props: IssueFormPro
             <div
               className={cn(
                 "rounded-b-lg border-t-[0.5px] border-subtle bg-surface-1 px-4 py-3",
-                activeAdditionalPropertiesLength > 0 && "shadow-raised-100"
+                activeAdditionalPropertiesLength > 0 && ""
               )}
             >
               <div className="pb-3">

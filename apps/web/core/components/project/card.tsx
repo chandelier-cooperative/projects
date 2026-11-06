@@ -206,17 +206,17 @@ export const ProjectCard = observer(function ProjectCard(props: Props) {
         }}
         data-prevent-progress={!isMemberOfProject || isArchived}
         className={cn(
-          "group/project-card flex w-full flex-col justify-between overflow-hidden rounded-lg border border-subtle bg-layer-2 transition-all duration-300 hover:border-strong hover:shadow-raised-200"
+          "group/project-card flex w-full flex-col justify-between overflow-hidden rounded-lg border border-subtle bg-layer-2 transition-all duration-300 hover:border-strong"
         )}
       >
         <ContextMenu parentRef={projectCardRef} items={MENU_ITEMS} />
-        <div className="relative h-[118px] w-full rounded-t">
+        <div className="rounded-t relative h-[118px] w-full">
           <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 to-transparent" />
 
           <CoverImage
             src={project.cover_image_url}
             alt={project.name}
-            className="absolute top-0 left-0 h-full w-full rounded-t"
+            className="rounded-t absolute top-0 left-0 h-full w-full"
           />
 
           <div className="absolute bottom-4 z-[1] flex h-10 w-full items-center justify-between gap-3 px-4">
@@ -226,7 +226,7 @@ export const ProjectCard = observer(function ProjectCard(props: Props) {
               </div>
 
               <div className="flex w-full flex-col justify-between gap-0.5 truncate">
-                <h3 className="truncate font-semibold text-on-color">{project.name}</h3>
+                <h3 className="truncate font-medium text-on-color">{project.name}</h3>
                 <span className="flex items-center gap-1.5">
                   <p className="text-11 font-medium text-on-color">{project.identifier} </p>
                   {project.network === 0 && <LockIcon className="h-2.5 w-2.5 text-on-color" />}
@@ -355,7 +355,7 @@ export const ProjectCard = observer(function ProjectCard(props: Props) {
                   <div className="flex items-center">
                     <Button
                       variant="link"
-                      className="!p-0 font-semibold"
+                      className="!p-0 font-medium"
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();

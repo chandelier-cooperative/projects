@@ -186,7 +186,7 @@ export const CustomizeNavigationDialog = observer(function CustomizeNavigationDi
         {/* Header */}
         <div className="flex justify-between px-6 pt-4">
           <div>
-            <h2 className="text-18 font-semibold text-primary">{t("customize_navigation")}</h2>
+            <h2 className="text-18 font-medium text-primary">{t("customize_navigation")}</h2>
             <p className="mt-1 text-13 text-tertiary">
               Selected items will always stay visible in your sidebar. You can still find the others anytime from the
               More menu. These changes are personal to you and won&apos;t affect anyone else on your workspace.
@@ -205,7 +205,7 @@ export const CustomizeNavigationDialog = observer(function CustomizeNavigationDi
         <div className="flex-1 space-y-4 overflow-y-auto px-6 py-4">
           {/* Personal Section */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-13 font-semibold text-placeholder">{t("personal")}</h3>
+            <h3 className="text-13 font-medium text-placeholder">{t("personal")}</h3>
             <div className="rounded-md border border-subtle bg-surface-2 py-2">
               <Sortable
                 data={personalItems}
@@ -233,7 +233,7 @@ export const CustomizeNavigationDialog = observer(function CustomizeNavigationDi
 
           {/* Workspace Section */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-13 font-semibold text-placeholder">{t("common.workspace")}</h3>
+            <h3 className="text-13 font-medium text-placeholder">{t("common.workspace")}</h3>
             <div className="rounded-md border border-subtle bg-surface-2 py-2">
               {/* Pinned Items - Draggable */}
               <Sortable
@@ -263,7 +263,7 @@ export const CustomizeNavigationDialog = observer(function CustomizeNavigationDi
 
           {/* Projects Section */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-13 font-semibold text-placeholder">{t("projects")}</h3>
+            <h3 className="text-13 font-medium text-placeholder">{t("projects")}</h3>
 
             <div className="rounded-md border border-subtle bg-surface-2 px-2 py-2">
               <div className="space-y-3">

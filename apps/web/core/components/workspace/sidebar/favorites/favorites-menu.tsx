@@ -191,7 +191,7 @@ export const SidebarFavoritesMenu = observer(function SidebarFavoritesMenu() {
             as="button"
             type="button"
             className={cn(
-              "flex w-full items-center gap-1 text-left text-13 font-semibold whitespace-nowrap text-placeholder",
+              "flex w-full items-center gap-1 text-left text-13 font-medium whitespace-nowrap text-placeholder",
               {
                 "bg-layer-1 opacity-60": isDragging,
               }
@@ -203,7 +203,7 @@ export const SidebarFavoritesMenu = observer(function SidebarFavoritesMenu() {
                 : "aria_labels.projects_sidebar.open_favorites_menu"
             )}
           >
-            <span className="text-13 font-semibold">{t("favorites")}</span>
+            <span className="text-13 font-medium">{t("favorites")}</span>
           </Disclosure.Button>
           <div className="pointer-events-none flex items-center opacity-0 group-hover/favorites-button:pointer-events-auto group-hover/favorites-button:opacity-100">
             <Tooltip tooltipHeading={t("create_folder")} tooltipContent="">

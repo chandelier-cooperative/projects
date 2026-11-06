@@ -4,12 +4,14 @@
  * See the LICENSE file for details.
  */
 
+import { FocusHalo } from "@plane/ui";
 import { CoreProviders } from "./core";
 import { ExtendedProviders } from "./extended";
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <CoreProviders>
+      <FocusHalo />
       <ExtendedProviders>{children}</ExtendedProviders>
     </CoreProviders>
   );

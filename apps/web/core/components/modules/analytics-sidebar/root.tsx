@@ -71,7 +71,7 @@ export const ModuleAnalyticsSidebar = observer(function ModuleAnalyticsSidebar(p
   const moduleDetails = getModuleById(moduleId);
   const areEstimateEnabled = projectId && areEstimateEnabledByProjectId(projectId.toString());
   const estimateType = areEstimateEnabled && currentActiveEstimateId && estimateById(currentActiveEstimateId);
-  const isEstimatePointValid = estimateType && estimateType?.type == EEstimateSystem.POINTS ? true : false;
+  const isEstimatePointValid = Boolean(estimateType && estimateType?.type == EEstimateSystem.POINTS);
 
   const { reset, control } = useForm({
     defaultValues,
@@ -232,7 +232,7 @@ export const ModuleAnalyticsSidebar = observer(function ModuleAnalyticsSidebar(p
               )}
             />
           </div>
-          <h4 className="w-full text-18 font-semibold break-words text-primary">{moduleDetails.name}</h4>
+          <h4 className="w-full text-18 font-medium break-words text-primary">{moduleDetails.name}</h4>
         </div>
 
         {moduleDetails.description && (

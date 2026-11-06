@@ -132,7 +132,7 @@ export const ActiveCycleStats = observer(function ActiveCycleStats(props: Active
           <Tab
             className={({ selected }) =>
               cn(
-                "relative z-[1] rounded-[3px] py-1.5 text-11 font-semibold text-placeholder transition duration-500 focus:outline-none",
+                "relative z-[1] rounded-[3px] py-1.5 text-11 font-medium text-placeholder transition duration-500 focus:outline-none",
                 {
                   "bg-surface-1 text-tertiary": selected,
                   "hover:text-tertiary": !selected,
@@ -145,7 +145,7 @@ export const ActiveCycleStats = observer(function ActiveCycleStats(props: Active
           <Tab
             className={({ selected }) =>
               cn(
-                "relative z-[1] rounded-[3px] py-1.5 text-11 font-semibold text-placeholder transition duration-500 focus:outline-none",
+                "relative z-[1] rounded-[3px] py-1.5 text-11 font-medium text-placeholder transition duration-500 focus:outline-none",
                 {
                   "bg-surface-1 text-tertiary": selected,
                   "hover:text-tertiary": !selected,
@@ -158,7 +158,7 @@ export const ActiveCycleStats = observer(function ActiveCycleStats(props: Active
           <Tab
             className={({ selected }) =>
               cn(
-                "relative z-[1] rounded-[3px] py-1.5 text-11 font-semibold text-placeholder transition duration-500 focus:outline-none",
+                "relative z-[1] rounded-[3px] py-1.5 text-11 font-medium text-placeholder transition duration-500 focus:outline-none",
                 {
                   "bg-surface-1 text-tertiary": selected,
                   "hover:text-tertiary": !selected,

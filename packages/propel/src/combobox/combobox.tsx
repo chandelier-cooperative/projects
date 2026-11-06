@@ -174,7 +174,7 @@ function ComboboxOptions({
     <BaseCombobox.Portal>
       <BaseCombobox.Positioner sideOffset={8} className={positionerClassName}>
         <BaseCombobox.Popup
-          className={cn("shadow-lg rounded-md border border-subtle bg-surface-1 p-1", className)}
+          className={cn("rounded-md border border-subtle bg-surface-1 p-1", className)}
           data-prevent-outside-click={dataPreventOutsideClick}
         >
           <div className="flex flex-col gap-1">

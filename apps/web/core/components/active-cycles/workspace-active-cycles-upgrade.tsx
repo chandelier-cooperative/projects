@@ -12,7 +12,6 @@ import { useTranslation } from "@plane/i18n";
 import { getButtonStyling } from "@plane/propel/button";
 import { SearchIcon } from "@plane/propel/icons";
 import { ContentWrapper } from "@plane/ui";
-import { cn } from "@plane/utils";
 // assets
 import ctaL1Dark from "@/app/assets/workspace-active-cycles/cta-l-1-dark.webp?url";
 import ctaL1Light from "@/app/assets/workspace-active-cycles/cta-l-1-light.webp?url";
@@ -23,7 +22,6 @@ import ctaR2Light from "@/app/assets/workspace-active-cycles/cta-r-2-light.webp?
 // components
 import { ProIcon } from "@/components/common/pro-icon";
 // hooks
-import { useUser } from "@/hooks/store/user";
 
 export const WORKSPACE_ACTIVE_CYCLES_DETAILS = [
   {
@@ -70,24 +68,15 @@ export const WORKSPACE_ACTIVE_CYCLES_DETAILS = [
 
 export const WorkspaceActiveCyclesUpgrade = observer(function WorkspaceActiveCyclesUpgrade() {
   const { t } = useTranslation();
-  // store hooks
-  const {
-    userProfile: { data: userProfile },
-  } = useUser();
-
-  const isDarkMode = userProfile?.theme.theme === "dark";
+  // Chandelier es solo modo oscuro.
+  const isDarkMode = true;
 
   return (
     <ContentWrapper className="gap-10">
-      <div
-        className={cn("item-center flex min-h-[25rem] justify-between rounded-xl", {
-          "bg-gradient-to-l from-[#CFCFCF] to-[#212121]": userProfile?.theme.theme === "dark",
-          "bg-gradient-to-l from-[#3b5ec6] to-[#f5f7fe]": userProfile?.theme.theme === "light",
-        })}
-      >
+      <div className="item-center flex min-h-[25rem] justify-between rounded-lg border border-subtle bg-layer-1">
         <div className="relative flex flex-col justify-center gap-7 px-14 lg:w-1/2">
           <div className="flex max-w-64 flex-col gap-2">
-            <h2 className="text-20 font-semibold">{t("on_demand_snapshots_of_all_your_cycles")}</h2>
+            <h2 className="text-20 font-medium">{t("on_demand_snapshots_of_all_your_cycles")}</h2>
             <p className="text-14 font-medium text-tertiary">{t("active_cycles_description")}</p>
           </div>
           <div className="flex items-center gap-3">
@@ -104,7 +93,7 @@ export const WorkspaceActiveCyclesUpgrade = observer(function WorkspaceActiveCyc
           <span className="absolute top-0 left-0">
             <img
               src={isDarkMode ? ctaL1Dark : ctaL1Light}
-              className="h-[125px] w-[125px] rounded-xl object-contain"
+              className="h-[125px] w-[125px] rounded-lg object-contain"
               alt="l-1"
             />
           </span>
@@ -113,7 +102,7 @@ export const WorkspaceActiveCyclesUpgrade = observer(function WorkspaceActiveCyc
           <span className="absolute right-0 bottom-0">
             <img src={isDarkMode ? ctaR1Dark : ctaR1Light} className="h-full w-full object-contain" alt="r-1" />
           </span>
-          <span className="absolute right-1/2 -bottom-16 rounded-xl">
+          <span className="absolute right-1/2 -bottom-16 rounded-lg">
             <img src={isDarkMode ? ctaR2Dark : ctaR2Light} className="h-full w-full object-contain" alt="r-2" />
           </span>
         </div>

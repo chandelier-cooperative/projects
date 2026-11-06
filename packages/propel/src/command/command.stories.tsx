@@ -83,7 +83,7 @@ export const WithCategories: Story = {
           className="h-9 w-full bg-transparent py-3 text-13 outline-none"
         />
         <Command.List className="max-h-80 overflow-auto py-2">
-          <div className="text-gray-500 px-2 py-1.5 text-11 font-semibold">User</div>
+          <div className="text-gray-500 px-2 py-1.5 text-11 font-medium">User</div>
           <Command.Item className="hover:bg-gray-100 flex cursor-pointer items-center gap-2 rounded-sm px-3 py-2">
             <User className="h-4 w-4" />
             <span>Profile</span>
@@ -93,7 +93,7 @@ export const WithCategories: Story = {
             <span>Settings</span>
           </Command.Item>
 
-          <div className="text-gray-500 mt-2 px-2 py-1.5 text-11 font-semibold">Files</div>
+          <div className="text-gray-500 mt-2 px-2 py-1.5 text-11 font-medium">Files</div>
           <Command.Item className="hover:bg-gray-100 flex cursor-pointer items-center gap-2 rounded-sm px-3 py-2">
             <Folder className="h-4 w-4" />
             <span>Open Folder</span>
@@ -116,7 +116,7 @@ export const EmptyState: Story = {
         <Command.Input placeholder="Search..." className="h-9 w-full bg-transparent py-3 text-13 outline-none" />
         <Command.List className="max-h-80 overflow-auto py-2">{/* No items - will show empty state */}</Command.List>
         <Command.Empty className="text-gray-500 py-6 text-center text-13">
-          <p className="font-semibold">No results found</p>
+          <p className="font-medium">No results found</p>
           <p className="mt-1 text-11">Try searching for something else</p>
         </Command.Empty>
       </Command>
@@ -168,7 +168,7 @@ export const WithoutSearch: Story = {
 export const CustomStyling: Story = {
   render() {
     return (
-      <Command className="border-blue-300 bg-blue-50 shadow-lg w-96 rounded-lg border-2 p-2">
+      <Command className="border-blue-300 bg-blue-50 w-96 rounded-lg border-2 p-2">
         <Command.Input
           placeholder="Search with custom styling..."
           className="text-blue-900 placeholder:text-blue-400 h-9 w-full bg-transparent py-3 text-13 outline-none"

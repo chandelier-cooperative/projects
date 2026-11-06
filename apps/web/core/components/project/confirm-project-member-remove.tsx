@@ -67,12 +67,13 @@ export const ConfirmProjectMemberRemove = observer(function ConfirmProjectMember
               <p className="text-13 text-secondary">
                 {isCurrentUser ? (
                   <>
-                    Are you sure you want to leave the <span className="font-bold">{currentProjectDetails?.name}</span>{" "}
-                    project? You will be able to join the project if invited again or if it{"'"}s public.
+                    Are you sure you want to leave the{" "}
+                    <span className="font-medium">{currentProjectDetails?.name}</span> project? You will be able to join
+                    the project if invited again or if it{"'"}s public.
                   </>
                 ) : (
                   <>
-                    Are you sure you want to remove member- <span className="font-bold">{data?.display_name}</span>?
+                    Are you sure you want to remove member- <span className="font-medium">{data?.display_name}</span>?
                     They will no longer have access to this project. This action cannot be undone.
                   </>
                 )}

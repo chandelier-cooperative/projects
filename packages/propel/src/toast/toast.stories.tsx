@@ -507,23 +507,23 @@ export const DesignTokens: Story = {
     return (
       <div className="space-y-6">
         <div>
-          <h2 className="mb-2 text-16 font-semibold text-primary">Toast Design Tokens</h2>
+          <h2 className="mb-2 text-16 font-medium text-primary">Toast Design Tokens</h2>
           <p className="text-13 text-secondary">
             The toast component uses semantic design tokens from the Plane design system.
           </p>
         </div>
 
         <div>
-          <h3 className="mb-3 text-14 font-semibold text-primary">Token Mapping by Variant</h3>
+          <h3 className="mb-3 text-14 font-medium text-primary">Token Mapping by Variant</h3>
           <div className="overflow-x-auto">
             <table className="w-full rounded-lg border border-subtle text-11">
               <thead>
                 <tr className="bg-layer-1">
-                  <th className="border-b border-subtle px-3 py-2 text-left font-semibold text-primary">Variant</th>
-                  <th className="border-b border-subtle px-3 py-2 text-left font-semibold text-primary">Title Text</th>
-                  <th className="border-b border-subtle px-3 py-2 text-left font-semibold text-primary">Icon BG</th>
-                  <th className="border-b border-subtle px-3 py-2 text-left font-semibold text-primary">Toast BG</th>
-                  <th className="border-b border-subtle px-3 py-2 text-left font-semibold text-primary">Border</th>
+                  <th className="border-b border-subtle px-3 py-2 text-left font-medium text-primary">Variant</th>
+                  <th className="border-b border-subtle px-3 py-2 text-left font-medium text-primary">Title Text</th>
+                  <th className="border-b border-subtle px-3 py-2 text-left font-medium text-primary">Icon BG</th>
+                  <th className="border-b border-subtle px-3 py-2 text-left font-medium text-primary">Toast BG</th>
+                  <th className="border-b border-subtle px-3 py-2 text-left font-medium text-primary">Border</th>
                 </tr>
               </thead>
               <tbody>
@@ -609,11 +609,11 @@ export const DesignTokens: Story = {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <h3 className="mb-3 text-14 font-semibold text-primary">Typography</h3>
+            <h3 className="mb-3 text-14 font-medium text-primary">Typography</h3>
             <ul className="space-y-2 text-12 text-secondary">
               <li>
                 <span className="font-medium text-primary">Title:</span>{" "}
-                <code className="rounded bg-layer-1 px-1.5 py-0.5 text-10">text-14 font-semibold</code>
+                <code className="rounded bg-layer-1 px-1.5 py-0.5 text-10">text-14 font-medium</code>
               </li>
               <li>
                 <span className="font-medium text-primary">Message:</span>{" "}
@@ -631,7 +631,7 @@ export const DesignTokens: Story = {
           </div>
 
           <div>
-            <h3 className="mb-3 text-14 font-semibold text-primary">Dimensions & Styling</h3>
+            <h3 className="mb-3 text-14 font-medium text-primary">Dimensions & Styling</h3>
             <ul className="space-y-2 text-12 text-secondary">
               <li>
                 <span className="font-medium text-primary">Width:</span> 350px
@@ -644,7 +644,7 @@ export const DesignTokens: Story = {
               </li>
               <li>
                 <span className="font-medium text-primary">Shadow:</span>{" "}
-                <code className="rounded bg-layer-1 px-1.5 py-0.5 text-10">shadow-raised-200</code>
+                <code className="rounded bg-layer-1 px-1.5 py-0.5 text-10"></code>
               </li>
               <li>
                 <span className="font-medium text-primary">Border Width:</span> 1px
@@ -654,7 +654,7 @@ export const DesignTokens: Story = {
         </div>
 
         <div>
-          <h3 className="mb-3 text-14 font-semibold text-primary">Icon Specifications</h3>
+          <h3 className="mb-3 text-14 font-medium text-primary">Icon Specifications</h3>
           <ul className="space-y-2 text-12 text-secondary">
             <li>
               <span className="font-medium text-primary">Icon Size:</span> 20x20px
@@ -689,7 +689,7 @@ export const DesignTokens: Story = {
         </div>
 
         <div className="rounded-lg bg-layer-1 p-4">
-          <h3 className="mb-2 text-14 font-semibold text-primary">Visual Examples</h3>
+          <h3 className="mb-2 text-14 font-medium text-primary">Visual Examples</h3>
           <p className="mb-4 text-12 text-secondary">See how the tokens are applied across all toast variants:</p>
           <div className="flex flex-col gap-3">
             <ToastStatic

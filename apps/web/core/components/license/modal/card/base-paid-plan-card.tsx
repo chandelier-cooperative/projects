@@ -41,7 +41,7 @@ export const BasePaidPlanCard = observer(function BasePaidPlanCard(props: TBaseP
   const planeName = getSubscriptionName(planVariant);
 
   return (
-    <div className="flex flex-col rounded-xl border border-subtle bg-layer-2 px-3 py-6">
+    <div className="flex flex-col rounded-lg border border-subtle bg-layer-2 px-3 py-6">
       <Tab.Group selectedIndex={selectedPlan === "month" ? 0 : 1}>
         <div className="flex h-9 w-full justify-center">
           <Tab.List className="flex w-60 space-x-1 rounded-md bg-layer-3 p-0.5">
@@ -51,9 +51,7 @@ export const BasePaidPlanCard = observer(function BasePaidPlanCard(props: TBaseP
                 className={({ selected }) =>
                   cn(
                     "w-full rounded-sm py-1 text-caption-md-medium leading-5",
-                    selected
-                      ? "border border-subtle-1 bg-layer-2 text-primary shadow-raised-100"
-                      : "text-tertiary hover:text-secondary"
+                    selected ? "border border-subtle-1 bg-layer-2 text-primary" : "text-tertiary hover:text-secondary"
                   )
                 }
                 onClick={() => setSelectedPlan(price.recurring)}
@@ -67,7 +65,7 @@ export const BasePaidPlanCard = observer(function BasePaidPlanCard(props: TBaseP
           {prices.map((price: TSubscriptionPrice) => (
             <Tab.Panel key={price.key}>
               <div className="pt-6 text-center">
-                <div className="text-h4-medium">Plane {planeName}</div>
+                <div className="text-h4-medium">Projects {planeName}</div>
                 {renderActionButton(price)}
               </div>
               <div className="px-2 pt-6 pb-2">

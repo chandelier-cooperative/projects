@@ -99,7 +99,7 @@ export const ProjectArchivesHeader = observer(function ProjectArchivesHeader(pro
               tooltipContent={`There are ${issueCount} ${issueCount > 1 ? "work items" : "work item"} in project's archived`}
               position="bottom"
             >
-              <span className="flex flex-shrink-0 cursor-default items-center justify-center rounded-xl bg-accent-primary/20 px-2.5 py-0.5 text-center text-11 font-semibold text-accent-primary">
+              <span className="flex flex-shrink-0 cursor-default items-center justify-center rounded-lg bg-accent-primary/20 px-2.5 py-0.5 text-center text-11 font-medium text-accent-primary">
                 {issueCount}
               </span>
             </Tooltip>

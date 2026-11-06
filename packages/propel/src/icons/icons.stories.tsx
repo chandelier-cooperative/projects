@@ -40,7 +40,7 @@ export const AllIcons: Story = {
   render: () => (
     <div className="space-y-12">
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Sub-Brand Icons</h3>
+        <h3 className="text-16 font-medium text-primary">Sub-Brand Icons</h3>
         <div className="grid w-full grid-cols-12 gap-6">
           {SubBrandIconsMap.map((item) => (
             <div key={item.title} className="col-span-2 flex flex-col items-center justify-center gap-3 p-4">
@@ -52,7 +52,7 @@ export const AllIcons: Story = {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Workspace Icons</h3>
+        <h3 className="text-16 font-medium text-primary">Workspace Icons</h3>
         <div className="grid w-full grid-cols-12 gap-6">
           {WorkspaceIconsMap.map((item) => (
             <div key={item.title} className="col-span-2 flex flex-col items-center justify-center gap-3 p-4">
@@ -64,7 +64,7 @@ export const AllIcons: Story = {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Project Icons</h3>
+        <h3 className="text-16 font-medium text-primary">Project Icons</h3>
         <div className="grid w-full grid-cols-12 gap-6">
           {ProjectIconsMap.map((item) => (
             <div key={item.title} className="col-span-2 flex flex-col items-center justify-center gap-3 p-4">
@@ -76,7 +76,7 @@ export const AllIcons: Story = {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Layout Icons</h3>
+        <h3 className="text-16 font-medium text-primary">Layout Icons</h3>
         <div className="grid w-full grid-cols-12 gap-6">
           {LayoutIconsMap.map((item) => (
             <div key={item.title} className="col-span-2 flex flex-col items-center justify-center gap-3 p-4">
@@ -88,7 +88,7 @@ export const AllIcons: Story = {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Property Icons</h3>
+        <h3 className="text-16 font-medium text-primary">Property Icons</h3>
         <div className="grid w-full grid-cols-12 gap-6">
           {PropertyIconsMap.map((item) => (
             <div key={item.title} className="col-span-2 flex flex-col items-center justify-center gap-3 p-4">
@@ -100,7 +100,7 @@ export const AllIcons: Story = {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Actions Icons</h3>
+        <h3 className="text-16 font-medium text-primary">Actions Icons</h3>
         <div className="grid w-full grid-cols-12 gap-6">
           {ActionsIconsMap.map((item) => (
             <div key={item.title} className="col-span-2 flex flex-col items-center justify-center gap-3 p-4">
@@ -112,7 +112,7 @@ export const AllIcons: Story = {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Arrows Icons</h3>
+        <h3 className="text-16 font-medium text-primary">Arrows Icons</h3>
         <div className="grid w-full grid-cols-12 gap-6">
           {ArrowsIconsMap.map((item) => (
             <div key={item.title} className="col-span-2 flex flex-col items-center justify-center gap-3 p-4">
@@ -124,7 +124,7 @@ export const AllIcons: Story = {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-lg text-custom-text-100 font-semibold">Misc Icons</h3>
+        <h3 className="text-lg text-custom-text-100 font-medium">Misc Icons</h3>
         <div className="grid w-full grid-cols-12 gap-6">
           {MiscIconsMap.map((item) => (
             <div key={item.title} className="col-span-2 flex flex-col items-center justify-center gap-3 p-4">
@@ -142,7 +142,7 @@ export const RegistryUsage: Story = {
   render: () => (
     <div className="space-y-8">
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Registry-Based Usage</h3>
+        <h3 className="text-16 font-medium text-primary">Registry-Based Usage</h3>
         <p className="text-13 text-tertiary">
           Use the <code className="rounded-sm bg-layer-1 px-1 py-0.5">Icon</code> component with{" "}
           <code className="rounded-sm bg-layer-1 px-1 py-0.5">name</code> prop for dynamic icon selection.
@@ -168,7 +168,7 @@ export const RegistryUsage: Story = {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Direct Import Usage</h3>
+        <h3 className="text-16 font-medium text-primary">Direct Import Usage</h3>
         <p className="text-13 text-tertiary">
           Import icon components directly for better tree-shaking and type safety.
         </p>
@@ -195,7 +195,7 @@ export const IconSizes: Story = {
   render: () => (
     <div className="space-y-6">
       <div className="space-y-4">
-        <h3 className="text-16 font-semibold text-primary">Icon Sizes</h3>
+        <h3 className="text-16 font-medium text-primary">Icon Sizes</h3>
         <p className="text-13 text-tertiary">Icons can be rendered in different sizes using width and height props.</p>
       </div>
 

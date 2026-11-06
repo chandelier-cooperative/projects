@@ -114,8 +114,9 @@ export const usePowerKPreferencesCommands = (): TPowerKCommandConfig[] => {
         const theme = data as string;
         void handleUpdateTheme(theme);
       },
-      isEnabled: () => true,
-      isVisible: () => true,
+      // Chandelier es solo modo oscuro: no hay selector de tema.
+      isEnabled: () => false,
+      isVisible: () => false,
       closeOnSelect: true,
     },
     {

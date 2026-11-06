@@ -49,7 +49,7 @@ export const SidebarWorkspaceMenuHeader = observer(function SidebarWorkspaceMenu
     <div className="group/workspace-button mt-2.5 flex rounded-sm bg-surface-1 px-2 hover:bg-surface-2">
       <Disclosure.Button
         as="button"
-        className="sticky top-0 z-10 flex w-full flex-1 items-center justify-between gap-1 py-1.5 text-13 font-semibold text-placeholder"
+        className="sticky top-0 z-10 flex w-full flex-1 items-center justify-between gap-1 py-1.5 text-13 font-medium text-placeholder"
         onClick={() => toggleWorkspaceMenu(!isWorkspaceMenuOpen)}
       >
         <span>{t("common.workspace")}</span>
@@ -93,7 +93,7 @@ export const SidebarWorkspaceMenuHeader = observer(function SidebarWorkspaceMenu
       </CustomMenu>
       <Disclosure.Button
         as="button"
-        className="group/workspace-button sticky top-0 z-10 flex items-center justify-between gap-1 rounded-sm px-0.5 py-1.5 text-11 font-semibold text-placeholder hover:bg-surface-2"
+        className="group/workspace-button sticky top-0 z-10 flex items-center justify-between gap-1 rounded-sm px-0.5 py-1.5 text-11 font-medium text-placeholder hover:bg-surface-2"
         onClick={() => toggleWorkspaceMenu(!isWorkspaceMenuOpen)}
       >
         {" "}

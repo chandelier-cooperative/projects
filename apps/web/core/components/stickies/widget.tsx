@@ -31,7 +31,7 @@ export const StickiesWidget = observer(function StickiesWidget() {
   return (
     <div>
       <div className="mb-4 flex items-center justify-between">
-        <div className="text-14 font-semibold text-tertiary">{t("stickies.title")}</div>
+        <div className="text-14 font-medium text-tertiary">{t("stickies.title")}</div>
         {/* actions */}
         <div className="flex gap-2">
           <StickySearch />

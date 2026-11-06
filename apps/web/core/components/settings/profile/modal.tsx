@@ -45,10 +45,10 @@ export const ProfileSettingsModal = observer(function ProfileSettingsModal() {
         <div className="flex size-full">
           <ProfileSettingsSidebarRoot
             activeTab={activeTab}
-            className="w-[250px] rounded-l-xl"
+            className="w-[250px] rounded-l-lg"
             updateActiveTab={(tab) => toggleProfileSettingsModal({ activeTab: tab })}
           />
-          <ProfileSettingsContent activeTab={activeTab} className="flex-1 rounded-r-xl" />
+          <ProfileSettingsContent activeTab={activeTab} className="flex-1 rounded-r-lg" />
         </div>
         <div className="absolute top-3.5 right-3.5">
           <IconButton size="base" variant="tertiary" icon={X} onClick={handleClose} />

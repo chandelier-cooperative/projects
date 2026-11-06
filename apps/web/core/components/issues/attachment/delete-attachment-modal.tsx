@@ -67,7 +67,7 @@ export const IssueAttachmentDeleteModal = observer(function IssueAttachmentDelet
         <>
           {/* TODO: Translate here */}
           Are you sure you want to delete attachment-{" "}
-          <span className="font-bold">{getFileName(attachment.attributes.name)}</span>? This attachment will be
+          <span className="font-medium">{getFileName(attachment.attributes.name)}</span>? This attachment will be
           permanently removed. This action cannot be undone.
         </>
       }

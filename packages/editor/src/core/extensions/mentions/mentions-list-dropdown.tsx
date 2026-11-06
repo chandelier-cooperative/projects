@@ -146,7 +146,7 @@ export const MentionsListDropdown = forwardRef(function MentionsListDropdown(pro
       />
       <div
         ref={dropdownContainer}
-        className="relative max-h-80 w-[14rem] space-y-2 overflow-y-auto rounded-md border-[0.5px] border-strong bg-surface-1 px-2 py-2.5 shadow-raised-200"
+        className="relative max-h-80 w-[14rem] space-y-2 overflow-y-auto rounded-md border-[0.5px] border-strong bg-surface-1 px-2 py-2.5"
         style={{
           zIndex: 100,
         }}
@@ -162,7 +162,7 @@ export const MentionsListDropdown = forwardRef(function MentionsListDropdown(pro
         ) : sections.length ? (
           sections.map((section, sectionIndex) => (
             <div key={section.key} className="space-y-2">
-              {section.title && <h6 className="text-11 font-semibold text-tertiary">{section.title}</h6>}
+              {section.title && <h6 className="text-11 font-medium text-tertiary">{section.title}</h6>}
               {section.items.map((item, itemIndex) => {
                 const isSelected = sectionIndex === selectedIndex.section && itemIndex === selectedIndex.item;
 

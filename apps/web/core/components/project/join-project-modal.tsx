@@ -53,7 +53,7 @@ export function JoinProjectModal(props: TJoinProjectModalProps) {
       <div className="space-y-5 px-5 py-8 sm:p-6">
         <h3 className="text-16 leading-6 font-medium text-primary">Join Project?</h3>
         <p>
-          Are you sure you want to join the project <span className="font-semibold break-words">{project?.name}</span>?
+          Are you sure you want to join the project <span className="font-medium break-words">{project?.name}</span>?
           Please click the &apos;Join Project&apos; button below to continue.
         </p>
         <div className="space-y-3" />

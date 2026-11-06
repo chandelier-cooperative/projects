@@ -222,7 +222,7 @@ export const CreateWorkspaceForm = observer(function CreateWorkspaceForm(props: 
                       </span>
                     )
                   }
-                  buttonClassName="border border-subtle bg-layer-2 !shadow-none !rounded-md"
+                  buttonClassName="border border-subtle bg-layer-2 !rounded-md"
                   input
                 >
                   {ORGANIZATION_SIZE.map((item) => (

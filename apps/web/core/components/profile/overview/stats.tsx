@@ -57,7 +57,7 @@ export function ProfileStats({ userProfile }: Props) {
                 </div>
                 <div className="space-y-1">
                   <p className="text-13 text-placeholder">{t(card.i18n_title)}</p>
-                  <p className="text-18 font-semibold">{card.value}</p>
+                  <p className="text-18 font-medium">{card.value}</p>
                 </div>
               </Card>
             </Link>

@@ -115,10 +115,10 @@ export const WithFooter: Story = {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={3} className="font-semibold">
+            <TableCell colSpan={3} className="font-medium">
               Total
             </TableCell>
-            <TableCell className="text-right font-semibold">$90.00</TableCell>
+            <TableCell className="text-right font-medium">$90.00</TableCell>
           </TableRow>
         </TableFooter>
       </Table>
@@ -330,12 +330,12 @@ export const CustomStyling: Story = {
         </TableHeader>
         <TableBody>
           <TableRow className="hover:bg-blue-50">
-            <TableCell className="font-semibold">John Doe</TableCell>
+            <TableCell className="font-medium">John Doe</TableCell>
             <TableCell>john@example.com</TableCell>
             <TableCell>Admin</TableCell>
           </TableRow>
           <TableRow className="hover:bg-blue-50">
-            <TableCell className="font-semibold">Jane Smith</TableCell>
+            <TableCell className="font-medium">Jane Smith</TableCell>
             <TableCell>jane@example.com</TableCell>
             <TableCell>User</TableCell>
           </TableRow>

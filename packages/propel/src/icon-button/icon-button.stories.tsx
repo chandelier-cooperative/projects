@@ -132,7 +132,7 @@ export const AllVariants: Story = {
     return (
       <div className="space-y-4">
         <div className="space-y-2">
-          <h3 className="text-16 font-semibold">Primary Variants</h3>
+          <h3 className="text-16 font-medium">Primary Variants</h3>
           <div className="flex flex-wrap gap-2">
             <IconButton variant="primary" icon={icon} />
             <IconButton variant="error-fill" icon={icon} />
@@ -167,7 +167,7 @@ export const AllStates: Story = {
     return (
       <div className="space-y-4">
         <div className="space-y-2">
-          <h3 className="text-16 font-semibold">Button States</h3>
+          <h3 className="text-16 font-medium">Button States</h3>
           <div className="flex flex-wrap gap-2">
             <IconButton icon={icon} />
             <IconButton loading icon={icon} />

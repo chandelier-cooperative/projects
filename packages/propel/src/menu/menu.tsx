@@ -161,7 +161,7 @@ function Menu(props: TMenuProps) {
               type="button"
               className={`flex items-center justify-between gap-1 rounded-md px-2.5 py-1 text-11 whitespace-nowrap duration-300 outline-none ${
                 isOpen ? "bg-surface-2 text-primary" : "text-secondary"
-              } ${noBorder ? "" : "shadow-sm border border-strong focus:outline-none"} ${
+              } ${noBorder ? "" : "border border-strong focus:outline-none"} ${
                 disabled ? "cursor-not-allowed text-secondary" : "cursor-pointer hover:bg-layer-1"
               } ${buttonClassName}`}
               onClick={handleMenuButtonClick}
@@ -186,7 +186,7 @@ function Menu(props: TMenuProps) {
           <BaseMenu.Popup
             tabIndex={tabIndex}
             className={cn(
-              "my-1 min-w-[12rem] overflow-y-scroll rounded-md border-[0.5px] border-strong bg-surface-1 px-2 py-2.5 text-11 whitespace-nowrap shadow-raised-200 focus:outline-none",
+              "my-1 min-w-[12rem] overflow-y-scroll rounded-md border-[0.5px] border-strong bg-surface-1 px-2 py-2.5 text-11 whitespace-nowrap focus:outline-none",
               {
                 "max-h-60": maxHeight === "lg",
                 "max-h-48": maxHeight === "md",

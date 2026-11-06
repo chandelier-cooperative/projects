@@ -42,7 +42,7 @@ export interface DialogTitleProps extends React.ComponentProps<typeof BaseDialog
 
 // Constants
 const OVERLAY_CLASSNAME = cn("fixed inset-0 z-90 bg-backdrop");
-const BASE_CLASSNAME = "relative text-left bg-surface-1 rounded-lg shadow-md w-full z-100 border border-subtle";
+const BASE_CLASSNAME = "relative text-left bg-surface-1 rounded-lg w-full z-100 border border-subtle";
 
 // Utility functions
 const getPositionClassNames = (position: DialogPosition) =>
@@ -117,11 +117,7 @@ DialogPanel.displayName = "DialogPanel";
 
 const DialogTitle = memo(function DialogTitle({ className, children, ...props }: DialogTitleProps) {
   return (
-    <BaseDialog.Title
-      data-slot="dialog-title"
-      className={cn("text-16 leading-none font-semibold", className)}
-      {...props}
-    >
+    <BaseDialog.Title data-slot="dialog-title" className={cn("text-16 leading-none font-medium", className)} {...props}>
       {children}
     </BaseDialog.Title>
   );

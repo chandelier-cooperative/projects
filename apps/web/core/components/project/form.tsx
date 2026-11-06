@@ -243,7 +243,7 @@ export function ProjectDetailsForm(props: IProjectDetailsForm) {
               )}
             />
             <div className="flex flex-col gap-1 truncate text-on-color">
-              <span className="truncate text-16 font-semibold">{watch("name")}</span>
+              <span className="truncate text-16 font-medium">{watch("name")}</span>
               <span className="flex items-center gap-2 text-13">
                 <span>{watch("identifier")} .</span>
                 <span className="flex items-center gap-1.5">
@@ -392,7 +392,7 @@ export function ProjectDetailsForm(props: IProjectDetailsForm) {
                         )}
                       </div>
                     }
-                    buttonClassName="!border-subtle !shadow-none font-medium rounded-md"
+                    buttonClassName="!border-subtle font-medium rounded-md"
                     input
                     disabled={!isAdmin}
                     // optionsClassName="w-full"
@@ -427,7 +427,7 @@ export function ProjectDetailsForm(props: IProjectDetailsForm) {
                       onChange(value);
                     }}
                     error={Boolean(errors.timezone)}
-                    buttonClassName="!border-subtle !shadow-none font-medium rounded-md"
+                    buttonClassName="!border-subtle font-medium rounded-md"
                     disabled={!isAdmin}
                   />
                 </>

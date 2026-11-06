@@ -53,7 +53,7 @@ export function CalloutBlockColorSelector(props: Props) {
           <ChevronDownIcon className="size-3 flex-shrink-0" />
         </button>
         {isOpen && (
-          <section className="animate-in fade-in slide-in-from-top-1 absolute top-full right-0 z-10 mt-1 rounded-md border-[0.5px] border-strong bg-surface-1 p-2 shadow-raised-200">
+          <section className="animate-in fade-in slide-in-from-top-1 absolute top-full right-0 z-10 mt-1 rounded-md border-[0.5px] border-strong bg-surface-1 p-2">
             <div className="flex items-center gap-2">
               {COLORS_LIST.map((color) => (
                 <button

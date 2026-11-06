@@ -64,8 +64,9 @@ export const ConfirmWorkspaceMemberRemove = observer(function ConfirmWorkspaceMe
               ) : (
                 <p className="text-body-xs-regular text-secondary">
                   {/* TODO: Add translation here */}
-                  Are you sure you want to remove member- <span className="font-bold">{userDetails?.display_name}</span>
-                  ? They will no longer have access to this workspace. This action cannot be undone.
+                  Are you sure you want to remove member-{" "}
+                  <span className="font-medium">{userDetails?.display_name}</span>? They will no longer have access to
+                  this workspace. This action cannot be undone.
                 </p>
               )}
             </div>

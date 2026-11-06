@@ -11,6 +11,7 @@ import { SWRConfig } from "swr";
 import { WEB_SWR_CONFIG } from "@plane/constants";
 import { TranslationProvider } from "@plane/i18n";
 import { Toast } from "@plane/propel/toast";
+import { FocusHalo } from "@plane/ui";
 // helpers
 import { resolveGeneralTheme } from "@plane/utils";
 // mobx store provider
@@ -42,6 +43,7 @@ export function AppProvider(props: IAppProvider) {
     <StoreProvider>
       <>
         <AppProgressBar />
+        <FocusHalo />
         <TranslationProvider>
           <Toast theme={resolveGeneralTheme(resolvedTheme)} />
           <StoreWrapper>

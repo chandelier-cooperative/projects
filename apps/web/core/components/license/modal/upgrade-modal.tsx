@@ -49,12 +49,14 @@ export const PaidPlanUpgradeModal = observer(function PaidPlanUpgradeModal(props
   };
 
   return (
-    <ModalCore isOpen={isOpen} handleClose={handleClose} width={EModalWidth.VIIXL} className="rounded-2xl">
+    <ModalCore isOpen={isOpen} handleClose={handleClose} width={EModalWidth.VIIXL} className="rounded-lg">
       <div className="max-h-[90vh] overflow-auto p-10">
         <div className="grid h-full grid-cols-12 gap-6">
           {/* Free Plan Section */}
           <div className={cn(COMMON_CARD_CLASSNAME)}>
-            <div className="flex text-24 leading-8 font-bold">Upgrade to a paid plan and unlock missing features.</div>
+            <div className="flex text-24 leading-8 font-medium">
+              Upgrade to a paid plan and unlock missing features.
+            </div>
             <div className="mt-4 mb-2">
               <p className="mb-4 pr-8 text-13 text-primary">
                 Dashboards, Workflows, Approvals, Time Management, and other superpowers are just a click away. Upgrade

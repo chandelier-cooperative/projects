@@ -40,8 +40,8 @@ export function NewEmptyState({ title, description, image, primaryButton, disabl
   return (
     <div className="flex items-center justify-center overflow-y-auto">
       <div className="flex h-full w-full flex-col items-center justify-center">
-        <div className="shadow-sm m-5 flex max-w-6xl flex-col gap-5 rounded-xl border border-subtle px-10 py-7 md:m-8">
-          <h3 className="text-20 font-semibold">{title}</h3>
+        <div className="m-5 flex max-w-6xl flex-col gap-5 rounded-lg border border-subtle px-10 py-7 md:m-8">
+          <h3 className="text-20 font-medium">{title}</h3>
           {description && <p className="text-16">{description}</p>}
           <div className="relative w-full max-w-6xl">
             <img src={image} className="h-full w-full object-contain" alt={primaryButton?.text || "button image"} />
@@ -84,7 +84,7 @@ export function NewEmptyState({ title, description, image, primaryButton, disabl
                   </div>
                   <div className="rounded-md border border-subtle bg-surface-1">
                     <h1 className="p-5">
-                      <h3 className="text-16 font-semibold">{comicBox?.title}</h3>
+                      <h3 className="text-16 font-medium">{comicBox?.title}</h3>
                       <h4 className="mt-1 text-13">{comicBox?.description}</h4>
                     </h1>
                   </div>
@@ -96,7 +96,7 @@ export function NewEmptyState({ title, description, image, primaryButton, disabl
                   </div>
                   <div className="rounded-md border border-subtle bg-surface-1">
                     <h1 className="p-5">
-                      <h3 className="text-16 font-semibold">{comicBox?.title}</h3>
+                      <h3 className="text-16 font-medium">{comicBox?.title}</h3>
                       <h4 className="mt-1 text-13">{comicBox?.description}</h4>
                     </h1>
                   </div>

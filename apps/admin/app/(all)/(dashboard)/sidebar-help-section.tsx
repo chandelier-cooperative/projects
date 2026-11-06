@@ -57,13 +57,13 @@ export const AdminSidebarHelpSection = observer(function AdminSidebarHelpSection
       )}
     >
       <div className={`flex items-center gap-1 ${isSidebarCollapsed ? "flex-col justify-center" : "w-full"}`}>
-        <Tooltip tooltipContent="Redirect to Plane" position="right" className="ml-4" disabled={!isSidebarCollapsed}>
+        <Tooltip tooltipContent="Redirect to Projects" position="right" className="ml-4" disabled={!isSidebarCollapsed}>
           <a
             href={redirectionLink}
             className={`relative flex items-center gap-1 rounded-sm bg-layer-1 px-2 py-1 text-body-xs-medium whitespace-nowrap text-secondary`}
           >
             <NewTabIcon width={14} height={14} />
-            {!isSidebarCollapsed && "Redirect to Plane"}
+            {!isSidebarCollapsed && "Redirect to Projects"}
           </a>
         </Tooltip>
         <Tooltip tooltipContent="Help" position={isSidebarCollapsed ? "right" : "top"} className="ml-4">
@@ -105,7 +105,7 @@ export const AdminSidebarHelpSection = observer(function AdminSidebarHelpSection
           <div
             className={`absolute bottom-2 z-[15] min-w-[10rem] ${
               isSidebarCollapsed ? "left-full" : "-left-[75px]"
-            } divide-y divide-subtle-1 rounded-sm bg-surface-1 p-1 whitespace-nowrap shadow-raised-100`}
+            } divide-y divide-subtle-1 rounded-sm bg-surface-1 p-1 whitespace-nowrap`}
             ref={helpOptionsRef}
           >
             <div className="space-y-1 pb-2">

@@ -127,8 +127,8 @@ export const InForm: Story = {
     const [updates, setUpdates] = useState(true);
 
     return (
-      <div className="border-gray-200 shadow-md w-80 rounded-lg border bg-white p-6">
-        <h3 className="text-16 font-semibold">Notification Settings</h3>
+      <div className="border-gray-200 w-80 rounded-lg border bg-white p-6">
+        <h3 className="text-16 font-medium">Notification Settings</h3>
         <div className="mt-4 space-y-4">
           <div className="flex items-center justify-between">
             <div>
@@ -165,7 +165,7 @@ export const WithDescription: Story = {
       <div className="border-gray-200 w-96 rounded-lg border bg-white p-6">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <h4 className="text-13 font-semibold">Enable Two-Factor Authentication</h4>
+            <h4 className="text-13 font-medium">Enable Two-Factor Authentication</h4>
             <p className="text-gray-500 mt-1 text-11">
               Add an extra layer of security to your account by enabling two-factor authentication.
             </p>
@@ -189,7 +189,7 @@ export const Interactive: Story = {
         </div>
         <div className="bg-gray-50 rounded-sm p-4">
           <p className="text-gray-700 text-13">
-            Status: <span className="font-semibold">{enabled ? "Enabled" : "Disabled"}</span>
+            Status: <span className="font-medium">{enabled ? "Enabled" : "Disabled"}</span>
           </p>
           {enabled && <p className="mt-2 text-11 text-success-primary">Feature is now active and ready to use!</p>}
         </div>
@@ -232,7 +232,7 @@ export const MultipleControls: Story = {
 
     return (
       <div className="border-gray-200 w-96 rounded-lg border bg-white p-6">
-        <h3 className="mb-4 text-16 font-semibold">Feature Flags</h3>
+        <h3 className="mb-4 text-16 font-medium">Feature Flags</h3>
         <div className="space-y-3">
           {Object.entries(settings).map(([key, value]) => (
             <div key={key} className="flex items-center justify-between">

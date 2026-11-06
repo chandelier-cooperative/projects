@@ -21,7 +21,7 @@ export function UpgradeBadge(props: TUpgradeBadge) {
   return (
     <div
       className={cn(
-        "w-fit cursor-pointer rounded-2xl bg-accent-primary/20 text-center font-medium text-accent-secondary outline-none",
+        "w-fit cursor-pointer rounded-lg bg-accent-primary/20 text-center font-medium text-accent-secondary outline-none",
         {
           "px-3 text-13": size === "md",
           "px-2 text-11": size === "sm",

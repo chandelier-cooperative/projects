@@ -694,27 +694,27 @@
   --color-white: oklch(1 0 0);
   --color-black: oklch(0.1482 0.0034 196.79);
   /* ---------- Border radius ---------- */
-  --radius-4xl: initial;
+  --radius-*: initial;
+  --radius-xs: 4px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 8px;
+  --radius-2xl: 8px;
+  --radius-3xl: 8px;
   /* ---------- Border width ---------- */
   --border-width-*: initial;
   --border-width-sm: 1px;
-  --border-width-md: 1.5px;
+  --border-width-md: 1px;
   --border-width-lg: 2px;
-  --border-width-xl: 2.5px;
+  --border-width-xl: 2px;
   --default-border-width: 1px;
   /* ---------- Outline width ---------- */
   --outline-width-*: initial;
   /* ---------- Ring width ---------- */
   --ring-width-*: initial;
-  /* ---------- Shadow ---------- */
+  /* ---------- Shadow: Chandelier no usa sombras, la jerarquía es de bordes ---------- */
   --shadow-*: initial;
-  --shadow-raised-100: 0px 1px 6px -1px #292f3d08, 0px 1px 4px 0px #292f3d0a;
-  --shadow-raised-200: 0px 1px 2px -1px #292f3d0f, 0px 1px 3px 0px #292f3d0d;
-  --shadow-raised-300: 0px 2px 4px -1px #292f3d0a, 0px 4px 6px -1px #292f3d0d;
-  --shadow-overlay-100: 0px 10px 10px -5px #292f3d0a, 0px 10px 40px -5px #292f3d0a;
-  --shadow-overlay-200: 0px 10px 10px -10px #292f3d0a, 0px 30px 60px -12px #292f3d1a;
-  --shadow-direction-left: -10px 0px 30px -5px #292f3d05, -5px 0px 80px -5px #292f3d0a;
-  --shadow-direction-right: 10px 0px 30px -5px #0000000a, 5px 0px 80px -5px #0000000a;
   /* --------- Height --------- */
   --height-header: 3.25rem;
   /* --------- Padding --------- */
@@ -979,23 +979,18 @@
 @theme {
   /* ---------- Font family ---------- */
   --font-*: initial;
-  --font-heading:
-    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
-  --font-body:
-    "Inter Variable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
-  --font-code:
-    "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-heading: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-code: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* ---------- Font weight ---------- */
   --font-weight-*: initial;
-  --font-weight-light: 300;
+  --font-weight-light: 400;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-heavy: 800;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 500;
+  --font-weight-heavy: 500;
 
   /* ---------- Font size ---------- */
   --text-*: initial;

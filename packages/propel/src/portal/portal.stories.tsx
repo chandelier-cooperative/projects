@@ -84,7 +84,7 @@ function ModalContent({
     <div className="flex h-full flex-col bg-white">
       <div className="border-gray-200 flex items-center justify-between border-b p-6">
         <div>
-          <h2 className="text-gray-900 text-18 font-semibold">{title}</h2>
+          <h2 className="text-gray-900 text-18 font-medium">{title}</h2>
           <p className="text-gray-500 mt-1 text-13">Modal demonstration</p>
         </div>
         {showCloseButton && onClose && (
@@ -180,7 +180,7 @@ export const BasicPortal: Story = {
       <div className="relative">
         <p>This content renders in the normal document flow.</p>
         <PortalWrapper portalId="storybook-portal">
-          <div className="bg-blue-500 shadow-lg fixed top-4 right-4 z-50 rounded-sm p-4 text-on-color">
+          <div className="bg-blue-500 fixed top-4 right-4 z-50 rounded-sm p-4 text-on-color">
             This content is rendered in a portal!
           </div>
         </PortalWrapper>

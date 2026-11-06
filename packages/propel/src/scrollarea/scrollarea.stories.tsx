@@ -34,7 +34,7 @@ export const Default: Story = {
     return (
       <ScrollArea {...args} className="h-64 w-80 rounded-lg border">
         <div className="space-y-4 p-4">
-          <h3 className="text-16 font-semibold">Long Text Content</h3>
+          <h3 className="text-16 font-medium">Long Text Content</h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
@@ -99,7 +99,7 @@ export const ScrollTypeAlways: Story = {
     return (
       <ScrollArea className="h-64 w-80 rounded-lg border" scrollType="always">
         <div className="space-y-2 p-4">
-          <h3 className="text-16 font-semibold">Always Visible Scrollbar</h3>
+          <h3 className="text-16 font-medium">Always Visible Scrollbar</h3>
           {[...Array(15)].map((_, i) => (
             <p key={i}>Line {i + 1}: The scrollbar is always visible.</p>
           ))}
@@ -114,7 +114,7 @@ export const ScrollTypeScroll: Story = {
     return (
       <ScrollArea className="h-64 w-80 rounded-lg border" scrollType="scroll">
         <div className="space-y-2 p-4">
-          <h3 className="text-16 font-semibold">Scroll to Show</h3>
+          <h3 className="text-16 font-medium">Scroll to Show</h3>
           <p className="text-13 text-placeholder">Scrollbar appears when scrolling</p>
           {[...Array(15)].map((_, i) => (
             <p key={i}>Line {i + 1}: Try scrolling to see the scrollbar appear.</p>
@@ -130,7 +130,7 @@ export const ScrollTypeHover: Story = {
     return (
       <ScrollArea className="h-64 w-80 rounded-lg border" scrollType="hover">
         <div className="space-y-2 p-4">
-          <h3 className="text-16 font-semibold">Hover to Show</h3>
+          <h3 className="text-16 font-medium">Hover to Show</h3>
           <p className="text-13 text-placeholder">Scrollbar appears on hover</p>
           {[...Array(15)].map((_, i) => (
             <p key={i}>Line {i + 1}: Hover over the area to see the scrollbar.</p>
@@ -162,7 +162,7 @@ export const BothDirections: Story = {
     return (
       <ScrollArea className="h-64 w-96 rounded-lg border">
         <div className="w-[800px] space-y-2 p-4">
-          <h3 className="text-16 font-semibold">Both Directions</h3>
+          <h3 className="text-16 font-medium">Both Directions</h3>
           <p className="text-13 text-placeholder">Content scrolls both vertically and horizontally</p>
           {[...Array(20)].map((_, i) => (
             <p key={i}>
@@ -181,7 +181,7 @@ export const ListExample: Story = {
     return (
       <ScrollArea className="h-80 w-96 rounded-lg border">
         <div className="p-4">
-          <h3 className="mb-4 text-16 font-semibold">User List</h3>
+          <h3 className="mb-4 text-16 font-medium">User List</h3>
           <div className="space-y-2">
             {[...Array(25)].map((_, i) => (
               <div

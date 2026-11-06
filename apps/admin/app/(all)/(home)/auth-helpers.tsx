@@ -50,7 +50,7 @@ const errorCodeMessages: {
     message: () => (
       <div>
         Admin user already exists.&nbsp;
-        <Link className="font-medium underline underline-offset-4 transition-all hover:font-bold" href={`/admin`}>
+        <Link className="font-medium underline underline-offset-4 transition-all hover:font-medium" href={`/admin`}>
           Sign In
         </Link>
         &nbsp;now.
@@ -62,7 +62,7 @@ const errorCodeMessages: {
     message: () => (
       <div>
         Admin user does not exist.&nbsp;
-        <Link className="font-medium underline underline-offset-4 transition-all hover:font-bold" href={`/admin`}>
+        <Link className="font-medium underline underline-offset-4 transition-all hover:font-medium" href={`/admin`}>
           Sign In
         </Link>
         &nbsp;now.

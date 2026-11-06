@@ -24,7 +24,7 @@ const DEFAULT_SWR_CONFIG = {
 
 export function CoreProviders({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider themes={["light", "dark"]} defaultTheme="system" enableSystem>
+    <ThemeProvider themes={["dark"]} defaultTheme="dark" forcedTheme="dark">
       <AppProgressBar />
       <ToastWithTheme />
       <SWRConfig value={DEFAULT_SWR_CONFIG}>

@@ -52,7 +52,7 @@ export function DevErrorComponent({ error, onGoHome, onReload }: DevErrorCompone
           <Card variant={ECardVariant.WITH_SHADOW} className="!p-6 transition-none">
             <div className="space-y-4">
               <div>
-                <h2 className="mb-2 text-20 font-semibold text-danger-primary">
+                <h2 className="mb-2 text-20 font-medium text-danger-primary">
                   {error.status} {error.statusText}
                 </h2>
                 <div className="bg-subtle-1 h-px w-full" />
@@ -86,7 +86,7 @@ export function DevErrorComponent({ error, onGoHome, onReload }: DevErrorCompone
           <Card variant={ECardVariant.WITH_SHADOW} className="!p-6 transition-none">
             <div className="space-y-4">
               <div>
-                <h2 className="mb-2 text-20 font-semibold text-danger-primary">Error</h2>
+                <h2 className="mb-2 text-20 font-medium text-danger-primary">Error</h2>
                 <div className="bg-subtle-1 h-px w-full" />
               </div>
 
@@ -142,7 +142,7 @@ export function DevErrorComponent({ error, onGoHome, onReload }: DevErrorCompone
         <Card variant={ECardVariant.WITH_SHADOW} className="!p-6">
           <div className="space-y-4">
             <div>
-              <h2 className="mb-2 text-20 font-semibold text-primary">Unknown Error</h2>
+              <h2 className="mb-2 text-20 font-medium text-primary">Unknown Error</h2>
               <div className="bg-subtle-1 h-px w-full" />
             </div>
 

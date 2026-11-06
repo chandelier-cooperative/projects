@@ -94,7 +94,7 @@ const SidebarDropdownItem = observer(function SidebarDropdownItem(props: TProps)
                     e.stopPropagation();
                     handleClose();
                   }}
-                  className="flex gap-1.5 rounded-md border border-strong bg-layer-2 px-2.5 py-1.5 text-secondary transition-colors hover:border-strong hover:text-secondary hover:shadow-raised-100"
+                  className="flex gap-1.5 rounded-md border border-strong bg-layer-2 px-2.5 py-1.5 text-secondary transition-colors hover:border-strong hover:text-secondary"
                 >
                   <Settings className="my-auto h-4 w-4 flex-shrink-0" />
                   <span className="my-auto text-13 font-medium whitespace-nowrap">{t("settings")}</span>
@@ -107,7 +107,7 @@ const SidebarDropdownItem = observer(function SidebarDropdownItem(props: TProps)
                     e.stopPropagation();
                     handleClose();
                   }}
-                  className="flex gap-1.5 rounded-md border border-strong bg-layer-2 px-2.5 py-1.5 text-secondary transition-colors hover:border-strong hover:text-secondary hover:shadow-raised-100"
+                  className="flex gap-1.5 rounded-md border border-strong bg-layer-2 px-2.5 py-1.5 text-secondary transition-colors hover:border-strong hover:text-secondary"
                 >
                   <UserPlus className="my-auto h-4 w-4 flex-shrink-0" />
                   <span className="my-auto text-13 font-medium whitespace-nowrap">

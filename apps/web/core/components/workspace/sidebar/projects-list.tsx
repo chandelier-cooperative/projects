@@ -175,7 +175,7 @@ export const SidebarProjectsList = observer(function SidebarProjectsList() {
               <Disclosure.Button
                 as="button"
                 type="button"
-                className="flex w-full items-center gap-1 text-left text-13 font-semibold whitespace-nowrap text-placeholder"
+                className="flex w-full items-center gap-1 text-left text-13 font-medium whitespace-nowrap text-placeholder"
                 onClick={() => toggleListDisclosure(!isAllProjectsListOpen)}
                 aria-label={t(
                   isAllProjectsListOpen
@@ -183,7 +183,7 @@ export const SidebarProjectsList = observer(function SidebarProjectsList() {
                     : "aria_labels.projects_sidebar.open_projects_menu"
                 )}
               >
-                <span className="text-13 font-semibold">{t("projects")}</span>
+                <span className="text-13 font-medium">{t("projects")}</span>
               </Disclosure.Button>
               <div className="flex items-center gap-1">
                 {isAuthorizedUser && (

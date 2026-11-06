@@ -85,7 +85,7 @@ export const CalendarMonthsDropdown = observer(function CalendarMonthsDropdown(p
         <button
           type="button"
           ref={setReferenceElement}
-          className="text-18 font-semibold outline-none"
+          className="text-18 font-medium outline-none"
           disabled={calendarLayout === "week"}
         >
           {calendarLayout === "month"
@@ -107,7 +107,7 @@ export const CalendarMonthsDropdown = observer(function CalendarMonthsDropdown(p
             ref={setPopperElement}
             style={styles.popper}
             {...attributes.popper}
-            className="w-56 divide-y divide-subtle-1 rounded-sm border border-subtle bg-surface-1 p-3 shadow-raised-200"
+            className="w-56 divide-y divide-subtle-1 rounded-sm border border-subtle bg-surface-1 p-3"
           >
             <div className="flex items-center justify-between gap-2 pb-3">
               <button

@@ -174,7 +174,7 @@ export const ComplexContent: Story = {
     tooltipHeading: "User Information",
     tooltipContent: (
       <div className="space-y-1">
-        <p className="font-semibold">John Doe</p>
+        <p className="font-medium">John Doe</p>
         <p className="text-11">john@example.com</p>
         <p className="text-gray-400 text-11">Last seen: 2 hours ago</p>
       </div>

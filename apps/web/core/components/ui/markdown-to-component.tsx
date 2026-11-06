@@ -40,11 +40,11 @@ interface Props {
 }
 
 function HeadingPrimary({ children }: { children: React.ReactNode }) {
-  return <h1 className="text-16 font-semibold text-primary">{children}</h1>;
+  return <h1 className="text-16 font-medium text-primary">{children}</h1>;
 }
 
 function HeadingSecondary({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-14 font-semibold text-primary">{children}</h3>;
+  return <h3 className="text-14 font-medium text-primary">{children}</h3>;
 }
 
 function Paragraph({ children }: { children: React.ReactNode }) {

@@ -138,13 +138,13 @@ export const CommentCard = observer(function CommentCard(props: Props) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group shadow-md rounded-sm border border-success-strong bg-success-primary p-2 duration-300 hover:bg-success-primary"
+                className="group rounded-sm border border-success-strong bg-success-primary p-2 duration-300 hover:bg-success-primary"
               >
                 <CheckIcon className="h-3 w-3 text-on-color" strokeWidth={2} />
               </button>
               <button
                 type="button"
-                className="group shadow-md rounded-sm border border-danger-strong bg-danger-primary p-2 duration-300 hover:bg-danger-primary-hover"
+                className="group rounded-sm border border-danger-strong bg-danger-primary p-2 duration-300 hover:bg-danger-primary-hover"
                 onClick={() => setIsEditing(false)}
               >
                 <CloseIcon className="h-3 w-3 text-on-color" strokeWidth={2} />
@@ -186,7 +186,7 @@ export const CommentCard = observer(function CommentCard(props: Props) {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="shadow-lg absolute right-0 z-10 mt-1 max-h-36 min-w-[8rem] origin-top-right overflow-auto overflow-y-scroll rounded-md border border-strong bg-surface-1 p-1 text-11 whitespace-nowrap focus:outline-none">
+            <Menu.Items className="absolute right-0 z-10 mt-1 max-h-36 min-w-[8rem] origin-top-right overflow-auto overflow-y-scroll rounded-md border border-strong bg-surface-1 p-1 text-11 whitespace-nowrap focus:outline-none">
               <Menu.Item>
                 {({ active }) => (
                   <div className="py-1">

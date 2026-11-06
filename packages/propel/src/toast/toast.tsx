@@ -122,7 +122,7 @@ function ToastRender({ id, toast }: { id: React.Key; toast: BaseToast.Root.Toast
       key={id}
       className={cn(
         // Base layout and positioning
-        "group flex w-[350px] items-center rounded-lg border shadow-raised-200",
+        "group flex w-[350px] items-center rounded-lg border",
         "absolute right-3 bottom-3 z-[calc(1000-var(--toast-index))]",
         "ease-&lsqb;cubic-bezier(0.22,1,0.36,1)&rsqb; transition-[opacity,transform] duration-500 select-none",
 
@@ -211,7 +211,7 @@ export function ToastStatic({ type, title, message, actionItems, theme = "light"
       <div
         className={cn(
           // Base layout and positioning
-          "group flex w-[350px] items-start rounded-lg border border-subtle-1 shadow-overlay-100",
+          "group flex w-[350px] items-start rounded-lg border border-subtle-1",
           "relative",
           data.backgroundColorClassName,
           data.borderColorClassName

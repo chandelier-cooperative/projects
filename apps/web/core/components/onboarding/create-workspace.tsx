@@ -123,7 +123,7 @@ export const CreateWorkspace = observer(function CreateWorkspace(props: Props) {
         </>
       )}
       <div className="mx-auto space-y-1 py-4 text-center">
-        <h3 className="text-24 font-bold text-primary">{t("workspace_creation.heading")}</h3>
+        <h3 className="text-24 font-medium text-primary">{t("workspace_creation.heading")}</h3>
         <p className="font-medium text-placeholder">{t("workspace_creation.subheading")}</p>
       </div>
       <form className="mx-auto mt-2 w-full space-y-4" onSubmit={handleSubmit(handleCreateWorkspace)}>
@@ -248,7 +248,7 @@ export const CreateWorkspace = observer(function CreateWorkspace(props: Props) {
                       </span>
                     )
                   }
-                  buttonClassName="border border-subtle bg-layer-2 !shadow-none !rounded-md"
+                  buttonClassName="border border-subtle bg-layer-2 !rounded-md"
                   input
                 >
                   {ORGANIZATION_SIZE.map((item) => (

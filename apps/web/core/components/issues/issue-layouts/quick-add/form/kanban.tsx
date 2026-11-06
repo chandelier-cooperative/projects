@@ -12,7 +12,7 @@ export const KanbanQuickAddIssueForm = observer(function KanbanQuickAddIssueForm
   const { ref, projectDetail, register, onSubmit, isEpic } = props;
   const { t } = useTranslation();
   return (
-    <div className="m-1 overflow-hidden rounded-sm bg-layer-2 shadow-raised-200">
+    <div className="m-1 overflow-hidden rounded-sm bg-layer-2">
       <form ref={ref} onSubmit={onSubmit} className="flex w-full items-center gap-x-3 p-3">
         <div className="w-full">
           <h4 className="text-11 leading-5 font-medium text-tertiary">{projectDetail?.identifier ?? "..."}</h4>

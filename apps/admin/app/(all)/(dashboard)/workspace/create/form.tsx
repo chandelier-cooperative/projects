@@ -177,7 +177,7 @@ export function WorkspaceCreateForm() {
                       <span className="text-placeholder">Select a range</span>
                     )
                   }
-                  buttonClassName="!border-[0.5px] !border-subtle !shadow-none"
+                  buttonClassName="!border-[0.5px] !border-subtle "
                   input
                 >
                   {ORGANIZATION_SIZE.map((item) => (
