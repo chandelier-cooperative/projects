@@ -4,6 +4,7 @@
 
 from django.urls import path
 
+from plane.authentication.views import ChandelierAdminAuthEndpoint
 from plane.license.api.views import (
     EmailCredentialCheckEndpoint,
     InstanceAdminEndpoint,
@@ -49,6 +50,11 @@ urlpatterns = [
         "admins/sign-in/",
         InstanceAdminSignInEndpoint.as_view(),
         name="instance-admin-sign-in",
+    ),
+    path(
+        "admins/chandelier/",
+        ChandelierAdminAuthEndpoint.as_view(),
+        name="instance-admin-chandelier",
     ),
     path(
         "admins/sign-up/",

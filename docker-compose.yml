@@ -45,6 +45,14 @@ services:
     command: ./bin/docker-entrypoint-api.sh
     env_file:
       - ./apps/api/.env
+    environment:
+      # Chandelier Auth (sign in without a password). Empty audience = feature off.
+      # Do not add the standalone dev mode here: it belongs only in a local, uncommitted .env.
+      CHANDELIER_AUTH_AUDIENCE: ${CHANDELIER_AUTH_AUDIENCE:-}
+      CHANDELIER_AUTH_JWKS_URL: ${CHANDELIER_AUTH_JWKS_URL:-}
+      CHANDELIER_ADMIN_SUB: ${CHANDELIER_ADMIN_SUB:-}
+      # Set to 0 once Chandelier Auth works end to end, so nobody types a password.
+      ENABLE_EMAIL_PASSWORD: ${ENABLE_EMAIL_PASSWORD:-1}
     depends_on:
       - plane-db
       - plane-redis

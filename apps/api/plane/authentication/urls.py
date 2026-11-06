@@ -44,9 +44,12 @@ from .views import (
     GiteaOauthInitiateEndpoint,
     GiteaCallbackSpaceEndpoint,
     GiteaOauthInitiateSpaceEndpoint,
+    ChandelierAuthEndpoint,
 )
 
 urlpatterns = [
+    # chandelier auth (no password: identity comes from the signed assertion)
+    path("chandelier/", ChandelierAuthEndpoint.as_view(), name="chandelier-sign-in"),
     # credentials
     path("sign-in/", SignInAuthEndpoint.as_view(), name="sign-in"),
     path("sign-up/", SignUpAuthEndpoint.as_view(), name="sign-up"),

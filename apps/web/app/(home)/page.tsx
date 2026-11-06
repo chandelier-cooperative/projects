@@ -7,6 +7,7 @@
 import React from "react";
 // components
 import { AuthBase } from "@/components/auth-screens/auth-base";
+import { ChandelierAutoSignIn } from "@/components/auth-screens/chandelier-auto-sign-in";
 // helpers
 import { EAuthModes, EPageTypes } from "@/helpers/authentication.helper";
 // layouts
@@ -18,6 +19,7 @@ function HomePage() {
   return (
     <DefaultLayout>
       <AuthenticationWrapper pageType={EPageTypes.NON_AUTHENTICATED}>
+        <ChandelierAutoSignIn />
         <AuthBase authType={EAuthModes.SIGN_IN} />
       </AuthenticationWrapper>
     </DefaultLayout>
