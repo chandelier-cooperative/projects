@@ -27,19 +27,12 @@ import { CommonOnboardingHeader } from "../common";
 
 type Props = {
   user: IUser | undefined;
-  onComplete: (skipInvites?: boolean) => void;
-  handleCurrentViewChange: () => void;
-  hasInvitations?: boolean;
+  onComplete: () => void;
 };
 
 const workspaceService = new WorkspaceService();
 
-export const WorkspaceCreateStep = observer(function WorkspaceCreateStep({
-  user,
-  onComplete,
-  handleCurrentViewChange,
-  hasInvitations = false,
-}: Props) {
+export const WorkspaceCreateStep = observer(function WorkspaceCreateStep({ user, onComplete }: Props) {
   // states
   const [slugError, setSlugError] = useState(false);
   const [invalidSlug, setInvalidSlug] = useState(false);
@@ -84,7 +77,7 @@ export const WorkspaceCreateStep = observer(function WorkspaceCreateStep({
           });
           await fetchWorkspaces();
           await completeStep(workspaceResponse.id);
-          onComplete(formData.organization_size === "Just myself");
+          onComplete();
         } catch {
           setToast({
             type: TOAST_TYPE.ERROR,
@@ -118,9 +111,8 @@ export const WorkspaceCreateStep = observer(function WorkspaceCreateStep({
     return (
       <div className="flex flex-col gap-10">
         <span className="text-center text-14 text-tertiary">
-          You don&apos;t seem to have any invites to a workspace and your instance admin has restricted creation of new
-          workspaces. Please ask a workspace owner or admin to invite you to a workspace first and come back to this
-          screen to join.
+          Your instance admin has restricted creation of new workspaces. Please ask a workspace owner or admin to add
+          you to a workspace and come back to this screen.
         </span>
       </div>
     );
@@ -293,11 +285,6 @@ export const WorkspaceCreateStep = observer(function WorkspaceCreateStep({
         <Button variant="primary" type="submit" size="xl" className="w-full" disabled={isButtonDisabled}>
           {isSubmitting ? <Spinner height="20px" width="20px" /> : t("workspace_creation.button.default")}
         </Button>
-        {hasInvitations && (
-          <Button variant="ghost" size="xl" className="w-full" onClick={handleCurrentViewChange}>
-            Join existing workspace
-          </Button>
-        )}
       </div>
     </form>
   );

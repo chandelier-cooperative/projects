@@ -22,18 +22,6 @@ services:
       - api
       - web
 
-  space:
-    container_name: space
-    build:
-      context: .
-      dockerfile: ./apps/space/Dockerfile.space
-      args:
-        DOCKER_BUILDKIT: 1
-    restart: always
-    depends_on:
-      - api
-      - web
-
   api:
     container_name: api
     build:
@@ -51,8 +39,6 @@ services:
       CHANDELIER_AUTH_AUDIENCE: ${CHANDELIER_AUTH_AUDIENCE:-}
       CHANDELIER_AUTH_JWKS_URL: ${CHANDELIER_AUTH_JWKS_URL:-}
       CHANDELIER_ADMIN_SUB: ${CHANDELIER_ADMIN_SUB:-}
-      # Set to 0 once Chandelier Auth works end to end, so nobody types a password.
-      ENABLE_EMAIL_PASSWORD: ${ENABLE_EMAIL_PASSWORD:-1}
     depends_on:
       - plane-db
       - plane-redis
@@ -183,7 +169,6 @@ services:
     depends_on:
       - web
       - api
-      - space
       - admin
 
 volumes:

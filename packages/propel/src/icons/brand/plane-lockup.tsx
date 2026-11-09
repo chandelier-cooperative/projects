@@ -13,7 +13,7 @@ export function PlaneLockup({ height, className }: ISvgIcons) {
   const px = height === undefined ? undefined : Number(height);
   return (
     <span
-      className={["inline-flex items-center leading-none font-semibold tracking-tight", className]
+      className={["inline-flex items-center leading-none font-medium tracking-tight", className]
         .filter(Boolean)
         .join(" ")}
       style={{ fontSize: px && !Number.isNaN(px) ? `${Math.round(px * 0.9)}px` : "1.5rem" }}

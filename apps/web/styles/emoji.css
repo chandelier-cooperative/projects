@@ -15,7 +15,7 @@
   }
 
   .epr-emoji-category-label {
-    font-size: 0.7875rem !important;
+    font-size: 0.875rem !important;
     @apply bg-surface-1/80! text-tertiary!;
   }
 
@@ -30,7 +30,7 @@
   }
 
   input.epr-search {
-    font-size: 0.7875rem !important;
+    font-size: 0.875rem !important;
     height: 2rem !important;
     background: transparent !important;
     @apply border-subtle!;

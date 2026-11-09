@@ -55,7 +55,7 @@ def authentication_throttle_allows(request):
     return throttle.allow_request(request, None)
 
 
-def throttle_auth_redirect(*, is_app=False, is_space=False):
+def throttle_auth_redirect(*, is_app=False):
     """
     Decorator for redirect-flow ``django.views.View`` POST handlers.
 
@@ -65,8 +65,7 @@ def throttle_auth_redirect(*, is_app=False, is_space=False):
     endpoint uses). The throttle runs before any DB access in the handler, so
     brute-force traffic is rejected without touching the database.
 
-    Pass ``is_app=True`` for /app auth views and ``is_space=True`` for /spaces
-    auth views so the redirect targets the correct base host.
+    Pass ``is_app=True`` for /app auth views so the redirect targets the correct base host.
     """
 
     def decorator(post_method):
@@ -78,7 +77,7 @@ def throttle_auth_redirect(*, is_app=False, is_space=False):
                     error_message="RATE_LIMIT_EXCEEDED",
                 )
                 url = get_safe_redirect_url(
-                    base_url=base_host(request=request, is_app=is_app, is_space=is_space),
+                    base_url=base_host(request=request, is_app=is_app),
                     next_path=request.POST.get("next_path"),
                     params=exc.get_error_dict(),
                 )

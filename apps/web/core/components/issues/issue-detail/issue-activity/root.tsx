@@ -117,7 +117,7 @@ export const IssueActivity = observer(function IssueActivity(props: TIssueActivi
               issueId={issueId}
               selectedFilters={selectedFilters || defaultActivityFilters}
               activityOperations={activityOperations}
-              showAccessSpecifier={!!project.anchor}
+              showAccessSpecifier={false}
               disabled={disabled}
               sortOrder={sortOrder || E_SORT_ORDER.ASC}
             />

@@ -5,7 +5,7 @@
  */
 
 // components
-import { AuthBase } from "@/components/auth-screens/auth-base";
+import { SignInScreen } from "@/components/auth-screens/sign-in-screen";
 // helpers
 import { EAuthModes, EPageTypes } from "@/helpers/authentication.helper";
 // assets
@@ -16,7 +16,7 @@ function SignUpPage() {
   return (
     <DefaultLayout>
       <AuthenticationWrapper pageType={EPageTypes.NON_AUTHENTICATED}>
-        <AuthBase authType={EAuthModes.SIGN_UP} />
+        <SignInScreen authType={EAuthModes.SIGN_UP} />
       </AuthenticationWrapper>
     </DefaultLayout>
   );

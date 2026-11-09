@@ -12,18 +12,13 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "ch-primary text-on-color disabled:text-on-color-disabled",
-        "error-fill":
-          "border border-danger-strong bg-layer-transparent text-danger-secondary hover:bg-danger-subtle active:bg-danger-subtle-hover disabled:border-subtle-1 disabled:bg-layer-transparent disabled:text-disabled",
-        "error-outline":
-          "border border-danger-strong bg-layer-2 text-danger-secondary hover:bg-danger-subtle active:bg-danger-subtle-hover disabled:border-subtle-1 disabled:bg-layer-2 disabled:text-disabled",
-        secondary:
-          "border border-strong bg-layer-2 text-secondary hover:bg-layer-2-hover active:bg-layer-2-active disabled:border-subtle-1 disabled:bg-layer-transparent disabled:text-disabled",
-        tertiary:
-          "bg-layer-3 text-secondary hover:bg-layer-3-hover active:bg-layer-3-active disabled:bg-layer-transparent disabled:text-disabled",
-        ghost:
-          "bg-layer-transparent text-secondary hover:bg-layer-transparent-hover focus:bg-layer-transparent-active active:bg-layer-transparent-active disabled:bg-layer-transparent disabled:text-disabled",
-        link: "px-0 text-link-primary underline hover:text-link-primary-hover focus:text-link-primary-hover active:text-link-primary-hover disabled:text-disabled",
+        primary: "ch-primary text-primary",
+        "error-fill": "ch-btn ch-btn-danger",
+        "error-outline": "ch-btn ch-btn-danger",
+        secondary: "ch-btn",
+        tertiary: "ch-btn",
+        ghost: "ch-btn",
+        link: "px-0 text-link-primary underline hover:text-link-primary-hover focus:text-link-primary-hover active:text-link-primary-hover disabled:opacity-40",
       },
       size: {
         sm: "h-5 rounded-sm px-1.5 text-caption-md-medium",

@@ -108,7 +108,7 @@ export function CustomSearchSelect(props: ICustomSearchSelectProps) {
                     "flex w-full items-center justify-between gap-1 text-11",
                     {
                       "cursor-not-allowed text-secondary": disabled,
-                      "cursor-pointer hover:bg-layer-transparent-hover": !disabled,
+                      "cursor-pointer": !disabled,
                     },
                     customButtonClassName
                   )}
@@ -123,12 +123,12 @@ export function CustomSearchSelect(props: ICustomSearchSelectProps) {
                   ref={setReferenceElement}
                   type="button"
                   className={cn(
-                    "flex w-full items-center justify-between gap-1 rounded-sm border-[0.5px] border-strong",
+                    "ch-select flex w-full items-center justify-between gap-1 rounded-sm",
                     {
                       "px-3 py-2 text-13": input,
                       "px-2 py-1 text-11": !input,
                       "cursor-not-allowed text-secondary": disabled,
-                      "cursor-pointer hover:bg-layer-transparent-hover": !disabled,
+                      "cursor-pointer": !disabled,
                     },
                     buttonClassName
                   )}
@@ -181,9 +181,9 @@ export function CustomSearchSelect(props: ICustomSearchSelectProps) {
                               value={option.value}
                               className={({ active }) =>
                                 cn(
-                                  "flex w-full cursor-pointer items-center justify-between gap-2 truncate rounded-sm px-1 py-1.5 select-none",
+                                  "flex w-full cursor-pointer items-center justify-between gap-2 truncate rounded-sm border border-transparent px-1 py-1.5 select-none",
                                   {
-                                    "bg-layer-transparent-hover": active,
+                                    "ch-menu-active": active,
                                     "cursor-not-allowed text-placeholder opacity-60": option.disabled,
                                   }
                                 )

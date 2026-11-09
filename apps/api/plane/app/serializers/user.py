@@ -6,7 +6,7 @@
 from rest_framework import serializers
 
 # Module import
-from plane.db.models import Account, Profile, User, Workspace, WorkspaceMemberInvite
+from plane.db.models import Account, Profile, User, Workspace
 from plane.utils.url import contains_url
 
 from .base import BaseSerializer
@@ -96,8 +96,6 @@ class UserMeSettingsSerializer(BaseSerializer):
         read_only_fields = fields
 
     def get_workspace(self, obj):
-        workspace_invites = WorkspaceMemberInvite.objects.filter(email=obj.email).count()
-
         # profile
         profile = Profile.objects.get(user=obj)
         if (
@@ -121,7 +119,6 @@ class UserMeSettingsSerializer(BaseSerializer):
                 "last_workspace_logo": (logo_asset_url),
                 "fallback_workspace_id": profile.last_workspace_id,
                 "fallback_workspace_slug": (workspace.slug if workspace is not None else ""),
-                "invites": workspace_invites,
             }
         else:
             fallback_workspace = (
@@ -134,7 +131,6 @@ class UserMeSettingsSerializer(BaseSerializer):
                 "last_workspace_slug": None,
                 "fallback_workspace_id": (fallback_workspace.id if fallback_workspace is not None else None),
                 "fallback_workspace_slug": (fallback_workspace.slug if fallback_workspace is not None else None),
-                "invites": workspace_invites,
             }
 
 

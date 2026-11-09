@@ -26,7 +26,6 @@ from plane.db.models import (
     Intake,
     Module,
     Project,
-    DeployBoard,
     ProjectMember,
     State,
     DEFAULT_STATES,
@@ -130,14 +129,6 @@ class ProjectListCreateAPIEndpoint(BaseAPIView):
                     member_id=self.request.user.id,
                     is_active=True,
                 ).values("role")
-            )
-            .annotate(
-                is_deployed=Exists(
-                    DeployBoard.objects.filter(
-                        project_id=OuterRef("pk"),
-                        workspace__slug=self.kwargs.get("slug"),
-                    )
-                )
             )
             .order_by(self.kwargs.get("order_by", "-created_at"))
             .distinct()
@@ -484,14 +475,6 @@ class ProjectDetailAPIEndpoint(BaseAPIView):
                     member_id=self.request.user.id,
                     is_active=True,
                 ).values("role")
-            )
-            .annotate(
-                is_deployed=Exists(
-                    DeployBoard.objects.filter(
-                        project_id=OuterRef("pk"),
-                        workspace__slug=self.kwargs.get("slug"),
-                    )
-                )
             )
             .order_by(self.kwargs.get("order_by", "-created_at"))
             .distinct()

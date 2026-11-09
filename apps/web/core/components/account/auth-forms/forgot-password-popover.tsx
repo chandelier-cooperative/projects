@@ -7,6 +7,7 @@
 import { Fragment, useState } from "react";
 import { usePopper } from "react-popper";
 import { Popover } from "@headlessui/react";
+import { Info } from "lucide-react";
 // plane imports
 import { useTranslation } from "@plane/i18n";
 import { CloseIcon } from "@plane/propel/icons";
@@ -49,7 +50,7 @@ export function ForgotPasswordPopover() {
             style={styles.popper}
             {...attributes.popper}
           >
-            <span className="flex-shrink-0">🤥</span>
+            <Info className="mt-0.5 size-3.5 flex-shrink-0" aria-hidden="true" />
             <p className="text-11">{t("auth.forgot_password.errors.smtp_not_enabled")}</p>
             <button
               type="button"

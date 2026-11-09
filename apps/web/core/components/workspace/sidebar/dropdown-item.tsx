@@ -7,7 +7,7 @@
 import { observer } from "mobx-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Settings, UserPlus } from "lucide-react";
+import { Settings } from "lucide-react";
 import { Menu } from "@headlessui/react";
 // plane imports
 import { EUserPermissions } from "@plane/constants";
@@ -52,7 +52,7 @@ const SidebarDropdownItem = observer(function SidebarDropdownItem(props: TProps)
           <div className="relative flex w-[80%] items-center justify-start gap-2.5">
             <span
               className={`relative flex h-8 w-8 flex-shrink-0 items-center justify-center border-subtle p-2 text-14 font-medium uppercase ${
-                !workspace?.logo_url && "rounded-md bg-[#026292] text-on-color"
+                !workspace?.logo_url && "rounded-md bg-[#0a84ff] text-on-color"
               }`}
             >
               {workspace?.logo_url && workspace.logo_url !== "" ? (
@@ -98,21 +98,6 @@ const SidebarDropdownItem = observer(function SidebarDropdownItem(props: TProps)
                 >
                   <Settings className="my-auto h-4 w-4 flex-shrink-0" />
                   <span className="my-auto text-13 font-medium whitespace-nowrap">{t("settings")}</span>
-                </Link>
-              )}
-              {[EUserPermissions.ADMIN].includes(workspace?.role) && (
-                <Link
-                  href={`/${workspace.slug}/settings/members`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleClose();
-                  }}
-                  className="flex gap-1.5 rounded-md border border-strong bg-layer-2 px-2.5 py-1.5 text-secondary transition-colors hover:border-strong hover:text-secondary"
-                >
-                  <UserPlus className="my-auto h-4 w-4 flex-shrink-0" />
-                  <span className="my-auto text-13 font-medium whitespace-nowrap">
-                    {t("project_settings.members.invite_members.title")}
-                  </span>
                 </Link>
               )}
             </div>

@@ -286,14 +286,17 @@ const getLabelsColumns = ({ isWorkspaceLevel }: TGetColumns): IGroupByColumn[] =
   // map labels to group by columns
   const labels = [
     ...(isWorkspaceLevel ? workspaceLabels || [] : projectLabels || []),
-    { id: "None", name: "None", color: "#666" },
+    { id: "None", name: "None", color: "#5c5c5c" },
   ];
   // map labels to group by columns
   return labels.map((label) => ({
     id: label.id,
     name: label.name,
     icon: (
-      <div className="h-[12px] w-[12px] rounded-full" style={{ backgroundColor: label.color ? label.color : "#666" }} />
+      <div
+        className="h-[12px] w-[12px] rounded-full"
+        style={{ backgroundColor: label.color ? label.color : "#5c5c5c" }}
+      />
     ),
     payload: label?.id === "None" ? {} : { label_ids: [label.id] },
   }));

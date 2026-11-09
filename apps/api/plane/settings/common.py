@@ -102,7 +102,6 @@ INSTALLED_APPS = [
     # Inhouse apps
     "plane.analytics",
     "plane.app",
-    "plane.space",
     "plane.bgtasks",
     "plane.db",
     "plane.utils",
@@ -397,12 +396,6 @@ ADMIN_BASE_URL = os.environ.get("ADMIN_BASE_URL", None)
 if ADMIN_BASE_URL and not is_valid_url(ADMIN_BASE_URL):
     ADMIN_BASE_URL = None
 ADMIN_BASE_PATH = os.environ.get("ADMIN_BASE_PATH", "/god-mode/")
-
-# Space Base URL
-SPACE_BASE_URL = os.environ.get("SPACE_BASE_URL", None)
-if SPACE_BASE_URL and not is_valid_url(SPACE_BASE_URL):
-    SPACE_BASE_URL = None
-SPACE_BASE_PATH = os.environ.get("SPACE_BASE_PATH", "/spaces/")
 
 # App Base URL
 APP_BASE_URL = os.environ.get("APP_BASE_URL", None)

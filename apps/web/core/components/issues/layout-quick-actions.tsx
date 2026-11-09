@@ -54,7 +54,7 @@ export const LayoutQuickActions = observer(function LayoutQuickActions(props: Pr
         placement="bottom-end"
         closeOnSelect
         maxHeight="lg"
-        className="flex size-[26px] flex-shrink-0 items-center justify-center rounded"
+        className="rounded flex size-[26px] flex-shrink-0 items-center justify-center"
         customButton={<IconButton size="lg" variant="tertiary" icon={Ellipsis} />}
       >
         {MENU_ITEMS.map((item) => {

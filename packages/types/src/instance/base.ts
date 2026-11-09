@@ -51,6 +51,7 @@ export interface IInstanceConfig {
   is_github_enabled: boolean;
   is_gitlab_enabled: boolean;
   is_gitea_enabled: boolean;
+  /** Chandelier Auth is on: it is the only way in, the other sign-in methods are off. */
   is_chandelier_enabled?: boolean;
   is_magic_login_enabled: boolean;
   is_email_password_enabled: boolean;
@@ -63,7 +64,6 @@ export interface IInstanceConfig {
   file_size_limit: number | undefined;
   is_smtp_configured: boolean;
   app_base_url: string | undefined;
-  space_base_url: string | undefined;
   admin_base_url: string | undefined;
   is_self_managed: boolean;
   instance_changelog_url?: string;

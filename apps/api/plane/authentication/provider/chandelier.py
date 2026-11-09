@@ -199,6 +199,13 @@ class ChandelierProvider(Adapter):
             defaults={"user": user, "access_token": "", "metadata": {}},
         )
 
+    def mark_onboarded(self, user: User) -> None:
+        """Chandelier already identified the person and manages their workspaces: there is no onboarding."""
+        profile, _ = Profile.objects.get_or_create(user=user)
+        if not profile.is_onboarded:
+            profile.is_onboarded = True
+            profile.save(update_fields=["is_onboarded"])
+
     def authenticate(self, provision: bool = False) -> User:
         self.set_user_data()
         email = self.sanitize_email(self.user_data["email"])
@@ -214,4 +221,5 @@ class ChandelierProvider(Adapter):
             self.provision_user()
         user = self.complete_login_or_signup()
         self.link_account(user)
+        self.mark_onboarded(user)
         return user

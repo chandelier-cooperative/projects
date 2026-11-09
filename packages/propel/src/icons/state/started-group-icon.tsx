@@ -15,7 +15,7 @@ export function StartedGroupIcon({
   width = "20",
   height = "20",
   className,
-  color = "#F59E0B",
+  color = "#ffd60a",
   percentage = 100,
 }: ISvgIcons) {
   // Ensure percentage is between 0 and 100

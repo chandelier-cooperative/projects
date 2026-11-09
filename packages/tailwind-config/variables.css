@@ -994,11 +994,12 @@
 
   /* ---------- Font size ---------- */
   --text-*: initial;
-  --text-9: 0.5625rem;
-  --text-10: 0.625rem;
-  --text-11: 0.6875rem;
-  --text-12: 0.75rem;
-  --text-13: 0.8125rem;
+  /* Chandelier: tamaño mínimo 0.875rem (14 px). 9–13 se aplanan a 14 px. */
+  --text-9: 0.875rem;
+  --text-10: 0.875rem;
+  --text-11: 0.875rem;
+  --text-12: 0.875rem;
+  --text-13: 0.875rem;
   --text-14: 0.875rem;
   --text-16: 1rem;
   --text-18: 1.125rem;

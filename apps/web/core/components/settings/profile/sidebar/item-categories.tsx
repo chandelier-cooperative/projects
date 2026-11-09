@@ -18,6 +18,8 @@ import {
 import { useTranslation } from "@plane/i18n";
 import type { ISvgIcons } from "@plane/propel/icons";
 import type { TProfileSettingsTabs } from "@plane/types";
+// hooks
+import { useInstance } from "@/hooks/store/use-instance";
 // local imports
 import { SettingsSidebarItem } from "../../sidebar/item";
 import { ProfileSettingsSidebarWorkspaceOptions } from "./workspace-options";
@@ -43,11 +45,16 @@ export const ProfileSettingsSidebarItemCategories = observer(function ProfileSet
   const { profileTabId } = useParams();
   // translation
   const { t } = useTranslation();
+  // inside Chandelier there is no password to manage
+  const { config } = useInstance();
+  const isChandelierEnabled = Boolean(config?.is_chandelier_enabled);
 
   return (
     <div className="mt-4 flex flex-col gap-y-4">
       {PROFILE_SETTINGS_CATEGORIES.map((category) => {
-        const categoryItems = GROUPED_PROFILE_SETTINGS[category];
+        const categoryItems = GROUPED_PROFILE_SETTINGS[category].filter(
+          (item) => !(isChandelierEnabled && item.key === "security")
+        );
 
         if (categoryItems.length === 0) return null;
 

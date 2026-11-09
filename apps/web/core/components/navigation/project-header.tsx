@@ -104,7 +104,7 @@ export const ProjectHeader = observer(function ProjectHeader(props: TProjectHead
       value={currentProjectDetails.id}
       onChange={handleProjectChange}
       customButton={currentProjectDetails ? <ProjectHeaderButton project={currentProjectDetails} /> : null}
-      className="h-full rounded"
+      className="rounded h-full"
       customButtonClassName="group flex items-center gap-0.5 rounded-sm hover:bg-surface-2 outline-none cursor-pointer h-full"
     />
   );

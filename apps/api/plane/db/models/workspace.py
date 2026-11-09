@@ -231,33 +231,6 @@ class WorkspaceMember(BaseModel):
         return f"{self.member.email} <{self.workspace.name}>"
 
 
-class WorkspaceMemberInvite(BaseModel):
-    workspace = models.ForeignKey("db.Workspace", on_delete=models.CASCADE, related_name="workspace_member_invite")
-    email = models.CharField(max_length=255)
-    accepted = models.BooleanField(default=False)
-    token = models.CharField(max_length=255)
-    message = models.TextField(null=True)
-    responded_at = models.DateTimeField(null=True)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, default=5)
-
-    class Meta:
-        unique_together = ["email", "workspace", "deleted_at"]
-        constraints = [
-            models.UniqueConstraint(
-                fields=["email", "workspace"],
-                condition=models.Q(deleted_at__isnull=True),
-                name="workspace_member_invite_unique_email_workspace_when_deleted_at_null",
-            )
-        ]
-        verbose_name = "Workspace Member Invite"
-        verbose_name_plural = "Workspace Member Invites"
-        db_table = "workspace_member_invites"
-        ordering = ("-created_at",)
-
-    def __str__(self):
-        return f"{self.workspace.name} {self.email} {self.accepted}"
-
-
 class Team(BaseModel):
     name = models.CharField(max_length=255, verbose_name="Team Name")
     description = models.TextField(verbose_name="Team Description", blank=True)

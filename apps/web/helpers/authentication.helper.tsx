@@ -98,6 +98,7 @@ export enum EAuthenticationErrorCodes {
   ADMIN_USER_ALREADY_EXIST = "5180",
   ADMIN_USER_DOES_NOT_EXIST = "5185",
   ADMIN_USER_DEACTIVATED = "5190",
+  SIGN_IN_METHOD_DISABLED = "5195",
   // Rate limit
   RATE_LIMIT_EXCEEDED = "5900",
 }
@@ -371,6 +372,10 @@ const errorCodeMessages: {
     title: `Admin user deactivated`,
     message: () => <div>Your account is deactivated</div>,
   },
+  [EAuthenticationErrorCodes.SIGN_IN_METHOD_DISABLED]: {
+    title: `Sign in with Chandelier`,
+    message: () => `This instance signs people in with Chandelier Auth. Other sign-in methods are turned off.`,
+  },
   [EAuthenticationErrorCodes.RATE_LIMIT_EXCEEDED]: {
     title: "",
     message: () => `Rate limit exceeded. Please try again later.`,
@@ -429,6 +434,7 @@ export const authErrorHandler = (errorCode: EAuthenticationErrorCodes, email?: s
     EAuthenticationErrorCodes.ADMIN_USER_ALREADY_EXIST,
     EAuthenticationErrorCodes.ADMIN_USER_DOES_NOT_EXIST,
     EAuthenticationErrorCodes.ADMIN_USER_DEACTIVATED,
+    EAuthenticationErrorCodes.SIGN_IN_METHOD_DISABLED,
     EAuthenticationErrorCodes.RATE_LIMIT_EXCEEDED,
     EAuthenticationErrorCodes.PASSWORD_TOO_WEAK,
   ];

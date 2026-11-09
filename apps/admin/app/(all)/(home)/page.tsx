@@ -9,6 +9,7 @@ import { observer } from "mobx-react";
 import { useSearchParams } from "next/navigation";
 // plane internal packages
 import { API_BASE_URL } from "@plane/constants";
+import { Button } from "@plane/propel/button";
 // components
 import { LogoSpinner } from "@/components/common/logo-spinner";
 import { InstanceFailureView } from "@/components/instance/failure";
@@ -17,15 +18,19 @@ import { InstanceSetupForm } from "@/components/instance/setup-form";
 import { useInstance } from "@/hooks/store";
 // components
 import type { Route } from "./+types/page";
+import { AuthHeader } from "./auth-header";
 import { InstanceSignInForm } from "./sign-in-form";
 
 function HomePage() {
   // store hooks
   const { instance, config, error } = useInstance();
   const searchParams = useSearchParams();
-  // After a failed attempt the error is shown with the usual form, so we never loop on redirects.
+  // While Chandelier Auth is on it is the only way in. After a failed attempt we stop and say so
+  // instead of looping on redirects. With it off (running the project on its own) the usual setup
+  // and sign-in forms apply.
   const hasAuthError = Boolean(searchParams.get("error_code"));
-  const shouldUseChandelier = Boolean(config?.is_chandelier_enabled) && !hasAuthError;
+  const isChandelierEnabled = Boolean(config?.is_chandelier_enabled);
+  const shouldUseChandelier = isChandelierEnabled && !hasAuthError;
 
   // Chandelier Auth identifies the admin: no setup form and no password.
   useEffect(() => {
@@ -44,6 +49,22 @@ function HomePage() {
   // if instance fetch fails, show failure view
   if (error) {
     return <InstanceFailureView />;
+  }
+
+  // Chandelier could not confirm the admin
+  if (isChandelierEnabled) {
+    return (
+      <>
+        <AuthHeader />
+        <div className="mt-10 flex w-full flex-grow flex-col items-center justify-center py-6">
+          <div className="flex max-w-[22.5rem] flex-col items-center gap-4 text-center">
+            <h3 className="text-20 font-medium text-on-color">Could not sign you in</h3>
+            <p className="text-14 font-medium">Chandelier could not confirm that you administer this instance.</p>
+            <Button onClick={() => window.location.assign(window.location.pathname)}>Try again</Button>
+          </div>
+        </div>
+      </>
+    );
   }
 
   // if instance is fetched and setup is not done, show setup form

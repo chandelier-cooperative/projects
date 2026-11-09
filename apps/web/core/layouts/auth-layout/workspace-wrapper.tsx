@@ -34,6 +34,7 @@ import {
 } from "@plane/constants";
 // hooks
 import { useFavorite } from "@/hooks/store/use-favorite";
+import { useInstance } from "@/hooks/store/use-instance";
 import { useMember } from "@/hooks/store/use-member";
 import { useProject } from "@/hooks/store/use-project";
 import { useProjectState } from "@/hooks/store/use-project-state";
@@ -58,7 +59,10 @@ export const WorkspaceAuthWrapper = observer(function WorkspaceAuthWrapper(props
     workspace: { fetchWorkspaceMembers },
   } = useMember();
   const { workspaces, fetchSidebarNavigationPreferences, fetchProjectNavigationPreferences } = useWorkspace();
+  const { config } = useInstance();
   const { isMobile } = usePlatformOS();
+  // inside Chandelier workspaces are created there
+  const canCreateWorkspace = !(config?.is_workspace_creation_disabled ?? false) && !config?.is_chandelier_enabled;
   const { loader, workspaceInfoBySlug, fetchUserWorkspaceInfo, fetchUserProjectPermissions, allowPermissions } =
     useUserPermissions();
   const { fetchWorkspaceStates } = useProjectState();
@@ -188,7 +192,7 @@ export const WorkspaceAuthWrapper = observer(function WorkspaceAuthWrapper(props
                   Visit Profile
                 </Link>
               )}
-              {allWorkspaces && allWorkspaces.length === 0 && (
+              {canCreateWorkspace && allWorkspaces && allWorkspaces.length === 0 && (
                 <Link href="/create-workspace/" className={cn(getButtonStyling("secondary", "base"))}>
                   Create new workspace
                 </Link>
@@ -211,22 +215,18 @@ export const WorkspaceAuthWrapper = observer(function WorkspaceAuthWrapper(props
             <div className="space-y-2">
               <h3 className="text-16 font-medium">Not Authorized!</h3>
               <p className="mx-auto w-1/2 text-13 text-secondary">
-                You{"'"}re not a member of this workspace. Please contact the workspace admin to get an invitation or
-                check your pending invitations.
+                You{"'"}re not a member of this workspace. Please contact the workspace admin to be added.
               </p>
             </div>
-            <div className="flex items-center justify-center gap-2">
-              <Link href="/invitations">
-                <span>
-                  <Button variant="secondary">Check pending invites</Button>
-                </span>
-              </Link>
-              <Link href="/create-workspace">
-                <span>
-                  <Button variant="primary">Create new workspace</Button>
-                </span>
-              </Link>
-            </div>
+            {canCreateWorkspace && (
+              <div className="flex items-center justify-center gap-2">
+                <Link href="/create-workspace">
+                  <span>
+                    <Button variant="primary">Create new workspace</Button>
+                  </span>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>

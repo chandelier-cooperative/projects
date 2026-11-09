@@ -20,7 +20,7 @@ export function EmojiPicker(props: TCustomEmojiPicker) {
     handleToggle,
     buttonClassName,
     closeOnSelect = true,
-    defaultIconColor = "#6d7b8a",
+    defaultIconColor = "#8a8a8a",
     defaultOpen = EmojiIconPickerTypes.EMOJI,
     disabled = false,
     dropdownClassName,

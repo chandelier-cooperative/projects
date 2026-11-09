@@ -21,7 +21,6 @@ import { DragHandle, DropIndicator } from "@plane/ui";
 import { cn } from "@plane/utils";
 // components
 import { SidebarNavItem } from "@/components/sidebar/sidebar-navigation";
-import { UpgradeBadge } from "@/components/workspace/upgrade-badge";
 // hooks
 import { useAppTheme } from "@/hooks/store/use-app-theme";
 import { useUser, useUserPermissions } from "@/hooks/store/user";
@@ -181,7 +180,7 @@ export const ExtendedSidebarItem = observer(function ExtendedSidebarItem(props: 
             <button
               type="button"
               className={cn(
-                "absolute top-1/2 -left-3 flex -translate-y-1/2 cursor-grab items-center justify-center rounded text-placeholder opacity-0 group-hover/project-item:opacity-100",
+                "rounded absolute top-1/2 -left-3 flex -translate-y-1/2 cursor-grab items-center justify-center text-placeholder opacity-0 group-hover/project-item:opacity-100",
                 {
                   "cursor-grabbing": isDragging,
                   "opacity-100": isDragging,
@@ -201,11 +200,6 @@ export const ExtendedSidebarItem = observer(function ExtendedSidebarItem(props: 
             </div>
           </Link>
           <div className="flex items-center gap-2">
-            {item.key === "active_cycles" && (
-              <div className="flex-shrink-0">
-                <UpgradeBadge />
-              </div>
-            )}
             {isPinned ? (
               <Tooltip tooltipContent="Unpin">
                 <PinOff

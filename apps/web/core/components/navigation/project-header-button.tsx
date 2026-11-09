@@ -21,11 +21,11 @@ export function ProjectHeaderButton({ project }: TProjectHeaderButtonProps) {
         <div className="flex size-7 flex-shrink-0 items-center justify-center rounded-md bg-layer-1">
           <Logo logo={project.logo_props} size={16} />
         </div>
-        <div className="relative min-w-0 flex-1 hover:rounded">
+        <div className="hover:rounded relative min-w-0 flex-1">
           <p className="truncate px-2 text-14 font-medium text-secondary">{project.name}</p>
           <div className="pointer-events-none absolute top-0 right-0 bottom-0 flex items-center justify-end opacity-0 transition-opacity duration-200 group-hover:opacity-100">
             <div className="relative flex h-full w-8 items-center justify-end">
-              <div className="absolute inset-0 rounded-r bg-gradient-to-r from-transparent to-surface-2" />
+              <div className="rounded-r absolute inset-0 bg-surface-2" />
               <ChevronDownIcon className="relative z-10 size-4 text-tertiary" />
             </div>
           </div>

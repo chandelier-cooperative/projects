@@ -69,6 +69,8 @@ AUTHENTICATION_ERROR_CODES = {
     "ADMIN_USER_ALREADY_EXIST": 5180,
     "ADMIN_USER_DOES_NOT_EXIST": 5185,
     "ADMIN_USER_DEACTIVATED": 5190,
+    # Chandelier Auth is the only way in while it is active
+    "SIGN_IN_METHOD_DISABLED": 5195,
     # Rate limit
     "RATE_LIMIT_EXCEEDED": 5900,
     # Unknown

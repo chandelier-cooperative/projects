@@ -54,7 +54,6 @@ export interface IProject extends IPartialProject {
   default_state?: string | null;
   description?: string;
   estimate?: string | null;
-  anchor?: string | null;
   is_favorite?: boolean;
   members?: string[];
   timezone?: string;

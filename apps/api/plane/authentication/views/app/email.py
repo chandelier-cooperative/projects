@@ -15,7 +15,6 @@ from plane.authentication.rate_limit import throttle_auth_redirect
 from plane.license.models import Instance
 from plane.authentication.utils.host import base_host
 from plane.authentication.utils.redirection_path import get_redirection_path
-from plane.authentication.utils.user_auth_workflow import post_user_auth_workflow
 from plane.db.models import User
 from plane.authentication.adapter.error import (
     AuthenticationException,
@@ -109,7 +108,6 @@ class SignInAuthEndpoint(View):
                 key=email,
                 code=password,
                 is_signup=False,
-                callback=post_user_auth_workflow,
             )
             user = provider.authenticate()
             # Login the user and record his device info
@@ -217,7 +215,6 @@ class SignUpAuthEndpoint(View):
                 key=email,
                 code=password,
                 is_signup=True,
-                callback=post_user_auth_workflow,
             )
             user = provider.authenticate()
             # Login the user and record his device info

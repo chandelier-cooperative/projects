@@ -29,7 +29,7 @@ type ILabelCreate = {
 
 const defaultValues: Partial<IIssueLabel> = {
   name: "",
-  color: "#ff0000",
+  color: "#ff3b30",
 };
 
 export function LabelCreate(props: ILabelCreate) {

@@ -13,7 +13,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from django.utils import timezone
 
 from plane.authentication.provider import chandelier as provider
-from plane.db.models import Account, User
+from plane.db.models import Account, Profile, User
 from plane.license.models import Instance, InstanceAdmin
 
 AUD = "projects.chandelier.test"
@@ -103,6 +103,13 @@ class TestChandelierAppLogin:
         assert user.is_password_autoset
         assert Account.objects.filter(user=user, provider="chandelier", provider_account_id=PERSON_SUB).exists()
         assert client.session.get("_auth_user_id") == str(user.id)
+
+    def test_login_skips_onboarding(self, client, signer, instance):
+        res = get(client, APP_URL, signer(ext="ana@example.com"))
+        user = User.objects.get(email="ana@example.com")
+        assert Profile.objects.get(user=user).is_onboarded
+        # Without a workspace the person lands on the root, never on an onboarding or create-workspace page.
+        assert not any(page in res["Location"] for page in ("onboarding", "create-workspace", "invitations"))
 
     def test_synthetic_email_without_share_ids(self, client, signer, instance):
         get(client, APP_URL, signer())

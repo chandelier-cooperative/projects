@@ -40,7 +40,6 @@ from plane.db.models import (
     ProjectMember,
     User,
     WorkspaceMember,
-    WorkspaceMemberInvite,
     Session,
 )
 from plane.license.models import Instance, InstanceAdmin
@@ -308,9 +307,6 @@ class UserEndpoint(BaseViewSet):
         ProjectMember.objects.bulk_update(projects_to_deactivate, ["is_active"], batch_size=100)
 
         WorkspaceMember.objects.bulk_update(workspaces_to_deactivate, ["is_active"], batch_size=100)
-
-        # Delete all workspace invites
-        WorkspaceMemberInvite.objects.filter(email=user.email).delete()
 
         # Delete all sessions
         Session.objects.filter(user_id=request.user.id).delete()

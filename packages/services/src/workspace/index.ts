@@ -4,7 +4,6 @@
  * See the LICENSE file for details.
  */
 
-export * from "./invitation.service";
 export * from "./member.service";
 export * from "./notification.service";
 export * from "./view.service";

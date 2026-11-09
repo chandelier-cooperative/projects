@@ -52,10 +52,6 @@ export const CyclePeekOverview = observer(function CyclePeekOverview(props: Prop
         <div
           ref={ref}
           className="fixed right-0 z-[9] flex h-full w-full max-w-[21.5rem] flex-shrink-0 flex-col gap-3.5 overflow-y-auto border-l border-subtle bg-surface-1 px-4 duration-300 md:relative"
-          style={{
-            boxShadow:
-              "0px 1px 4px 0px rgba(0, 0, 0, 0.06), 0px 2px 4px 0px rgba(16, 24, 40, 0.06), 0px 1px 8px -1px rgba(16, 24, 40, 0.06)",
-          }}
         >
           <CycleDetailsSidebar
             handleClose={handleClose}

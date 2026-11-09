@@ -162,7 +162,6 @@ class InstanceEndpoint(BaseAPIView):
 
         # Base URL
         data["admin_base_url"] = settings.ADMIN_BASE_URL
-        data["space_base_url"] = settings.SPACE_BASE_URL
         data["app_base_url"] = settings.APP_BASE_URL
 
         data["instance_changelog_url"] = settings.INSTANCE_CHANGELOG_URL

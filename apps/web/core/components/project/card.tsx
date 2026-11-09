@@ -211,7 +211,7 @@ export const ProjectCard = observer(function ProjectCard(props: Props) {
       >
         <ContextMenu parentRef={projectCardRef} items={MENU_ITEMS} />
         <div className="rounded-t relative h-[118px] w-full">
-          <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/60 to-transparent" />
+          <div className="absolute inset-0 z-[1] bg-black/50" />
 
           <CoverImage
             src={project.cover_image_url}

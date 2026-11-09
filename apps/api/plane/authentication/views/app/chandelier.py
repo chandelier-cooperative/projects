@@ -22,7 +22,6 @@ from plane.authentication.provider.chandelier import (
 from plane.authentication.utils.host import base_host
 from plane.authentication.utils.login import user_login
 from plane.authentication.utils.redirection_path import get_redirection_path
-from plane.authentication.utils.user_auth_workflow import post_user_auth_workflow
 from plane.license.models import Instance
 from plane.utils.cache import invalidate_cache
 from plane.utils.path_validator import validate_next_path
@@ -67,7 +66,7 @@ class ChandelierAuthEndpoint(View):
             if not instance.is_setup_done and not is_admin:
                 raise _not_configured()
 
-            user = ChandelierProvider(request=request, claims=claims, callback=post_user_auth_workflow).authenticate(
+            user = ChandelierProvider(request=request, claims=claims).authenticate(
                 provision=is_admin
             )
             if is_admin:
@@ -103,7 +102,7 @@ class ChandelierAdminAuthEndpoint(View):
             is_admin = sub in admin_subs()
 
             if is_admin:
-                provider = ChandelierProvider(request=request, claims=claims, callback=post_user_auth_workflow)
+                provider = ChandelierProvider(request=request, claims=claims)
                 user = provider.authenticate(provision=True)
                 promote_instance_admin(user, instance)
             else:

@@ -86,7 +86,7 @@ function CustomSelect(props: ICustomSelectProps) {
               <button
                 ref={setReferenceElement}
                 type="button"
-                className={`flex items-center justify-between gap-1 rounded text-11 ${
+                className={`rounded flex items-center justify-between gap-1 text-11 ${
                   disabled ? "cursor-not-allowed text-secondary" : "cursor-pointer hover:bg-layer-transparent-hover"
                 } ${customButtonClassName}`}
                 onClick={toggleDropdown}
@@ -100,12 +100,12 @@ function CustomSelect(props: ICustomSelectProps) {
                 ref={setReferenceElement}
                 type="button"
                 className={cn(
-                  "flex w-full items-center justify-between gap-1 rounded border border-strong",
+                  "ch-select rounded flex w-full items-center justify-between gap-1",
                   {
                     "px-3 py-2 text-13": input,
                     "px-2 py-1 text-11": !input,
                     "cursor-not-allowed text-secondary": disabled,
-                    "cursor-pointer hover:bg-layer-transparent-hover": !disabled,
+                    "cursor-pointer": !disabled,
                   },
                   buttonClassName
                 )}
@@ -166,9 +166,9 @@ function Option(props: ICustomSelectItemProps) {
       value={value}
       className={({ active }) =>
         cn(
-          "flex cursor-pointer items-center justify-between gap-2 truncate rounded-sm px-1 py-1.5 text-secondary select-none",
+          "flex cursor-pointer items-center justify-between gap-2 truncate rounded-sm border border-transparent px-1 py-1.5 text-secondary select-none",
           {
-            "bg-layer-transparent-hover": active,
+            "ch-menu-active": active,
           },
           className
         )

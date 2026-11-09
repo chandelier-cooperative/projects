@@ -8,7 +8,7 @@ import * as React from "react";
 
 import type { ISvgIcons } from "../type";
 
-export function TriageGroupIcon({ width = "20", height = "20", className, color = "#4E5355" }: ISvgIcons) {
+export function TriageGroupIcon({ width = "20", height = "20", className, color = "#5c5c5c" }: ISvgIcons) {
   // SVG parameters
   const viewBoxSize = 16;
   return (

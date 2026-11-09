@@ -13,7 +13,6 @@ from .user import UserLiteSerializer, UserAdminLiteSerializer
 from plane.db.models import (
     Workspace,
     WorkspaceMember,
-    WorkspaceMemberInvite,
     WorkspaceTheme,
     WorkspaceUserProperties,
     WorkspaceUserLink,
@@ -112,57 +111,6 @@ class WorkspaceMemberAdminSerializer(DynamicBaseSerializer):
     class Meta:
         model = WorkspaceMember
         fields = "__all__"
-
-
-class WorkSpaceMemberInviteSerializer(BaseSerializer):
-    workspace = WorkspaceLiteSerializer(read_only=True)
-    invite_link = serializers.SerializerMethodField()
-
-    def get_invite_link(self, obj):
-        return f"/workspace-invitations/?invitation_id={obj.id}&slug={obj.workspace.slug}&token={obj.token}"
-
-    class Meta:
-        model = WorkspaceMemberInvite
-        fields = "__all__"
-        read_only_fields = [
-            "id",
-            "email",
-            "token",
-            "workspace",
-            "message",
-            "responded_at",
-            "created_at",
-            "updated_at",
-            "invite_link",
-        ]
-
-
-class WorkSpaceMemberInvitePublicSerializer(BaseSerializer):
-    """Safe read-only serializer for the public workspace invite GET endpoint.
-
-    Intentionally excludes ``token`` and ``invite_link`` so that an
-    unauthenticated caller cannot retrieve the acceptance token and use it to
-    hijack an invitation (GHSA-86mg-259g-pwgg / GHSA-gf48-p6jp-cwc4).
-    """
-
-    workspace = WorkspaceLiteSerializer(read_only=True)
-
-    class Meta:
-        model = WorkspaceMemberInvite
-        fields = [
-            "id",
-            "email",
-            "workspace",
-            "role",
-            "message",
-            "accepted",
-            "responded_at",
-            "created_at",
-            "updated_at",
-            "created_by",
-        ]
-        read_only_fields = fields
-
 
 class WorkspaceThemeSerializer(BaseSerializer):
     class Meta:

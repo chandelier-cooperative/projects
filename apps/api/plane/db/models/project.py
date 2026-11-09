@@ -189,24 +189,6 @@ class ProjectBaseModel(BaseModel):
         super(ProjectBaseModel, self).save(*args, **kwargs)
 
 
-class ProjectMemberInvite(ProjectBaseModel):
-    email = models.CharField(max_length=255)
-    accepted = models.BooleanField(default=False)
-    token = models.CharField(max_length=255)
-    message = models.TextField(null=True)
-    responded_at = models.DateTimeField(null=True)
-    role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, default=5)
-
-    class Meta:
-        verbose_name = "Project Member Invite"
-        verbose_name_plural = "Project Member Invites"
-        db_table = "project_member_invites"
-        ordering = ("-created_at",)
-
-    def __str__(self):
-        return f"{self.project.name} {self.email} {self.accepted}"
-
-
 class ProjectMember(ProjectBaseModel):
     member = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -261,6 +243,22 @@ class ProjectMember(ProjectBaseModel):
 
 
 # TODO: Remove workspace relation later
+# Published boards were removed. Historical migrations (0041) still import these helpers
+# as field defaults, so they must stay importable.
+def get_anchor():
+    return uuid4().hex
+
+
+def get_default_views():
+    return {
+        "list": True,
+        "kanban": True,
+        "calendar": True,
+        "gantt": True,
+        "spreadsheet": True,
+    }
+
+
 class ProjectIdentifier(AuditModel):
     workspace = models.ForeignKey("db.Workspace", models.CASCADE, related_name="project_identifiers", null=True)
     project = models.OneToOneField(Project, on_delete=models.CASCADE, related_name="project_identifier")
@@ -278,64 +276,6 @@ class ProjectIdentifier(AuditModel):
         verbose_name = "Project Identifier"
         verbose_name_plural = "Project Identifiers"
         db_table = "project_identifiers"
-        ordering = ("-created_at",)
-
-
-def get_anchor():
-    return uuid4().hex
-
-
-def get_default_views():
-    return {
-        "list": True,
-        "kanban": True,
-        "calendar": True,
-        "gantt": True,
-        "spreadsheet": True,
-    }
-
-
-# DEPRECATED TODO:
-# used to get the old anchors for the project deploy boards
-class ProjectDeployBoard(ProjectBaseModel):
-    anchor = models.CharField(max_length=255, default=get_anchor, unique=True, db_index=True)
-    comments = models.BooleanField(default=False)
-    reactions = models.BooleanField(default=False)
-    intake = models.ForeignKey("db.Intake", related_name="board_intake", on_delete=models.SET_NULL, null=True)
-    votes = models.BooleanField(default=False)
-    views = models.JSONField(default=get_default_views)
-
-    class Meta:
-        unique_together = ["project", "anchor"]
-        verbose_name = "Project Deploy Board"
-        verbose_name_plural = "Project Deploy Boards"
-        db_table = "project_deploy_boards"
-        ordering = ("-created_at",)
-
-    def __str__(self):
-        """Return project and anchor"""
-        return f"{self.anchor} <{self.project.name}>"
-
-
-class ProjectPublicMember(ProjectBaseModel):
-    member = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="public_project_members",
-    )
-
-    class Meta:
-        unique_together = ["project", "member", "deleted_at"]
-        constraints = [
-            models.UniqueConstraint(
-                fields=["project", "member"],
-                condition=models.Q(deleted_at__isnull=True),
-                name="project_public_member_unique_project_member_when_deleted_at_null",
-            )
-        ]
-        verbose_name = "Project Public Member"
-        verbose_name_plural = "Project Public Members"
-        db_table = "project_public_members"
         ordering = ("-created_at",)
 
 

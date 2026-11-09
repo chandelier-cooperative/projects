@@ -207,8 +207,8 @@ export const ModuleAnalyticsSidebar = observer(function ModuleAnalyticsSidebar(p
                         isEditingAllowed && !isArchived ? "cursor-pointer" : "cursor-not-allowed"
                       }`}
                       style={{
-                        color: moduleStatus ? moduleStatus.color : "#a3a3a2",
-                        backgroundColor: moduleStatus ? `${moduleStatus.color}20` : "#a3a3a220",
+                        color: moduleStatus ? moduleStatus.color : "#9a9a9a",
+                        backgroundColor: moduleStatus ? `${moduleStatus.color}20` : "#9a9a9a20",
                       }}
                     >
                       {(moduleStatus && t(moduleStatus?.i18n_label)) ?? t("project_modules.status.backlog")}

@@ -9,7 +9,7 @@ import { action, computed, makeObservable, observable, runInAction } from "mobx"
 import { computedFn } from "mobx-utils";
 // types
 import type { EUserPermissions } from "@plane/constants";
-import type { IWorkspaceBulkInviteFormData, IWorkspaceMember, IWorkspaceMemberInvitation } from "@plane/types";
+import type { IWorkspaceMember } from "@plane/types";
 // services
 import { WorkspaceService } from "@/services/workspace.service";
 // types
@@ -31,34 +31,21 @@ export interface IWorkspaceMembership {
 export interface IWorkspaceMemberStore {
   // observables
   workspaceMemberMap: Record<string, Record<string, IWorkspaceMembership>>;
-  workspaceMemberInvitations: Record<string, IWorkspaceMemberInvitation[]>;
   // filters store
   filtersStore: IWorkspaceMemberFiltersStore;
   // computed
   workspaceMemberIds: string[] | null;
-  workspaceMemberInvitationIds: string[] | null;
   memberMap: Record<string, IWorkspaceMembership> | null;
   // computed actions
   getWorkspaceMemberIds: (workspaceSlug: string) => string[];
   getFilteredWorkspaceMemberIds: (workspaceSlug: string) => string[];
   getSearchedWorkspaceMemberIds: (searchQuery: string) => string[] | null;
-  getSearchedWorkspaceInvitationIds: (searchQuery: string) => string[] | null;
   getWorkspaceMemberDetails: (workspaceMemberId: string) => IWorkspaceMember | null;
-  getWorkspaceInvitationDetails: (invitationId: string) => IWorkspaceMemberInvitation | null;
   // fetch actions
   fetchWorkspaceMembers: (workspaceSlug: string) => Promise<IWorkspaceMember[]>;
-  fetchWorkspaceMemberInvitations: (workspaceSlug: string) => Promise<IWorkspaceMemberInvitation[]>;
   // crud actions
   updateMember: (workspaceSlug: string, userId: string, data: { role: EUserPermissions }) => Promise<void>;
   removeMemberFromWorkspace: (workspaceSlug: string, userId: string) => Promise<void>;
-  // invite actions
-  inviteMembersToWorkspace: (workspaceSlug: string, data: IWorkspaceBulkInviteFormData) => Promise<void>;
-  updateMemberInvitation: (
-    workspaceSlug: string,
-    invitationId: string,
-    data: Partial<IWorkspaceMemberInvitation>
-  ) => Promise<void>;
-  deleteMemberInvitation: (workspaceSlug: string, invitationId: string) => Promise<void>;
   isUserSuspended: (userId: string, workspaceSlug: string) => boolean;
 }
 
@@ -67,7 +54,6 @@ export class WorkspaceMemberStore implements IWorkspaceMemberStore {
   workspaceMemberMap: {
     [workspaceSlug: string]: Record<string, IWorkspaceMembership>;
   } = {}; // { workspaceSlug: { userId: userDetails } }
-  workspaceMemberInvitations: Record<string, IWorkspaceMemberInvitation[]> = {}; // { workspaceSlug: [invitations] }
   // filters store
   filtersStore: IWorkspaceMemberFiltersStore;
   // stores
@@ -81,18 +67,13 @@ export class WorkspaceMemberStore implements IWorkspaceMemberStore {
     makeObservable(this, {
       // observables
       workspaceMemberMap: observable,
-      workspaceMemberInvitations: observable,
       // computed
       workspaceMemberIds: computed,
-      workspaceMemberInvitationIds: computed,
       memberMap: computed,
       // actions
       fetchWorkspaceMembers: action,
       updateMember: action,
       removeMemberFromWorkspace: action,
-      fetchWorkspaceMemberInvitations: action,
-      updateMemberInvitation: action,
-      deleteMemberInvitation: action,
     });
     // initialize filters store
     this.filtersStore = new WorkspaceMemberFiltersStore();
@@ -118,12 +99,6 @@ export class WorkspaceMemberStore implements IWorkspaceMemberStore {
     const workspaceSlug = this.routerStore.workspaceSlug;
     if (!workspaceSlug) return null;
     return this.workspaceMemberMap?.[workspaceSlug] ?? {};
-  }
-
-  get workspaceMemberInvitationIds() {
-    const workspaceSlug = this.routerStore.workspaceSlug;
-    if (!workspaceSlug) return null;
-    return this.workspaceMemberInvitations?.[workspaceSlug]?.map((inv) => inv.id);
   }
 
   getWorkspaceMemberIds = computedFn((workspaceSlug: string) => {
@@ -177,24 +152,6 @@ export class WorkspaceMemberStore implements IWorkspaceMemberStore {
   });
 
   /**
-   * @description get the list of all the invitation ids that match the search query of all the member invitations of the current workspace
-   * @param searchQuery
-   */
-  getSearchedWorkspaceInvitationIds = computedFn((searchQuery: string) => {
-    const workspaceSlug = this.routerStore.workspaceSlug;
-    if (!workspaceSlug) return null;
-    const workspaceMemberInvitationIds = this.workspaceMemberInvitationIds;
-    if (!workspaceMemberInvitationIds) return null;
-    const searchedWorkspaceMemberInvitationIds = workspaceMemberInvitationIds.filter((invitationId) => {
-      const invitationDetails = this.getWorkspaceInvitationDetails(invitationId);
-      if (!invitationDetails) return false;
-      const invitationSearchQuery = `${invitationDetails.email}`;
-      return invitationSearchQuery.toLowerCase()?.includes(searchQuery.toLowerCase());
-    });
-    return searchedWorkspaceMemberInvitationIds;
-  });
-
-  /**
    * @description get the details of a workspace member
    * @param userId
    */
@@ -211,21 +168,6 @@ export class WorkspaceMemberStore implements IWorkspaceMemberStore {
       is_active: workspaceMember.is_active,
     };
     return memberDetails;
-  });
-
-  /**
-   * @description get the details of a workspace member invitation
-   * @param workspaceSlug
-   * @param memberId
-   */
-  getWorkspaceInvitationDetails = computedFn((invitationId: string) => {
-    const workspaceSlug = this.routerStore.workspaceSlug;
-    if (!workspaceSlug) return null;
-    const invitationsList = this.workspaceMemberInvitations?.[workspaceSlug];
-    if (!invitationsList) return null;
-
-    const invitation = invitationsList.find((inv) => inv.id === invitationId);
-    return invitation ?? null;
   });
 
   /**
@@ -288,75 +230,6 @@ export class WorkspaceMemberStore implements IWorkspaceMemberStore {
       });
     });
   };
-
-  /**
-   * @description fetch all the member invitations of a workspace
-   * @param workspaceSlug
-   */
-  fetchWorkspaceMemberInvitations = async (workspaceSlug: string) =>
-    await this.workspaceService.workspaceInvitations(workspaceSlug).then((response) => {
-      runInAction(() => {
-        set(this.workspaceMemberInvitations, workspaceSlug, response);
-      });
-      return response;
-    });
-
-  /**
-   * @description bulk invite members to a workspace
-   * @param workspaceSlug
-   * @param data
-   */
-  inviteMembersToWorkspace = async (workspaceSlug: string, data: IWorkspaceBulkInviteFormData) => {
-    const response = await this.workspaceService.inviteWorkspace(workspaceSlug, data);
-    await this.fetchWorkspaceMemberInvitations(workspaceSlug);
-    return response;
-  };
-
-  /**
-   * @description update the role of a member invitation
-   * @param workspaceSlug
-   * @param invitationId
-   * @param data
-   */
-  updateMemberInvitation = async (
-    workspaceSlug: string,
-    invitationId: string,
-    data: Partial<IWorkspaceMemberInvitation>
-  ) => {
-    const originalMemberInvitations = [...(this.workspaceMemberInvitations?.[workspaceSlug] ?? [])]; // in case of error, we will revert back to original members
-    try {
-      const memberInvitations = originalMemberInvitations?.map((invitation) => ({
-        ...invitation,
-        ...(invitation.id === invitationId && data),
-      }));
-      // optimistic update
-      runInAction(() => {
-        set(this.workspaceMemberInvitations, workspaceSlug, memberInvitations);
-      });
-      await this.workspaceService.updateWorkspaceInvitation(workspaceSlug, invitationId, data);
-    } catch (error) {
-      // revert back to original members in case of error
-      runInAction(() => {
-        set(this.workspaceMemberInvitations, workspaceSlug, originalMemberInvitations);
-      });
-      throw error;
-    }
-  };
-
-  /**
-   * @description delete a member invitation
-   * @param workspaceSlug
-   * @param memberId
-   */
-  deleteMemberInvitation = async (workspaceSlug: string, invitationId: string) =>
-    // oxlint-disable-next-line promise/always-return
-    await this.workspaceService.deleteWorkspaceInvitations(workspaceSlug.toString(), invitationId).then(() => {
-      runInAction(() => {
-        this.workspaceMemberInvitations[workspaceSlug] = this.workspaceMemberInvitations[workspaceSlug].filter(
-          (inv) => inv.id !== invitationId
-        );
-      });
-    });
 
   isUserSuspended = computedFn((userId: string, workspaceSlug: string) => {
     if (!workspaceSlug) return false;

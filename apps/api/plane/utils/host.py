@@ -17,7 +17,6 @@ from plane.utils.ip_address import get_client_ip
 def base_host(
     request: Request | HttpRequest,
     is_admin: bool = False,
-    is_space: bool = False,
     is_app: bool = False,
 ) -> str:
     """Utility function to return host / origin from the request"""
@@ -41,21 +40,6 @@ def base_host(
             return settings.ADMIN_BASE_URL + admin_base_path
         else:
             return base_origin + admin_base_path
-
-    # Space redirection
-    if is_space:
-        space_base_path = getattr(settings, "SPACE_BASE_PATH", None)
-        if not isinstance(space_base_path, str):
-            space_base_path = "/spaces/"
-        if not space_base_path.startswith("/"):
-            space_base_path = "/" + space_base_path
-        if not space_base_path.endswith("/"):
-            space_base_path += "/"
-
-        if settings.SPACE_BASE_URL:
-            return settings.SPACE_BASE_URL + space_base_path
-        else:
-            return base_origin + space_base_path
 
     # App Redirection
     if is_app:

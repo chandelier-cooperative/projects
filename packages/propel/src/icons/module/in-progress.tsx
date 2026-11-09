@@ -8,7 +8,7 @@ import * as React from "react";
 
 import type { ISvgIcons } from "../type";
 
-export function ModuleInProgressIcon({ width = "20", height = "20", className, color = "#f39e1f" }: ISvgIcons) {
+export function ModuleInProgressIcon({ width = "20", height = "20", className, color = "#ffd60a" }: ISvgIcons) {
   return (
     <svg
       height={height}

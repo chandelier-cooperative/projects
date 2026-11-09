@@ -10,7 +10,7 @@ import type { ISvgIcons } from "../type";
 
 export function CancelledGroupIcon({
   className = "",
-  color = "#9AA4BC",
+  color = "#9a9a9a",
   height = "20",
   width = "20",
   ...rest

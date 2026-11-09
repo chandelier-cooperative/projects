@@ -20,8 +20,8 @@ export function ProgressBar({
   value = 0,
   radius = 8,
   strokeWidth = 2,
-  activeStrokeColor = "#3e98c7",
-  inactiveStrokeColor = "#ddd",
+  activeStrokeColor = "#0a84ff",
+  inactiveStrokeColor = "#c8c8c8",
 }: Props) {
   // PIE Calc Fn
   const generatePie = (value: any) => {

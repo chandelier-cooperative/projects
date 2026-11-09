@@ -56,7 +56,7 @@ export function PageTabNavigation(props: TPageTabNavigation) {
             {tab.label}
           </div>
           <div
-            className={cn(`w-full rounded-t border-t-2 border-transparent transition-all`, {
+            className={cn(`rounded-t w-full border-t-2 border-transparent transition-all`, {
               "border-accent-strong": tab.key === pageType,
             })}
           />

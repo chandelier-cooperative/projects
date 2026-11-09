@@ -52,13 +52,13 @@ const TONES_LIST = [
   },
   {
     key: "professional",
-    label: "💼 Professional",
+    label: "Professional",
     casual_score: 0,
     formal_score: 10,
   },
   {
     key: "casual",
-    label: "😃 Casual",
+    label: "Casual",
     casual_score: 10,
     formal_score: 0,
   },

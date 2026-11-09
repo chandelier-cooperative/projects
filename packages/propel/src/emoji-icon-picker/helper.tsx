@@ -97,7 +97,7 @@ export const adjustColorForContrast = (hex: string): string => {
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 };
 
-export const DEFAULT_COLORS = ["#95999f", "#6d7b8a", "#5e6ad2", "#02b5ed", "#02b55c", "#f2be02", "#e57a00", "#f38e82"];
+export const DEFAULT_COLORS = ["#9a9a9a", "#8a8a8a", "#5e5ce6", "#0a84ff", "#30d158", "#ffd60a", "#ff9500", "#ff3b30"];
 
 /**
  * Enhanced emoji to decimal conversion that preserves emoji sequences

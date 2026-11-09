@@ -13,7 +13,6 @@ from django.views import View
 from plane.authentication.provider.oauth.gitlab import GitLabOAuthProvider
 from plane.authentication.utils.login import user_login
 from plane.authentication.utils.redirection_path import get_redirection_path
-from plane.authentication.utils.user_auth_workflow import post_user_auth_workflow
 from plane.license.models import Instance
 from plane.authentication.utils.host import base_host
 from plane.authentication.adapter.error import (
@@ -86,7 +85,7 @@ class GitLabCallbackEndpoint(View):
             return HttpResponseRedirect(url)
 
         try:
-            provider = GitLabOAuthProvider(request=request, code=code, callback=post_user_auth_workflow)
+            provider = GitLabOAuthProvider(request=request, code=code)
             user = provider.authenticate()
             # Login the user and record his device info
             user_login(request=request, user=user, is_app=True)

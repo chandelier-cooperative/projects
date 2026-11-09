@@ -17,10 +17,10 @@ export type TCycleGroups = "current" | "upcoming" | "completed" | "draft";
 export const CYCLE_GROUP_COLORS: {
   [key in TCycleGroups]: string;
 } = {
-  current: "#F59E0B",
-  upcoming: "#3F76FF",
-  completed: "#16A34A",
-  draft: "#525252",
+  current: "#ffd60a",
+  upcoming: "#0a84ff",
+  completed: "#30d158",
+  draft: "#5c5c5c",
 };
 
 export const CYCLE_GROUP_I18N_LABELS: {

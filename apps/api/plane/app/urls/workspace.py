@@ -6,11 +6,8 @@ from django.urls import path
 
 
 from plane.app.views import (
-    UserWorkspaceInvitationsViewSet,
     WorkSpaceViewSet,
-    WorkspaceJoinEndpoint,
     WorkSpaceMemberViewSet,
-    WorkspaceInvitationsViewset,
     WorkspaceMemberUserEndpoint,
     WorkspaceMemberUserViewsEndpoint,
     WorkSpaceAvailabilityCheckEndpoint,
@@ -61,27 +58,6 @@ urlpatterns = [
             }
         ),
         name="workspace",
-    ),
-    path(
-        "workspaces/<str:slug>/invitations/",
-        WorkspaceInvitationsViewset.as_view({"get": "list", "post": "create"}),
-        name="workspace-invitations",
-    ),
-    path(
-        "workspaces/<str:slug>/invitations/<uuid:pk>/",
-        WorkspaceInvitationsViewset.as_view({"delete": "destroy", "get": "retrieve", "patch": "partial_update"}),
-        name="workspace-invitations",
-    ),
-    # user workspace invitations
-    path(
-        "users/me/workspaces/invitations/",
-        UserWorkspaceInvitationsViewSet.as_view({"get": "list", "post": "create"}),
-        name="user-workspace-invitations",
-    ),
-    path(
-        "workspaces/<str:slug>/invitations/<uuid:pk>/join/",
-        WorkspaceJoinEndpoint.as_view(),
-        name="workspace-join",
     ),
     # user join workspace
     path(

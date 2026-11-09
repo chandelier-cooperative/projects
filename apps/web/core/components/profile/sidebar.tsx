@@ -203,28 +203,28 @@ export const ProfileSidebar = observer(function ProfileSidebar(props: TProfileSi
                                 <div
                                   className="h-1 rounded-sm"
                                   style={{
-                                    backgroundColor: "#203b80",
+                                    backgroundColor: "#5e5ce6",
                                     width: `${(project.created_issues / totalIssues) * 100}%`,
                                   }}
                                 />
                                 <div
                                   className="h-1 rounded-sm"
                                   style={{
-                                    backgroundColor: "#3f76ff",
+                                    backgroundColor: "#0a84ff",
                                     width: `${(project.assigned_issues / totalIssues) * 100}%`,
                                   }}
                                 />
                                 <div
                                   className="h-1 rounded-sm"
                                   style={{
-                                    backgroundColor: "#f59e0b",
+                                    backgroundColor: "#ffd60a",
                                     width: `${(project.pending_issues / totalIssues) * 100}%`,
                                   }}
                                 />
                                 <div
                                   className="h-1 rounded-sm"
                                   style={{
-                                    backgroundColor: "#16a34a",
+                                    backgroundColor: "#30d158",
                                     width: `${(project.completed_issues / totalIssues) * 100}%`,
                                   }}
                                 />
@@ -233,7 +233,7 @@ export const ProfileSidebar = observer(function ProfileSidebar(props: TProfileSi
                             <div className="mt-7 space-y-5 text-13 text-secondary">
                               <div className="flex items-center justify-between gap-2">
                                 <div className="flex items-center gap-2">
-                                  <div className="h-2.5 w-2.5 rounded-xs bg-[#203b80]" />
+                                  <div className="h-2.5 w-2.5 rounded-xs bg-[#5e5ce6]" />
                                   Created
                                 </div>
                                 <div className="font-medium">
@@ -242,7 +242,7 @@ export const ProfileSidebar = observer(function ProfileSidebar(props: TProfileSi
                               </div>
                               <div className="flex items-center justify-between gap-2">
                                 <div className="flex items-center gap-2">
-                                  <div className="h-2.5 w-2.5 rounded-xs bg-[#3f76ff]" />
+                                  <div className="h-2.5 w-2.5 rounded-xs bg-[#0a84ff]" />
                                   Assigned
                                 </div>
                                 <div className="font-medium">
@@ -251,7 +251,7 @@ export const ProfileSidebar = observer(function ProfileSidebar(props: TProfileSi
                               </div>
                               <div className="flex items-center justify-between gap-2">
                                 <div className="flex items-center gap-2">
-                                  <div className="h-2.5 w-2.5 rounded-xs bg-[#f59e0b]" />
+                                  <div className="h-2.5 w-2.5 rounded-xs bg-[#ffd60a]" />
                                   Due
                                 </div>
                                 <div className="font-medium">
@@ -260,7 +260,7 @@ export const ProfileSidebar = observer(function ProfileSidebar(props: TProfileSi
                               </div>
                               <div className="flex items-center justify-between gap-2">
                                 <div className="flex items-center gap-2">
-                                  <div className="h-2.5 w-2.5 rounded-xs bg-[#16a34a]" />
+                                  <div className="h-2.5 w-2.5 rounded-xs bg-[#30d158]" />
                                   Completed
                                 </div>
                                 <div className="font-medium">

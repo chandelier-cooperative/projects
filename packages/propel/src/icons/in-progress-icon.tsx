@@ -18,8 +18,8 @@ export function InProgressState({ width = "10", height = "11", className, color 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <circle cx="6" cy="6.5" r="4.4" stroke={color ?? "#EA8900"} strokeWidth="1.2" />
-      <circle cx="6" cy="6.5" r="2.4" stroke={color ?? "#EA8900"} strokeWidth="1.2" strokeDasharray="4 4" />
+      <circle cx="6" cy="6.5" r="4.4" stroke={color ?? "#ffd60a"} strokeWidth="1.2" />
+      <circle cx="6" cy="6.5" r="2.4" stroke={color ?? "#ffd60a"} strokeWidth="1.2" strokeDasharray="4 4" />
     </svg>
   );
 }

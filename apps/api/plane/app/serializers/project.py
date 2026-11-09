@@ -16,10 +16,7 @@ from plane.app.serializers.user import UserLiteSerializer, UserAdminLiteSerializ
 from plane.db.models import (
     Project,
     ProjectMember,
-    ProjectMemberInvite,
     ProjectIdentifier,
-    DeployBoard,
-    ProjectPublicMember,
     IssueSequence,
 )
 from plane.utils.content_validator import (
@@ -116,7 +113,6 @@ class ProjectListSerializer(DynamicBaseSerializer):
     is_favorite = serializers.BooleanField(read_only=True)
     sort_order = serializers.FloatField(read_only=True)
     member_role = serializers.IntegerField(read_only=True)
-    anchor = serializers.CharField(read_only=True)
     members = serializers.SerializerMethodField()
     cover_image_url = serializers.CharField(read_only=True)
     inbox_view = serializers.BooleanField(read_only=True, source="intake_view")
@@ -146,7 +142,6 @@ class ProjectDetailSerializer(BaseSerializer):
     is_favorite = serializers.BooleanField(read_only=True)
     sort_order = serializers.FloatField(read_only=True)
     member_role = serializers.IntegerField(read_only=True)
-    anchor = serializers.CharField(read_only=True)
 
     class Meta:
         model = Project
@@ -194,40 +189,6 @@ class ProjectMemberRoleSerializer(DynamicBaseSerializer):
         read_only_fields = ["original_role", "created_at"]
 
 
-class ProjectMemberInviteSerializer(BaseSerializer):
-    project = ProjectLiteSerializer(read_only=True)
-    workspace = WorkspaceLiteSerializer(read_only=True)
-
-    class Meta:
-        model = ProjectMemberInvite
-        fields = "__all__"
-
-
-class ProjectMemberInvitePublicSerializer(BaseSerializer):
-    """Safe read-only serializer for the public project invite GET endpoint.
-
-    Intentionally excludes ``email`` and ``token`` so that an unauthenticated
-    caller cannot retrieve the invitee's email address or the acceptance token
-    (GHSA-2r58-hgv7-635q).
-    """
-
-    project = ProjectLiteSerializer(read_only=True)
-    workspace = WorkspaceLiteSerializer(read_only=True)
-
-    class Meta:
-        model = ProjectMemberInvite
-        fields = [
-            "id",
-            "project",
-            "workspace",
-            "role",
-            "message",
-            "accepted",
-            "responded_at",
-        ]
-        read_only_fields = fields
-
-
 class ProjectIdentifierSerializer(BaseSerializer):
     class Meta:
         model = ProjectIdentifier
@@ -244,18 +205,3 @@ class ProjectMemberLiteSerializer(BaseSerializer):
         read_only_fields = fields
 
 
-class DeployBoardSerializer(BaseSerializer):
-    project_details = ProjectLiteSerializer(read_only=True, source="project")
-    workspace_detail = WorkspaceLiteSerializer(read_only=True, source="workspace")
-
-    class Meta:
-        model = DeployBoard
-        fields = "__all__"
-        read_only_fields = ["workspace", "project", "anchor"]
-
-
-class ProjectPublicMemberSerializer(BaseSerializer):
-    class Meta:
-        model = ProjectPublicMember
-        fields = "__all__"
-        read_only_fields = ["workspace", "project", "member"]

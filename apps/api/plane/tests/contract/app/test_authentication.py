@@ -682,28 +682,6 @@ class TestAuthenticationThrottle:
             response = django_client.post(url, {"email": "throttle-up@plane.so", "password": "secret123"}, follow=False)
             assert "RATE_LIMIT_EXCEEDED" in response.url
 
-    @pytest.mark.django_db
-    def test_space_password_sign_in_throttled(self, django_client, setup_instance):
-        """The spaces password sign-in endpoint is throttled per IP."""
-        url = reverse("space-sign-in")
-        with patch.object(AuthenticationThrottle, "rate", "1/minute"):
-            response = django_client.post(url, {"email": "throttle@plane.so", "password": "secret123"}, follow=False)
-            assert "RATE_LIMIT_EXCEEDED" not in response.url
-
-            response = django_client.post(url, {"email": "throttle@plane.so", "password": "secret123"}, follow=False)
-            assert "RATE_LIMIT_EXCEEDED" in response.url
-
-    @pytest.mark.django_db
-    def test_space_password_sign_up_throttled(self, django_client, setup_instance):
-        """The spaces password sign-up endpoint trips on the same per-IP budget."""
-        url = reverse("space-sign-up")
-        with patch.object(AuthenticationThrottle, "rate", "1/minute"):
-            response = django_client.post(url, {"email": "throttle-up@plane.so", "password": "secret123"}, follow=False)
-            assert "RATE_LIMIT_EXCEEDED" not in response.url
-
-            response = django_client.post(url, {"email": "throttle-up@plane.so", "password": "secret123"}, follow=False)
-            assert "RATE_LIMIT_EXCEEDED" in response.url
-
 
 @pytest.mark.contract
 class TestBotUserLoginBlocked:

@@ -7,15 +7,10 @@ from .project.base import (
     ProjectIdentifierEndpoint,
     ProjectUserViewsEndpoint,
     ProjectFavoritesViewSet,
-    DeployBoardViewSet,
     ProjectArchiveUnarchiveEndpoint,
 )
 
-from .project.invite import (
-    UserProjectInvitationsViewset,
-    ProjectInvitationsViewset,
-    ProjectJoinEndpoint,
-)
+from .project.join import UserProjectJoinEndpoint
 
 from .project.member import (
     ProjectMemberViewSet,
@@ -59,11 +54,6 @@ from .workspace.member import (
     WorkspaceMemberUserEndpoint,
     WorkspaceProjectMemberEndpoint,
     WorkspaceMemberUserViewsEndpoint,
-)
-from .workspace.invite import (
-    WorkspaceInvitationsViewset,
-    WorkspaceJoinEndpoint,
-    UserWorkspaceInvitationsViewSet,
 )
 from .workspace.label import WorkspaceLabelsEndpoint
 from .workspace.state import WorkspaceStatesEndpoint

@@ -17,7 +17,6 @@ from rest_framework.views import APIView
 from plane.authentication.provider.credentials.magic_code import MagicCodeProvider
 from plane.authentication.utils.login import user_login
 from plane.authentication.utils.redirection_path import get_redirection_path
-from plane.authentication.utils.user_auth_workflow import post_user_auth_workflow
 from plane.bgtasks.magic_link_code_task import magic_link
 from plane.license.models import Instance
 from plane.authentication.utils.host import base_host
@@ -103,7 +102,6 @@ class MagicSignInEndpoint(View):
                 request=request,
                 key=f"magic_{email}",
                 code=code,
-                callback=post_user_auth_workflow,
             )
             user = provider.authenticate()
             profile, _ = Profile.objects.get_or_create(user=user)
@@ -173,7 +171,6 @@ class MagicSignUpEndpoint(View):
                 request=request,
                 key=f"magic_{email}",
                 code=code,
-                callback=post_user_auth_workflow,
             )
             user = provider.authenticate()
             # Login the user and record his device info

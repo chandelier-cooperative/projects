@@ -136,14 +136,7 @@ export const IssueView = observer(function IssueView(props: IIssueView) {
   const content = (
     <div className="w-full text-body-sm-regular">
       {issueId && (
-        <div
-          ref={issuePeekOverviewRef}
-          className={peekOverviewIssueClassName}
-          style={{
-            boxShadow:
-              "0px 4px 8px 0px rgba(0, 0, 0, 0.12), 0px 6px 12px 0px rgba(16, 24, 40, 0.12), 0px 1px 16px 0px rgba(16, 24, 40, 0.12)",
-          }}
-        >
+        <div ref={issuePeekOverviewRef} className={peekOverviewIssueClassName}>
           {isError ? (
             <div className="relative h-screen w-full overflow-hidden">
               <IssuePeekOverviewError removeRoutePeekId={removeRoutePeekId} />

@@ -8,7 +8,7 @@ import * as React from "react";
 
 import type { ISvgIcons } from "./type";
 
-export function FavoriteFolderIcon({ className = "text-current", color = "#a3a3a3", ...rest }: ISvgIcons) {
+export function FavoriteFolderIcon({ className = "text-current", color = "#9a9a9a", ...rest }: ISvgIcons) {
   return (
     <svg
       width="16"

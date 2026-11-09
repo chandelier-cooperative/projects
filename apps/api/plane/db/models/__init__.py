@@ -7,7 +7,6 @@ from .api import APIActivityLog, APIToken
 from .asset import FileAsset
 from .base import BaseModel
 from .cycle import Cycle, CycleIssue, CycleUserProperties
-from .deploy_board import DeployBoard
 from .draft import (
     DraftIssue,
     DraftIssueAssignee,
@@ -54,9 +53,7 @@ from .project import (
     ProjectBaseModel,
     ProjectIdentifier,
     ProjectMember,
-    ProjectMemberInvite,
     ProjectNetwork,
-    ProjectPublicMember,
     ProjectUserProperty,
 )
 from .session import Session
@@ -69,7 +66,6 @@ from .workspace import (
     Workspace,
     WorkspaceBaseModel,
     WorkspaceMember,
-    WorkspaceMemberInvite,
     WorkspaceTheme,
     WorkspaceUserProperties,
     WorkspaceUserLink,

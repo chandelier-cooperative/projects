@@ -10,7 +10,7 @@ import type { ISvgIcons } from "../type";
 
 export function CompletedGroupIcon({
   className = "",
-  color = "#46A758",
+  color = "#30d158",
   height = "20",
   width = "20",
   ...rest

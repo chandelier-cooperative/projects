@@ -1,6 +1,6 @@
 /*
  * Chandelier design system sobre los tokens semánticos de Plane.
- * Fondo negro, texto blanco, arcoíris solo como acento (7 usos). Solo modo oscuro, sin sombras.
+ * Fondo negro, texto blanco, arcoíris solo como acento (8 usos). Solo modo oscuro, sin sombras.
  * Se importa al final de index.css para ganar a variables.css.
  */
 
@@ -374,7 +374,7 @@ body {
   inset: 0;
 }
 
-/* -------------------- Arcoíris: botón primario (uso 7) -------------------- */
+/* -------------------- Arcoíris: botón primario y select (uso 7) -------------------- */
 .ch-primary {
   border: 1px solid transparent;
   background:
@@ -387,8 +387,60 @@ body {
 .ch-primary:disabled {
   background:
     linear-gradient(var(--ch-bg), var(--ch-bg)) padding-box,
-    linear-gradient(var(--ch-line), var(--ch-line)) border-box;
-  color: var(--ch-text-dim);
+    linear-gradient(var(--ch-text), var(--ch-text)) border-box;
+  color: var(--ch-text);
+  opacity: 0.4;
+}
+
+/* -------------------- Botón secundario: sin borde, gris en hover -------------------- */
+/* Texto siempre blanco, nunca dim. Sin borde ni arcoíris (eso es del primario y del select).
+   Deshabilitado = mismo blanco con opacidad .4. */
+.ch-btn {
+  color: var(--ch-text);
+  border: 1px solid transparent;
+  background: transparent;
+  transition:
+    background-color var(--ch-t-fast),
+    color var(--ch-t-fast);
+}
+.ch-btn:hover:not(:disabled) {
+  background: var(--ch-border);
+}
+.ch-btn:disabled {
+  opacity: 0.4;
+}
+/* Destructivo: blanco como los demás; en hover el texto pasa a rojo (no arcoíris) */
+.ch-btn-danger:hover:not(:disabled) {
+  color: var(--ch-red);
+}
+
+/* -------------------- Select: borde blanco, arcoíris en hover, foco y abierto (uso 7) -------------------- */
+.ch-select {
+  color: var(--ch-text);
+  border: 1px solid var(--ch-text);
+  background: transparent;
+}
+.ch-select:hover:not(:disabled),
+.ch-select:focus-visible,
+.ch-select[aria-expanded="true"] {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--ch-btn-fill, var(--ch-bg)), var(--ch-btn-fill, var(--ch-bg))) padding-box,
+    conic-gradient(from var(--ch-angle), var(--ch-spectrum), var(--ch-red)) border-box;
+  animation: ch-spin-border 2.4s linear infinite;
+}
+.ch-select:focus-visible {
+  outline: none;
+}
+.ch-select:disabled {
+  opacity: 0.4;
+}
+/* Opción resaltada de la lista (hover o teclado): borde arcoíris */
+.ch-menu-active {
+  background:
+    linear-gradient(var(--ch-surface), var(--ch-surface)) padding-box,
+    conic-gradient(from var(--ch-angle), var(--ch-spectrum), var(--ch-red)) border-box;
+  animation: ch-spin-border 3s linear infinite;
 }
 
 /* -------------------- Arcoíris: ítem activo (uso 3) y tarjeta clicable (uso 6) -------------------- */

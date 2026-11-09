@@ -12,8 +12,7 @@ class TestIssueGroupByAllowlist:
     """Regression tests for GHSA-wwgj-929g-42cm.
 
     ISSUE_GROUP_BY_ALLOWLIST must contain exactly the field names that
-    `issue_group_values()` (plane/utils/grouper.py and
-    plane/space/utils/grouper.py) knows how to resolve safely. Anything
+    `issue_group_values()` (plane/utils/grouper.py) knows how to resolve safely. Anything
     outside this set must never reach the ORM as a raw field name via
     GroupedOffsetPaginator/SubGroupedOffsetPaginator.
     """

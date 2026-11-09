@@ -16,9 +16,8 @@ from rest_framework import status
 from rest_framework.response import Response
 
 # Module imports
-from plane.app.permissions import ROLE, ProjectMemberPermission, allow_permission
+from plane.app.permissions import ROLE, allow_permission
 from plane.app.serializers import (
-    DeployBoardSerializer,
     ProjectListSerializer,
     ProjectSerializer,
 )
@@ -27,7 +26,6 @@ from plane.bgtasks.recent_visited_task import recent_visited_task
 from plane.bgtasks.webhook_task import model_activity, webhook_activity
 from plane.db.models import (
     UserFavorite,
-    DeployBoard,
     Intake,
     Project,
     ProjectIdentifier,
@@ -77,13 +75,6 @@ class ProjectViewSet(BaseViewSet):
                     member_id=self.request.user.id,
                     is_active=True,
                 ).values("role")
-            )
-            .annotate(
-                anchor=DeployBoard.objects.filter(
-                    entity_name="project",
-                    entity_identifier=OuterRef("pk"),
-                    workspace__slug=self.kwargs.get("slug"),
-                ).values("anchor")
             )
             .annotate(sort_order=Subquery(sort_order))
             .prefetch_related(
@@ -410,9 +401,6 @@ class ProjectViewSet(BaseViewSet):
                 old_identifier=None,
                 new_identifier=None,
             )
-            # Delete the project members
-            DeployBoard.objects.filter(project_id=pk, workspace__slug=slug).delete()
-
             # Delete the user favorite
             UserFavorite.objects.filter(project_id=pk, workspace__slug=slug).delete()
 
@@ -531,52 +519,3 @@ class ProjectFavoritesViewSet(BaseViewSet):
         project_favorite.delete(soft=False)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-class DeployBoardViewSet(BaseViewSet):
-    permission_classes = [ProjectMemberPermission]
-    serializer_class = DeployBoardSerializer
-    model = DeployBoard
-
-    def list(self, request, slug, project_id):
-        project_deploy_board = DeployBoard.objects.filter(
-            entity_name="project", entity_identifier=project_id, workspace__slug=slug
-        ).first()
-
-        serializer = DeployBoardSerializer(project_deploy_board)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def create(self, request, slug, project_id):
-        comments = request.data.get("is_comments_enabled", False)
-        reactions = request.data.get("is_reactions_enabled", False)
-        intake = request.data.get("intake", None)
-        votes = request.data.get("is_votes_enabled", False)
-        views = request.data.get(
-            "views",
-            {
-                "list": True,
-                "kanban": True,
-                "calendar": True,
-                "gantt": True,
-                "spreadsheet": True,
-            },
-        )
-
-        # project_id comes from the URL and was never checked against slug, so a
-        # caller could aim their own workspace at another tenant's project id.
-        # Defence in depth: the permission class now binds both.
-        if not Project.objects.filter(pk=project_id, workspace__slug=slug).exists():
-            return Response({"error": "Project does not exist"}, status=status.HTTP_404_NOT_FOUND)
-
-        project_deploy_board, _ = DeployBoard.objects.get_or_create(
-            entity_name="project", entity_identifier=project_id, project_id=project_id
-        )
-        project_deploy_board.intake = intake
-        project_deploy_board.view_props = views
-        project_deploy_board.is_votes_enabled = votes
-        project_deploy_board.is_comments_enabled = comments
-        project_deploy_board.is_reactions_enabled = reactions
-
-        project_deploy_board.save()
-
-        serializer = DeployBoardSerializer(project_deploy_board)
-        return Response(serializer.data, status=status.HTTP_200_OK)

@@ -22,7 +22,6 @@ import {
 import { useOAuthConfig } from "@/hooks/oauth";
 import { useInstance } from "@/hooks/store/use-instance";
 // local imports
-import { TermsAndConditions } from "../terms-and-conditions";
 import { AuthBanner } from "./auth-banner";
 import { AuthHeader, AuthHeaderBase } from "./auth-header";
 import { AuthFormRoot } from "./form-root";
@@ -36,8 +35,6 @@ export const AuthRoot = observer(function AuthRoot(props: TAuthRoot) {
   const searchParams = useSearchParams();
   // query params
   const emailParam = searchParams.get("email");
-  const invitation_id = searchParams.get("invitation_id");
-  const workspaceSlug = searchParams.get("slug");
   const error_code = searchParams.get("error_code");
   // props
   const { authMode: currentAuthMode } = props;
@@ -118,13 +115,7 @@ export const AuthRoot = observer(function AuthRoot(props: TAuthRoot) {
       {errorInfo && errorInfo?.type === EErrorAlertType.BANNER_ALERT && (
         <AuthBanner message={errorInfo.message} handleBannerData={(value) => setErrorInfo(value)} />
       )}
-      <AuthHeader
-        workspaceSlug={workspaceSlug?.toString() || undefined}
-        invitationId={invitation_id?.toString() || undefined}
-        invitationEmail={email || undefined}
-        authMode={authMode}
-        currentAuthStep={authStep}
-      />
+      <AuthHeader authMode={authMode} currentAuthStep={authStep} />
       {isOAuthEnabled && (
         <OAuthOptions
           options={oAuthOptions}
@@ -144,7 +135,6 @@ export const AuthRoot = observer(function AuthRoot(props: TAuthRoot) {
           currentAuthMode={currentAuthMode}
         />
       )}
-      <TermsAndConditions authType={authMode} />
     </AuthContainer>
   );
 });

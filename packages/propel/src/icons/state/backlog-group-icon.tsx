@@ -9,7 +9,7 @@ import * as React from "react";
 import type { ISvgIcons } from "../type";
 import { DashedCircle } from "./dashed-circle";
 
-export function BacklogGroupIcon({ width = "20", height = "20", className, color = "#60646C" }: ISvgIcons) {
+export function BacklogGroupIcon({ width = "20", height = "20", className, color = "#5c5c5c" }: ISvgIcons) {
   // SVG parameters
   const viewBoxSize = 16;
   const center = viewBoxSize / 2;

@@ -7,6 +7,7 @@
 import { Switch } from "@headlessui/react";
 // helpers
 import { cn } from "../utils";
+import { useSpectrumColor } from "./use-spectrum-color";
 
 interface IToggleSwitchProps {
   value: boolean;
@@ -19,20 +20,23 @@ interface IToggleSwitchProps {
 
 function ToggleSwitch(props: IToggleSwitchProps) {
   const { value, onChange, label, size = "sm", disabled, className } = props;
+  // Chandelier: pista encendida = color del espectro según la posición del switch en la pantalla
+  const { ref, color: activeColor } = useSpectrumColor();
 
   return (
     <Switch
+      ref={ref}
       checked={value}
       disabled={disabled}
       onChange={onChange}
+      style={value ? { backgroundColor: activeColor } : undefined}
       className={cn(
         "relative inline-flex h-6 w-10 flex-shrink-0 cursor-pointer rounded-full border border-subtle bg-layer-1 transition-colors duration-200 ease-in-out focus:outline-none",
         {
           "h-4 w-7": size === "sm",
           "h-5 w-9": size === "md",
-          "bg-accent-primary": value && !disabled,
           "bg-(--text-color-icon-placeholder)": !value && !disabled,
-          "cursor-not-allowed bg-accent-primary opacity-50": value && disabled,
+          "cursor-not-allowed opacity-50": value && disabled,
           "cursor-not-allowed bg-(--text-color-icon-placeholder) opacity-50": !value && disabled,
         },
         className
@@ -41,6 +45,7 @@ function ToggleSwitch(props: IToggleSwitchProps) {
       <span className="sr-only">{label}</span>
       <span
         aria-hidden="true"
+        style={value ? { backgroundColor: "var(--ch-bg)" } : undefined}
         className={cn(
           "inline-block h-5 w-5 transform self-center rounded-full bg-(--text-color-icon-on-color) ring-0 transition duration-200 ease-in-out",
           {

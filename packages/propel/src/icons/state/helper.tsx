@@ -28,14 +28,14 @@ export type TStateGroups = "backlog" | "unstarted" | "started" | "completed" | "
 export const STATE_GROUP_COLORS: {
   [key in TStateGroups]: string;
 } = {
-  backlog: "#60646C",
-  unstarted: "#60646C",
-  started: "#F59E0B",
-  completed: "#46A758",
-  cancelled: "#9AA4BC",
+  backlog: "#5c5c5c",
+  unstarted: "#5c5c5c",
+  started: "#ffd60a",
+  completed: "#30d158",
+  cancelled: "#9a9a9a",
 };
 
-export const INTAKE_STATE_GROUP_COLORS: { [key in TIntakeStateGroups]: string } = { triage: "#4E5355" };
+export const INTAKE_STATE_GROUP_COLORS: { [key in TIntakeStateGroups]: string } = { triage: "#5c5c5c" };
 
 export const STATE_GROUP_SIZES: {
   [key in EIconSize]: string;

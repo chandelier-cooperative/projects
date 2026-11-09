@@ -4,8 +4,6 @@
  * See the LICENSE file for details.
  */
 
-import type { EProductSubscriptionEnum } from "@plane/types";
-
 /**
  * ===========================================================================
  * Event Groups
@@ -37,7 +35,6 @@ export const WORKSPACE_TRACKER_EVENTS = {
 
 export const WORKSPACE_TRACKER_ELEMENTS = {
   DELETE_WORKSPACE_BUTTON: "delete_workspace_button",
-  ONBOARDING_CREATE_WORKSPACE_BUTTON: "onboarding_create_workspace_button",
   CREATE_WORKSPACE_BUTTON: "create_workspace_button",
   UPDATE_WORKSPACE_BUTTON: "update_workspace_button",
 };
@@ -242,8 +239,6 @@ export const PROJECT_PAGE_TRACKER_ELEMENTS = {
  * ===========================================================================
  */
 export const MEMBER_TRACKER_EVENTS = {
-  invite: "member_invited",
-  accept: "member_accepted",
   project: {
     add: "project_member_added",
     leave: "project_member_left",
@@ -254,13 +249,9 @@ export const MEMBER_TRACKER_EVENTS = {
 };
 export const MEMBER_TRACKER_ELEMENTS = {
   HEADER_ADD_BUTTON: "header_add_member_button",
-  ACCEPT_INVITATION_BUTTON: "accept_invitation_button",
-  ONBOARDING_JOIN_WORKSPACE: "workspace_join_continue_to_workspace_button",
-  ONBOARDING_INVITE_MEMBER: "invite_member_continue_button",
   SIDEBAR_PROJECT_QUICK_ACTIONS: "sidebar_project_quick_actions",
   PROJECT_MEMBER_TABLE_CONTEXT_MENU: "project_member_table_context_menu",
   WORKSPACE_MEMBER_TABLE_CONTEXT_MENU: "workspace_member_table_context_menu",
-  WORKSPACE_INVITATIONS_LIST_CONTEXT_MENU: "workspace_invitations_list_context_menu",
 } as const;
 
 /**
@@ -384,12 +375,6 @@ export const USER_TRACKER_ELEMENTS = {
  * Onboarding Events and Elements
  * ===========================================================================
  */
-export const ONBOARDING_TRACKER_ELEMENTS = {
-  PROFILE_SETUP_FORM: "onboarding_profile_setup_form",
-  PASSWORD_CREATION_SELECTED: "onboarding_password_creation_selected",
-  PASSWORD_CREATION_SKIPPED: "onboarding_password_creation_skipped",
-};
-
 /**
  * ===========================================================================
  * Sidebar Events
@@ -492,9 +477,6 @@ export const WORKSPACE_SETTINGS_TRACKER_EVENTS = {
 };
 
 export const WORKSPACE_SETTINGS_TRACKER_ELEMENTS = {
-  // Billing
-  BILLING_UPGRADE_BUTTON: (subscriptionType: EProductSubscriptionEnum) => `billing_upgrade_${subscriptionType}_button`,
-  BILLING_TALK_TO_SALES_BUTTON: "billing_talk_to_sales_button",
   // Exports
   EXPORT_BUTTON: "export_button",
   // Webhooks

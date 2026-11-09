@@ -5,6 +5,7 @@
  */
 
 // plane types
+import { CloudSun, Moon, Sun } from "lucide-react";
 import { useTranslation } from "@plane/i18n";
 // hooks
 import type { IUser } from "@plane/types";
@@ -51,7 +52,15 @@ export function UserGreetingsView(props: IUserGreetingsView) {
         {t("good")} {t(greeting)}, {user?.first_name} {user?.last_name}
       </h2>
       <h5 className="flex items-center gap-2 font-medium text-placeholder">
-        <div>{greeting === "morning" ? "🌤️" : greeting === "afternoon" ? "🌥️" : "🌙️"}</div>
+        <div aria-hidden="true">
+          {greeting === "morning" ? (
+            <Sun className="size-4" />
+          ) : greeting === "afternoon" ? (
+            <CloudSun className="size-4" />
+          ) : (
+            <Moon className="size-4" />
+          )}
+        </div>
         <div>
           {weekDay}, {date} {timeString}
         </div>

@@ -14,7 +14,7 @@ import { Hotel } from "lucide-react";
 import { EUserPermissions, EUserPermissionsLevel } from "@plane/constants";
 import { useLocalStorage } from "@plane/hooks";
 import { useTranslation } from "@plane/i18n";
-import { MembersPropertyIcon, CheckIcon, ProjectIcon, CloseIcon } from "@plane/propel/icons";
+import { CheckIcon, ProjectIcon, CloseIcon } from "@plane/propel/icons";
 import { cn, getFileURL } from "@plane/utils";
 // hooks
 import { useCommandPalette } from "@/hooks/store/use-command-palette";
@@ -35,7 +35,6 @@ export const NoProjectsEmptyState = observer(function NoProjectsEmptyState() {
   // local storage
   const { storedValue, setValue } = useLocalStorage(`quickstart-guide-${workspaceSlug}`, {
     hide: false,
-    visited_members: false,
     visited_workspace: false,
     visited_profile: false,
   });
@@ -63,18 +62,6 @@ export const NoProjectsEmptyState = observer(function NoProjectsEmptyState() {
           toggleCreateProjectModal(true);
         },
         disabled: !canCreateProject,
-      },
-    },
-    {
-      id: "invite-team",
-      title: "home.empty.invite_team.title",
-      description: "home.empty.invite_team.description",
-      icon: <MembersPropertyIcon className="size-4" />,
-      flag: "visited_members",
-      cta: {
-        text: "home.empty.invite_team.cta",
-        link: `/${workspaceSlug}/settings/members`,
-        disabled: !isWorkspaceAdmin,
       },
     },
     {
@@ -106,7 +93,7 @@ export const NoProjectsEmptyState = observer(function NoProjectsEmptyState() {
           </Link>
         ) : (
           <Link href={`/${workspaceSlug}/profile/${currentUser?.id}`}>
-            <span className="relative flex size-4 items-center justify-center rounded-full bg-[#028375] p-4 text-13 text-on-color capitalize">
+            <span className="relative flex size-4 items-center justify-center rounded-full bg-[#30d158] p-4 text-13 text-on-color capitalize">
               {(currentUser?.email ?? currentUser?.display_name ?? "?")[0]}
             </span>
           </Link>
@@ -123,8 +110,6 @@ export const NoProjectsEmptyState = observer(function NoProjectsEmptyState() {
     switch (type) {
       case "projects":
         return joinedProjectIds?.length > 0;
-      case "visited_members":
-        return (activeWorkspace?.total_members || 0) >= 2;
       case "visited_workspace":
         return storedValue?.visited_workspace;
       case "visited_profile":
@@ -164,7 +149,7 @@ export const NoProjectsEmptyState = observer(function NoProjectsEmptyState() {
               <h3 className="mb-2 text-13 font-medium text-primary">{t(item.title)}</h3>
               <p className="mb-2 text-11 text-tertiary">{t(item.description)}</p>
               {isStateComplete ? (
-                <div className="flex w-fit items-center gap-2 rounded-full bg-[#17a34a] p-1">
+                <div className="flex w-fit items-center gap-2 rounded-full bg-[#30d158] p-1">
                   <CheckIcon className="size-3 text-accent-primary text-on-color" />
                 </div>
               ) : (

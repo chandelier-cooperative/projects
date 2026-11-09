@@ -17,11 +17,11 @@ type Props = {
 };
 
 const priorityColors = {
-  urgent: "#991b1b",
-  high: "#ef4444",
-  medium: "#f59e0b",
-  low: "#16a34a",
-  none: "#e5e5e5",
+  urgent: "#ff3b30",
+  high: "#ff9500",
+  medium: "#ffd60a",
+  low: "#30d158",
+  none: "#c8c8c8",
 };
 
 export function ProfilePriorityDistribution({ userProfile }: Props) {

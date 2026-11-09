@@ -35,14 +35,6 @@ export const coreRoutes: RouteConfigEntry[] = [
   // Onboarding
   layout("./(all)/onboarding/layout.tsx", [route("onboarding", "./(all)/onboarding/page.tsx")]),
 
-  // Invitations
-  layout("./(all)/invitations/layout.tsx", [route("invitations", "./(all)/invitations/page.tsx")]),
-
-  // Workspace Invitations
-  layout("./(all)/workspace-invitations/layout.tsx", [
-    route("workspace-invitations", "./(all)/workspace-invitations/page.tsx"),
-  ]),
-
   // ========================================================================
   // ALL APP ROUTES
   // ========================================================================
@@ -61,11 +53,6 @@ export const coreRoutes: RouteConfigEntry[] = [
 
         // Workspace Home
         route(":workspaceSlug", "./(all)/[workspaceSlug]/(projects)/page.tsx"),
-
-        // Active Cycles
-        layout("./(all)/[workspaceSlug]/(projects)/active-cycles/layout.tsx", [
-          route(":workspaceSlug/active-cycles", "./(all)/[workspaceSlug]/(projects)/active-cycles/page.tsx"),
-        ]),
 
         // Analytics
         layout("./(all)/[workspaceSlug]/(projects)/analytics/[tabId]/layout.tsx", [
@@ -265,10 +252,6 @@ export const coreRoutes: RouteConfigEntry[] = [
           route(
             ":workspaceSlug/settings/members",
             "./(all)/[workspaceSlug]/(settings)/settings/(workspace)/members/page.tsx"
-          ),
-          route(
-            ":workspaceSlug/settings/billing",
-            "./(all)/[workspaceSlug]/(settings)/settings/(workspace)/billing/page.tsx"
           ),
           route(
             ":workspaceSlug/settings/exports",

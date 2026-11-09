@@ -9,10 +9,12 @@ import { observer } from "mobx-react";
 import { useSearchParams, usePathname } from "next/navigation";
 import useSWR from "swr";
 // components
+import { NoWorkspace } from "@/components/auth-screens/workspace/no-workspace";
 import { LogoSpinner } from "@/components/common/logo-spinner";
 // helpers
 import { EPageTypes } from "@/helpers/authentication.helper";
 // hooks
+import { useInstance } from "@/hooks/store/use-instance";
 import { useWorkspace } from "@/hooks/store/use-workspace";
 import { useUser, useUserProfile, useUserSettings } from "@/hooks/store/user";
 import { useAppRouter } from "@/hooks/use-app-router";
@@ -41,6 +43,9 @@ export const AuthenticationWrapper = observer(function AuthenticationWrapper(pro
   const { data: currentUserProfile } = useUserProfile();
   const { data: currentUserSettings } = useUserSettings();
   const { loader: workspacesLoader, workspaces } = useWorkspace();
+  const { config: instanceConfig } = useInstance();
+  // Inside Chandelier workspaces are managed there: nobody creates one here
+  const isChandelierEnabled = Boolean(instanceConfig?.is_chandelier_enabled);
 
   const { isLoading: isUserSWRLoading } = useSWR("USER_INFORMATION", async () => await fetchCurrentUser(), {
     revalidateOnFocus: false,
@@ -55,14 +60,14 @@ export const AuthenticationWrapper = observer(function AuthenticationWrapper(pro
       currentUserProfile?.onboarding_step?.workspace_join) ||
     false;
 
-  const getWorkspaceRedirectionUrl = (): string => {
-    let redirectionRoute = "/create-workspace";
-
+  /**
+   * Where a signed-in person lands: the requested next_path, else their last workspace, else any
+   * workspace they belong to. With none, they create one here (running on their own) or are told
+   * to ask Chandelier for one (undefined).
+   */
+  const getWorkspaceRedirectionUrl = (): string | undefined => {
     // validating the nextPath from the router query
-    if (nextPath && isValidURL(nextPath.toString())) {
-      redirectionRoute = nextPath.toString();
-      return redirectionRoute;
-    }
+    if (nextPath && isValidURL(nextPath.toString())) return nextPath.toString();
 
     // validate the last and fallback workspace_slug
     const currentWorkspaceSlug =
@@ -73,9 +78,13 @@ export const AuthenticationWrapper = observer(function AuthenticationWrapper(pro
       (workspace) => workspace.slug === currentWorkspaceSlug
     );
 
-    if (isCurrentWorkspaceValid >= 0) redirectionRoute = `/${currentWorkspaceSlug}`;
+    if (isCurrentWorkspaceValid >= 0) return `/${currentWorkspaceSlug}`;
 
-    return redirectionRoute;
+    // fall back to any workspace the person belongs to
+    const fallbackWorkspace = Object.values(workspaces || {})[0];
+    if (fallbackWorkspace) return `/${fallbackWorkspace.slug}`;
+
+    return isChandelierEnabled ? undefined : "/create-workspace";
   };
 
   if ((isUserSWRLoading || isUserLoading || workspacesLoader) && !currentUser?.id)
@@ -92,6 +101,7 @@ export const AuthenticationWrapper = observer(function AuthenticationWrapper(pro
     else {
       if (currentUserProfile?.id && isUserOnboard) {
         const currentRedirectRoute = getWorkspaceRedirectionUrl();
+        if (!currentRedirectRoute) return <NoWorkspace />;
         router.push(currentRedirectRoute);
         return <></>;
       } else {
@@ -108,7 +118,7 @@ export const AuthenticationWrapper = observer(function AuthenticationWrapper(pro
     } else {
       if (currentUser && currentUserProfile?.id && isUserOnboard) {
         const currentRedirectRoute = getWorkspaceRedirectionUrl();
-        router.replace(currentRedirectRoute);
+        router.replace(currentRedirectRoute ?? "/");
         return <></>;
       } else return <>{children}</>;
     }
@@ -121,7 +131,7 @@ export const AuthenticationWrapper = observer(function AuthenticationWrapper(pro
     } else {
       if (currentUser && !currentUser?.is_password_autoset && currentUserProfile?.id && isUserOnboard) {
         const currentRedirectRoute = getWorkspaceRedirectionUrl();
-        router.push(currentRedirectRoute);
+        router.push(currentRedirectRoute ?? "/");
         return <></>;
       } else return <>{children}</>;
     }

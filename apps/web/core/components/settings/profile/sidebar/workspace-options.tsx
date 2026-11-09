@@ -4,7 +4,7 @@
  * See the LICENSE file for details.
  */
 
-import { CirclePlus, Mails } from "lucide-react";
+import { CirclePlus } from "lucide-react";
 import { observer } from "mobx-react";
 // plane imports
 import { useTranslation } from "@plane/i18n";
@@ -12,11 +12,13 @@ import { useTranslation } from "@plane/i18n";
 import { SettingsSidebarItem } from "@/components/settings/sidebar/item";
 import { WorkspaceLogo } from "@/components/workspace/logo";
 // hooks
+import { useInstance } from "@/hooks/store/use-instance";
 import { useWorkspace } from "@/hooks/store/use-workspace";
 
 export const ProfileSettingsSidebarWorkspaceOptions = observer(function ProfileSettingsSidebarWorkspaceOptions() {
   // store hooks
   const { workspaces } = useWorkspace();
+  const { config } = useInstance();
   // translation
   const { t } = useTranslation();
 
@@ -34,22 +36,18 @@ export const ProfileSettingsSidebarWorkspaceOptions = observer(function ProfileS
             isActive={false}
           />
         ))}
-        <div className="mt-1.5">
-          <SettingsSidebarItem
-            as="link"
-            href="/create-workspace/"
-            icon={CirclePlus}
-            label={t("create_workspace")}
-            isActive={false}
-          />
-          <SettingsSidebarItem
-            as="link"
-            href="/invitations/"
-            icon={Mails}
-            label={t("workspace_invites")}
-            isActive={false}
-          />
-        </div>
+        {/* workspaces are managed from Chandelier while it is active */}
+        {!config?.is_chandelier_enabled && (
+          <div className="mt-1.5">
+            <SettingsSidebarItem
+              as="link"
+              href="/create-workspace/"
+              icon={CirclePlus}
+              label={t("create_workspace")}
+              isActive={false}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
