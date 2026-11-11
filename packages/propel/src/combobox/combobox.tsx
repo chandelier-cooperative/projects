@@ -219,7 +219,7 @@ function ComboboxOption({ value, children, disabled, className }: ComboboxOption
     <BaseCombobox.Item
       value={value}
       disabled={disabled}
-      className={cn("cursor-pointer rounded-sm px-2 py-1.5 text-13 transition-colors outline-none", className)}
+      className={cn("cursor-pointer rounded-sm px-2 py-1.5 text-[12px] transition-colors outline-none", className)}
     >
       {children}
     </BaseCombobox.Item>

@@ -235,7 +235,9 @@ export function BlockMenu(props: Props) {
             <button
               key={item.key}
               type="button"
-              className="flex w-full items-center gap-1.5 truncate rounded-sm px-1 py-1.5 text-11 text-secondary hover:bg-layer-1"
+              className={`flex w-full items-center gap-1.5 truncate rounded-sm px-1 py-1.5 text-[12px] hover:bg-layer-1 ${
+                item.key === "delete" ? "text-danger-primary" : "text-secondary"
+              }`}
               onClick={(e) => {
                 item.onClick(e);
                 e.preventDefault();

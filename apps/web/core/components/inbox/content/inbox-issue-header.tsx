@@ -424,7 +424,7 @@ export const InboxIssueActionsHeader = observer(function InboxIssueActionsHeader
                       </div>
                     </CustomMenu.MenuItem>
                     {canDelete && (
-                      <CustomMenu.MenuItem onClick={() => setDeleteIssueModal(true)}>
+                      <CustomMenu.MenuItem className="text-danger-primary" onClick={() => setDeleteIssueModal(true)}>
                         <div className="flex items-center gap-2">
                           <TrashIcon width={14} height={14} strokeWidth={2} />
                           {t("inbox_issue.actions.delete")}

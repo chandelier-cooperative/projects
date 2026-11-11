@@ -220,7 +220,7 @@ export const InboxIssueActionsMobileHeader = observer(function InboxIssueActions
               </CustomMenu.MenuItem>
             )}
             {canDelete && !isAcceptedOrDeclined && (
-              <CustomMenu.MenuItem onClick={() => setDeleteIssueModal(true)}>
+              <CustomMenu.MenuItem className="text-danger-primary" onClick={() => setDeleteIssueModal(true)}>
                 <div className="flex items-center gap-2 text-danger-primary">
                   <TrashIcon height={14} width={14} strokeWidth={2} />
                   Delete

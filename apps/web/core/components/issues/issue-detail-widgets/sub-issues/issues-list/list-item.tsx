@@ -233,6 +233,7 @@ export const SubIssuesListItem = observer(function SubIssuesListItem(props: Prop
 
                 {canEdit && (
                   <CustomMenu.MenuItem
+                    className="text-danger-primary"
                     onClick={() => {
                       handleIssueCrudState("delete", parentIssueId, issue);
                       toggleDeleteIssueModal(issue.id);

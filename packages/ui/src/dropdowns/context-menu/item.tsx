@@ -158,9 +158,12 @@ export function ContextMenuItem(props: ContextMenuItemProps) {
         ref={setReferenceElement}
         type="button"
         className={cn(
-          "flex w-full items-center gap-2 rounded-sm px-1 py-1.5 text-left text-11 text-secondary select-none",
+          "flex w-full items-center gap-2 rounded-sm px-1 py-1.5 text-left text-[12px] select-none",
           {
             "bg-layer-transparent-hover": isActive,
+            // delete is red by default
+            "text-danger-primary": item.key === "delete" && !item.disabled,
+            "text-secondary": item.key !== "delete" && !item.disabled,
             "text-placeholder": item.disabled,
           },
           item.className
@@ -196,7 +199,7 @@ export function ContextMenuItem(props: ContextMenuItemProps) {
             ref={setPopperElement}
             style={styles.popper}
             {...attributes.popper}
-            className="fixed z-[35] min-w-[12rem] overflow-hidden rounded-md border-[0.5px] border-subtle-1 bg-surface-1 px-2 py-2.5 text-11"
+            className="fixed z-[35] min-w-[12rem] overflow-hidden rounded-md border-[0.5px] border-subtle-1 bg-surface-1 px-2 py-2.5 text-[12px]"
             data-context-submenu="true"
           >
             <div ref={nestedMenuRef} className="vertical-scrollbar scrollbar-sm max-h-72 overflow-y-scroll">
@@ -205,9 +208,11 @@ export function ContextMenuItem(props: ContextMenuItemProps) {
                   key={nestedItem.key}
                   type="button"
                   className={cn(
-                    "flex w-full items-center gap-2 rounded-sm px-1 py-1.5 text-left text-11 text-secondary select-none",
+                    "flex w-full items-center gap-2 rounded-sm px-1 py-1.5 text-left text-[12px] select-none",
                     {
                       "bg-layer-transparent-hover": index === activeNestedIndex,
+                      "text-danger-primary": nestedItem.key === "delete" && !nestedItem.disabled,
+                      "text-secondary": nestedItem.key !== "delete" && !nestedItem.disabled,
                       "text-placeholder": nestedItem.disabled,
                     },
                     nestedItem.className

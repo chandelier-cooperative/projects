@@ -62,6 +62,7 @@ export const GlobalViewListItem = observer(function GlobalViewListItem(props: Pr
                       </span>
                     </CustomMenu.MenuItem>
                     <CustomMenu.MenuItem
+                      className="text-danger-primary"
                       onClick={() => {
                         setDeleteViewModal(true);
                       }}

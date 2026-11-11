@@ -112,7 +112,7 @@ export const IssueLinkItem = observer(function IssueLinkItem(props: TIssueLinkIt
               {t("common.actions.edit")}
             </CustomMenu.MenuItem>
             <CustomMenu.MenuItem
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 text-danger-primary"
               onClick={() => {
                 linkOperations.remove(linkDetail.id);
               }}

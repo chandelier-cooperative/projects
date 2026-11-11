@@ -88,6 +88,7 @@ export const IssueAttachmentsListItem = observer(function IssueAttachmentsListIt
 
             <CustomMenu ellipsis closeOnSelect placement="bottom-end" disabled={disabled}>
               <CustomMenu.MenuItem
+                className="text-danger-primary"
                 onClick={() => {
                   toggleDeleteAttachmentModal(attachmentId);
                 }}

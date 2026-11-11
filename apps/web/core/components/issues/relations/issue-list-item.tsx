@@ -191,7 +191,7 @@ export const RelationIssueListItem = observer(function RelationIssueListItem(pro
                 )}
 
                 {!disabled && (
-                  <CustomMenu.MenuItem onClick={handleDeleteIssue}>
+                  <CustomMenu.MenuItem className="text-danger-primary" onClick={handleDeleteIssue}>
                     <div className="flex items-center gap-2">
                       <TrashIcon className="h-3.5 w-3.5" strokeWidth={2} />
                       <span>{t("common.actions.delete")}</span>

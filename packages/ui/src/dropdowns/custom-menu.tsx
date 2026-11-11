@@ -205,7 +205,7 @@ function CustomMenu(props: ICustomMenuDropdownProps) {
     >
       <div
         className={cn(
-          "my-1 min-w-[12rem] overflow-y-scroll rounded-md border border-strong-1 bg-surface-1 px-2 py-2.5 text-11 whitespace-nowrap ring-1 ring-strong-1/15 outline-none focus:outline-none",
+          "my-1 min-w-[12rem] overflow-y-scroll rounded-md border border-strong-1 bg-surface-1 px-2 py-2.5 text-[12px] whitespace-nowrap ring-1 ring-strong-1/15 outline-none focus:outline-none",
           {
             "max-h-60": maxHeight === "lg",
             "max-h-48": maxHeight === "md",
@@ -409,7 +409,7 @@ function SubMenu(props: ICustomSubMenuProps) {
             <button
               type="button"
               className={cn(
-                "font-inherit flex w-full cursor-pointer items-center justify-between rounded-sm border-0 bg-transparent px-1 py-1.5 text-left text-secondary outline-none select-none",
+                "font-inherit flex w-full cursor-pointer items-center justify-between rounded-sm border-0 bg-transparent px-1 py-1.5 text-left text-[12px] text-secondary outline-none select-none",
                 {
                   "bg-layer-transparent-hover": active && !disabled,
                   "text-placeholder": disabled,
@@ -433,7 +433,7 @@ function SubMenu(props: ICustomSubMenuProps) {
             style={styles.popper}
             {...attributes.popper}
             className={cn(
-              "fixed z-30 min-w-[12rem] overflow-hidden rounded-md border border-strong-1 bg-surface-1 p-1 text-11 ring-1 ring-strong-1/15",
+              "fixed z-30 min-w-[12rem] overflow-hidden rounded-md border border-strong-1 bg-surface-1 p-1 text-[12px] ring-1 ring-strong-1/15",
               contentClassName
             )}
             data-prevent-outside-click="true"
@@ -472,7 +472,7 @@ function MenuItem(props: ICustomMenuItemProps) {
         <button
           type="button"
           className={cn(
-            "w-full truncate rounded-sm px-1 py-1.5 text-left text-secondary select-none",
+            "w-full truncate rounded-sm px-1 py-1.5 text-left text-[12px] text-secondary select-none",
             {
               "bg-layer-transparent-hover": active && !disabled,
               "text-placeholder": disabled,
@@ -502,7 +502,7 @@ function SubMenuTrigger(props: ICustomSubMenuTriggerProps) {
       {({ active }) => (
         <div
           className={cn(
-            "flex w-full items-center justify-between rounded-sm px-1 py-1.5 text-left text-secondary select-none",
+            "flex w-full items-center justify-between rounded-sm px-1 py-1.5 text-left text-[12px] text-secondary select-none",
             {
               "bg-layer-transparent-hover": active && !disabled,
               "text-placeholder": disabled,
@@ -526,7 +526,7 @@ function SubMenuContent(props: ICustomSubMenuContentProps) {
   return (
     <div
       className={cn(
-        "z-[15] min-w-[12rem] overflow-hidden rounded-md border border-strong-1 bg-surface-1 p-1 text-11 ring-1 ring-strong-1/15",
+        "z-[15] min-w-[12rem] overflow-hidden rounded-md border border-strong-1 bg-surface-1 p-1 text-[12px] ring-1 ring-strong-1/15",
         className
       )}
     >

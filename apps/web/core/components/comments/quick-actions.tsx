@@ -94,6 +94,7 @@ export const CommentQuickActions = observer(function CommentQuickActions(props: 
           className={cn(
             "flex items-center gap-2",
             {
+              "text-danger-primary": item.key === "delete" && !item.disabled,
               "text-placeholder": item.disabled,
             },
             item.className
