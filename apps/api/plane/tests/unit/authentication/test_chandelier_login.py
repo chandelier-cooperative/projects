@@ -42,7 +42,7 @@ class FakeKeys:
 @pytest.fixture
 def signer(monkeypatch):
     monkeypatch.setenv("CHANDELIER_AUTH_AUDIENCE", AUD)
-    monkeypatch.delenv("CHANDELIER_AUTH_MODE", raising=False)
+    monkeypatch.setenv("CHANDELIER_AUTH_MODE", "required")  # as Chandelier delivers it; no default
     monkeypatch.setenv("CHANDELIER_ADMIN_SUB", ADMIN_SUB)
     provider.reset_guard()
     key = Ed25519PrivateKey.generate()

@@ -63,6 +63,21 @@
             "required": "We need an email address to invite them.",
             "invalid": "Email is invalid"
           }
+        },
+        "directory": {
+          "title": "Add people from Auth",
+          "description": "Only people Auth already knows can be added. Nobody is invited by email.",
+          "search_placeholder": "Search by name or username",
+          "role": "Role",
+          "add": "Add",
+          "already_member": "Already in this workspace",
+          "empty": "Auth has nobody matching this search.",
+          "load_more": "Load more",
+          "added_success": "{name} was added to the workspace.",
+          "not_allowed": "Auth does not let Projects see its people yet. The owner turns it on for this candle in Chandelier Auth.",
+          "session_over": "Your session ended. Reload the page to sign in again.",
+          "unreachable": "Auth could not be reached. Try again in a moment.",
+          "add_error": "That person could not be added."
         }
       },
       "exports": {

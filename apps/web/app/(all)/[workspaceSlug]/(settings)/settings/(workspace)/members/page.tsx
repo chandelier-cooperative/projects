@@ -6,19 +6,23 @@
 
 import { useState } from "react";
 import { observer } from "mobx-react";
+import { useParams } from "next/navigation";
 // types
 import { EUserPermissions, EUserPermissionsLevel } from "@plane/constants";
 import { useTranslation } from "@plane/i18n";
-import { SearchIcon } from "@plane/propel/icons";
+import { Button } from "@plane/propel/button";
+import { PlusIcon, SearchIcon } from "@plane/propel/icons";
 import { cn } from "@plane/utils";
 // components
 import { NotAuthorizedView } from "@/components/auth-screens/not-authorized-view";
 import { CountChip } from "@/components/common/count-chip";
 import { PageHead } from "@/components/core/page-title";
 import { MemberListFiltersDropdown } from "@/components/project/dropdowns/filters/member-list";
+import { AddWorkspaceMemberModal } from "@/components/workspace/settings/add-member-modal";
 import { WorkspaceMembersList } from "@/components/workspace/settings/members-list";
 import { SettingsContentWrapper } from "@/components/settings/content-wrapper";
 // hooks
+import { useInstance } from "@/hooks/store/use-instance";
 import { useMember } from "@/hooks/store/use-member";
 import { useWorkspace } from "@/hooks/store/use-workspace";
 import { useUserPermissions } from "@/hooks/store/user";
@@ -28,7 +32,11 @@ import { MembersWorkspaceSettingsHeader } from "./header";
 const WorkspaceMembersSettingsPage = observer(function WorkspaceMembersSettingsPage() {
   // states
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isAddMemberOpen, setIsAddMemberOpen] = useState(false);
+  // router
+  const { workspaceSlug } = useParams();
   // store hooks
+  const { config } = useInstance();
   const { workspaceUserInfo, allowPermissions } = useUserPermissions();
   const {
     workspace: { workspaceMemberIds, filtersStore },
@@ -41,6 +49,11 @@ const WorkspaceMembersSettingsPage = observer(function WorkspaceMembersSettingsP
     [EUserPermissions.ADMIN, EUserPermissions.MEMBER],
     EUserPermissionsLevel.WORKSPACE
   );
+
+  // People are added from Auth by the workspace admins; there are no invitations. Only while Chandelier Auth is on.
+  const canAddMembers =
+    Boolean(config?.is_chandelier_enabled) &&
+    allowPermissions([EUserPermissions.ADMIN], EUserPermissionsLevel.WORKSPACE);
 
   // Handler for role filter updates
   const handleRoleFilterUpdate = (role: string) => {
@@ -65,6 +78,13 @@ const WorkspaceMembersSettingsPage = observer(function WorkspaceMembersSettingsP
   return (
     <SettingsContentWrapper header={<MembersWorkspaceSettingsHeader />} hugging>
       <PageHead title={pageTitle} />
+      {canAddMembers && workspaceSlug && (
+        <AddWorkspaceMemberModal
+          isOpen={isAddMemberOpen}
+          onClose={() => setIsAddMemberOpen(false)}
+          workspaceSlug={workspaceSlug.toString()}
+        />
+      )}
       <section
         className={cn("size-full", {
           "opacity-60": !canPerformWorkspaceMemberActions,
@@ -94,6 +114,11 @@ const WorkspaceMembersSettingsPage = observer(function WorkspaceMembersSettingsP
               handleUpdate={handleRoleFilterUpdate}
               memberType="workspace"
             />
+            {canAddMembers && (
+              <Button variant="primary" size="lg" prependIcon={<PlusIcon />} onClick={() => setIsAddMemberOpen(true)}>
+                {t("workspace_settings.settings.members.add_member")}
+              </Button>
+            )}
           </div>
         </div>
         <WorkspaceMembersList searchQuery={searchQuery} />

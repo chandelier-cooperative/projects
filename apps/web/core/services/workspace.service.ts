@@ -27,6 +27,21 @@ import type {
 // services
 import { APIService } from "@/services/api.service";
 
+/** A person Auth knows, as Projects shows them when a workspace admin adds people. */
+export type TAuthPerson = {
+  /** The person's id in Auth (the `sub` of their assertion). */
+  id: string;
+  display_name: string;
+  status: string;
+  logins: string[];
+  is_member: boolean;
+};
+
+export type TAuthPeoplePage = { users: TAuthPerson[]; next_cursor: string | null };
+
+/** What the API answers when it refuses: `status` is the HTTP status, `error_code` is 401/403 when Auth refused. */
+export type TAuthDirectoryError = { error?: string; error_code?: number; status?: number };
+
 export class WorkspaceService extends APIService {
   constructor() {
     super(API_BASE_URL);
@@ -101,6 +116,25 @@ export class WorkspaceService extends APIService {
       .then((response) => response?.data)
       .catch((error) => {
         throw error?.response?.data;
+      });
+  }
+
+  async fetchAuthPeople(
+    workspaceSlug: string,
+    params: { q?: string; cursor?: string; limit?: number }
+  ): Promise<TAuthPeoplePage> {
+    return this.get(`/api/workspaces/${workspaceSlug}/directory/`, { params })
+      .then((response) => response?.data)
+      .catch((error) => {
+        throw { ...error?.response?.data, status: error?.response?.status } as TAuthDirectoryError;
+      });
+  }
+
+  async addWorkspaceMember(workspaceSlug: string, data: { sub: string; role: 15 | 20 }): Promise<void> {
+    return this.post(`/api/workspaces/${workspaceSlug}/members/`, data)
+      .then(() => undefined)
+      .catch((error) => {
+        throw { ...error?.response?.data, status: error?.response?.status } as TAuthDirectoryError;
       });
   }
 

@@ -3,6 +3,10 @@
 # See the LICENSE file for details.
 
 # Django imports
+import uuid
+
+from django.db import transaction
+from django.http import Http404
 from django.db.models import Count, Q, OuterRef, Subquery, IntegerField
 from django.utils import timezone
 from django.db.models.functions import Coalesce
@@ -21,10 +25,65 @@ from plane.app.serializers import (
     WorkSpaceMemberSerializer,
 )
 from plane.app.views.base import BaseAPIView
-from plane.db.models import Project, ProjectMember, WorkspaceMember, DraftIssue
+from plane.authentication.provider.chandelier import is_chandelier_enabled, provision_person
+from plane.authentication.utils import chandelier_directory
+from plane.authentication.utils.chandelier_auth import ASSERTION_HEADER
+from plane.db.models import Account, Project, ProjectMember, Workspace, WorkspaceMember, DraftIssue
 from plane.utils.cache import invalidate_cache
 
 from .. import BaseViewSet
+
+
+ADDABLE_ROLES = (ROLE.ADMIN.value, ROLE.MEMBER.value)  # people are added as admin or member, never guest
+
+
+def _assertion(request) -> str:
+    """The assertion Caddy put on this very request. It lasts 60 seconds: it is forwarded, never kept."""
+    return request.META.get("HTTP_" + ASSERTION_HEADER.upper().replace("-", "_"), "")
+
+
+def _directory_error(e: "chandelier_directory.DirectoryError") -> Response:
+    if e.status in (401, 403):
+        # Auth refused: the candle may not read people (the owner has not allowed it) or the session is over.
+        message = "Auth does not let Projects see its people" if e.status == 403 else "Sign in again"
+        return Response({"error": message, "error_code": e.status}, status=e.status)
+    return Response({"error": "Auth could not be reached"}, status=status.HTTP_502_BAD_GATEWAY)
+
+
+class WorkspaceDirectoryEndpoint(BaseAPIView):
+    """The people Auth knows, for a workspace admin choosing who to add.
+
+    Marks who is already in the workspace. Only available while Chandelier Auth is on.
+    """
+
+    @allow_permission(allowed_roles=[ROLE.ADMIN], level="WORKSPACE")
+    def get(self, request, slug):
+        if not is_chandelier_enabled():
+            raise Http404
+        try:
+            page = chandelier_directory.list_people(
+                _assertion(request),
+                q=request.GET.get("q", ""),
+                limit=request.GET.get("limit", 50),
+                cursor=request.GET.get("cursor", ""),
+            )
+        except chandelier_directory.DirectoryError as e:
+            return _directory_error(e)
+        except ValueError:
+            return Response({"error": "limit must be a number"}, status=status.HTTP_400_BAD_REQUEST)
+
+        subs = [u["id"] for u in page["users"]]
+        in_workspace = set(
+            Account.objects.filter(
+                provider="chandelier",
+                provider_account_id__in=subs,
+                user__member_workspace__workspace__slug=slug,
+                user__member_workspace__is_active=True,
+            ).values_list("provider_account_id", flat=True)
+        )
+        for u in page["users"]:
+            u["is_member"] = u["id"] in in_workspace
+        return Response(page, status=status.HTTP_200_OK)
 
 
 class WorkSpaceMemberViewSet(BaseViewSet):
@@ -41,6 +100,55 @@ class WorkSpaceMemberViewSet(BaseViewSet):
             .filter(workspace__slug=self.kwargs.get("slug"))
             .select_related("member", "member__avatar_asset")
         )
+
+    @invalidate_cache(
+        path="/api/workspaces/:slug/members/",
+        url_params=True,
+        user=False,
+        multiple=True,
+    )
+    @invalidate_cache(path="api/users/me/workspaces/", user=False, multiple=True)
+    @allow_permission(allowed_roles=[ROLE.ADMIN], level="WORKSPACE")
+    def create(self, request, slug):
+        """Add a person Auth knows to this workspace. There are no invitations: the person is loaded from Auth.
+
+        Body: ``{"sub": "<id in Auth>", "role": 20 | 15}``. Auth is asked again here, with the assertion of this
+        request, so a ``sub`` that Auth does not confirm (or a suspended person) is never added.
+        """
+        if not is_chandelier_enabled():
+            raise Http404
+
+        sub = str(request.data.get("sub") or "").strip()
+        try:
+            sub = str(uuid.UUID(sub))
+            role = int(request.data.get("role", ROLE.MEMBER.value))
+        except (ValueError, TypeError, AttributeError):
+            return Response({"error": "sub and role are required"}, status=status.HTTP_400_BAD_REQUEST)
+        if role not in ADDABLE_ROLES:
+            return Response({"error": "role must be admin or member"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            person = chandelier_directory.get_active_person(_assertion(request), sub)
+        except chandelier_directory.DirectoryError as e:
+            return _directory_error(e)
+        if person is None:
+            return Response({"error": "Auth does not know that person"}, status=status.HTTP_404_NOT_FOUND)
+
+        with transaction.atomic():
+            user = provision_person(person["id"], person["display_name"])
+            member = WorkspaceMember.objects.filter(workspace__slug=slug, member=user).first()
+            if member and member.is_active:
+                return Response({"error": "Already a member of this workspace"}, status=status.HTTP_409_CONFLICT)
+            if member:  # left or was removed before: come back with the role chosen now
+                member.is_active, member.role = True, role
+                member.save(update_fields=["is_active", "role", "updated_at"])
+            else:
+                member = WorkspaceMember.objects.create(
+                    workspace=Workspace.objects.get(slug=slug), member=user, role=role
+                )
+
+        serializer = WorkspaceMemberAdminSerializer(self.get_queryset().get(pk=member.pk), fields=("id", "member", "role"))
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @allow_permission(allowed_roles=[ROLE.ADMIN, ROLE.MEMBER, ROLE.GUEST], level="WORKSPACE")
     def list(self, request, slug):

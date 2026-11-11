@@ -23,6 +23,7 @@ from rest_framework.generics import GenericAPIView
 
 # Module imports
 from plane.api.middleware.api_authentication import APIKeyAuthentication
+from plane.authentication.utils.chandelier_bearer import ChandelierBearerAuthentication
 from plane.api.rate_limit import ApiKeyRateThrottle
 from plane.utils.exception_logger import log_exception
 from plane.utils.paginator import BasePaginator
@@ -47,7 +48,8 @@ class TimezoneMixin:
 
 
 class BaseAPIView(TimezoneMixin, GenericAPIView, ReadReplicaControlMixin, BasePaginator):
-    authentication_classes = [APIKeyAuthentication]
+    # API key first; a Chandelier Auth access token (Bearer) is the other way in, inert unless Auth is on.
+    authentication_classes = [APIKeyAuthentication, ChandelierBearerAuthentication]
 
     permission_classes = [IsAuthenticated]
 
@@ -154,7 +156,8 @@ class BaseAPIView(TimezoneMixin, GenericAPIView, ReadReplicaControlMixin, BasePa
 class BaseViewSet(TimezoneMixin, ReadReplicaControlMixin, ModelViewSet, BasePaginator):
     model = None
 
-    authentication_classes = [APIKeyAuthentication]
+    # API key first; a Chandelier Auth access token (Bearer) is the other way in, inert unless Auth is on.
+    authentication_classes = [APIKeyAuthentication, ChandelierBearerAuthentication]
     permission_classes = [
         IsAuthenticated,
     ]

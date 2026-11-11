@@ -150,8 +150,12 @@ class Guard:
     @classmethod
     def from_env(cls, env: Mapping[str, str] = os.environ) -> "Guard":
         paths = env.get("CHANDELIER_AUTH_PUBLIC_PATHS")
+        mode = (env.get("CHANDELIER_AUTH_MODE") or "").strip().lower()
+        if not mode:
+            # Fail closed: there is no default. Chandelier sets required; a local run says dev.
+            raise ValueError("chandelier_auth: CHANDELIER_AUTH_MODE is empty: use required or dev")
         cfg = Config(
-            mode=(env.get("CHANDELIER_AUTH_MODE") or "").strip().lower() or "required",
+            mode=mode,
             jwks_url=(env.get("CHANDELIER_AUTH_JWKS_URL") or "").strip() or DEFAULT_JWKS_URL,
             audience=(env.get("CHANDELIER_AUTH_AUDIENCE") or "").strip(),
             dev_user=(env.get("CHANDELIER_AUTH_DEV_USER") or "").strip() or Config.dev_user,

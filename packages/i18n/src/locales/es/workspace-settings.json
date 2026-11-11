@@ -63,6 +63,21 @@
             "required": "Necesitamos una dirección de correo electrónico para invitarlos.",
             "invalid": "El correo electrónico no es válido"
           }
+        },
+        "directory": {
+          "title": "Agregar personas desde Auth",
+          "description": "Solo se puede agregar a quien Auth ya conoce. No se invita a nadie por correo.",
+          "search_placeholder": "Buscar por nombre o usuario",
+          "role": "Rol",
+          "add": "Agregar",
+          "already_member": "Ya está en este espacio de trabajo",
+          "empty": "Auth no tiene a nadie que coincida con esta búsqueda.",
+          "load_more": "Cargar más",
+          "added_success": "{name} se agregó al espacio de trabajo.",
+          "not_allowed": "Auth aún no deja que Projects vea a sus personas. El dueño lo activa para esta vela en Chandelier Auth.",
+          "session_over": "Tu sesión terminó. Recarga la página para entrar de nuevo.",
+          "unreachable": "No se pudo contactar a Auth. Inténtalo de nuevo en un momento.",
+          "add_error": "No se pudo agregar a esa persona."
         }
       },
       "exports": {

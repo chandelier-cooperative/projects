@@ -125,6 +125,39 @@ def find_user_by_sub(sub: str) -> Optional[User]:
     return account.user if account else None
 
 
+def provision_person(sub: str, name: str = "") -> User:
+    """The Projects user of a person Auth knows, created if there is none yet.
+
+    Used when a workspace admin adds somebody who has not signed in yet. The person is bound to their ``sub``
+    exactly as a first sign-in would bind them (same synthetic email, same account row), so signing in later
+    finds this same user. Never called with a ``sub`` that Auth has not confirmed.
+    """
+    user = find_user_by_sub(sub)
+    if user:
+        return user
+    email = email_for({"sub": sub})
+    user = User.objects.filter(email=email).first()
+    if user is None:
+        first_name, last_name = split_name(name)
+        user = User(email=email, username=uuid.uuid4().hex, first_name=first_name, last_name=last_name)
+        if name.strip():
+            user.display_name = name.strip()[:255]
+        user.set_password(uuid.uuid4().hex)
+        user.is_password_autoset = True
+        user.is_email_verified = True
+        user.save()
+    Account.objects.get_or_create(
+        provider=PROVIDER,
+        provider_account_id=sub,
+        defaults={"user": user, "access_token": "", "metadata": {}},
+    )
+    profile, _ = Profile.objects.get_or_create(user=user)
+    if not profile.is_onboarded:
+        profile.is_onboarded = True
+        profile.save(update_fields=["is_onboarded"])
+    return user
+
+
 def is_instance_admin(user: User) -> bool:
     return InstanceAdmin.objects.filter(user=user).exists()
 

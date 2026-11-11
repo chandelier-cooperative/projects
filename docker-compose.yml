@@ -36,6 +36,8 @@ services:
     environment:
       # Chandelier Auth (sign in without a password). Empty audience = feature off.
       # Do not add the standalone dev mode here: it belongs only in a local, uncommitted .env.
+      # Chandelier delivers required (and the audience) on each deploy; no default is the verifier's to pick.
+      CHANDELIER_AUTH_MODE: ${CHANDELIER_AUTH_MODE:-required}
       CHANDELIER_AUTH_AUDIENCE: ${CHANDELIER_AUTH_AUDIENCE:-}
       CHANDELIER_AUTH_JWKS_URL: ${CHANDELIER_AUTH_JWKS_URL:-}
       CHANDELIER_ADMIN_SUB: ${CHANDELIER_ADMIN_SUB:-}

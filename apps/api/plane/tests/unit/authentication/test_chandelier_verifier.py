@@ -132,8 +132,12 @@ class Tests(unittest.TestCase):
         self.assertEqual(wired.check({"Authorization": "Bearer x"}).claims["assurance"], "dev")
 
     def test_misconfiguration_refuses_to_start_instead_of_opening(self):
-        with self.assertRaisesRegex(ValueError, "AUDIENCE"):
+        with self.assertRaisesRegex(ValueError, "MODE is empty"):
             Guard.from_env({})
+        with self.assertRaisesRegex(ValueError, "MODE is empty"):
+            Guard.from_env({"CHANDELIER_AUTH_AUDIENCE": AUD})  # audience alone never picks a mode
+        with self.assertRaisesRegex(ValueError, "AUDIENCE"):
+            Guard.from_env({"CHANDELIER_AUTH_MODE": "required"})
         with self.assertRaisesRegex(ValueError, "required or dev"):
             Guard.from_env({"CHANDELIER_AUTH_MODE": "off"})
         with self.assertLogs("chandelier_auth", "WARNING"):
